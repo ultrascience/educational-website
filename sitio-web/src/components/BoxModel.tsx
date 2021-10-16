@@ -1,9 +1,13 @@
 import Modelo3D from './Modelo3D';
-import Hamburguesa from './Hamburguesa.js'
+import Augen from './Augen'
 
 function BoxModel() {
   return (
-    <Modelo3D modelo={<Hamburguesa />} />
+  <>
+  <div className="relative bg-pink-500 h-full w-full">
+    <Modelo3D modelo={<Augen />} />
+    </div>
+    </>
   );
   }
 
