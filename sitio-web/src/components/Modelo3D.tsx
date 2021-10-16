@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber'
 import { TrackballControls, Center, OrthographicCamera } from "@react-three/drei"
-//   devuelve al modelo #D basado en props
+//   Devuelve al modelo 3D basado en props
 // interface Fullname {
 //   modelo: JSX.IntrinsicElements['mesh'];
 // }
