@@ -16,3 +16,9 @@
 .grid-buttons {
     @apply col-start-1 col-span-full row-start-6 grid-flow-row bg-green-600;
 }
+.containerInformation {
+    background-color: yellowgreen;
+    width: 50%;
+    height: 100%;
+
+}
