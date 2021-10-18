@@ -1,9 +1,24 @@
-import BoxModel from './BoxModel' 
+/**
+ * Componente que sirve para modelar la Escena del modelo 3D y las caja de botones
+ * Utilizando CSS Grid.
+ */
+import Button from './Button'
+import Modelo3D from "./Modelo3D";
+import Augen from "./Augen";
+import "../index.css"
 function Scene3D() {
  return (
-  <div className="grid grid-cols-9 grid-rows-9 gap-4  h-full w-full">
-  <div className="col-start-1 col-span-full row-start-1 row-end-6 bg-pink-500"> <BoxModel /></div>
-  <div className="col-start-1 col-span-full row-start-6 row-end-9 bg-purple-500"> Botones</div>
+  <div className="grid-scene">
+  <div className="grid-model">
+   <Modelo3D modelo={<Augen />} />
+  </div>
+  <div className="grid-buttons">
+  <div className="flex gap-8">
+      <Button title="Propiedades fisicas"/>
+      <Button title="Propiedades quimicas"/>
+      <Button title="Propiedades biologicas"/>
+  </div>
+  </div>
   </div>
  ); 
 }
