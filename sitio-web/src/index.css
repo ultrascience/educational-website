@@ -1,13 +1,24 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.btn-primary {
+   /* @apply hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded;*/
+    @apply rounded-lg px-4 py-2 bg-blue-500 text-blue-100;
+}
+.grid-scene {
+    @apply  grid grid-cols-9 grid-rows-6 gap-2  h-full w-full;
+}
+.grid-model {
+   @apply col-start-1 col-span-full row-start-1 row-end-6 bg-pink-500;
+}
+.grid-buttons {
+    @apply col-start-1 col-span-full row-start-6 grid-flow-row bg-green-600;
+}
+.containerInformation {
+    background-color: yellowgreen;
+    width: 50%;
+    height: 100%;
+
 }
