@@ -1,22 +1,22 @@
 import React from "react";
 
 interface Props {
-  children?: React.ReactNode;
-  onClick: () => void;
+    children?: React.ReactNode;
+    onClick: () => void;
 }
 
 const Button: React.FC<Props> = ({
-                                   children,
-                                   onClick
+                                     children,
+                                     onClick
                                  }) => {
-  return (
-      <button
-          onClick={onClick}
-          className="btn btn-primary"
-      >
-        {children}
-      </button>
-  );
+    return (
+        <button
+            onClick={onClick}
+            className="btn btn-primary"
+        >
+            {children}
+        </button>
+    );
 }
 
 export default Button;
