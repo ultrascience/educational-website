@@ -3,49 +3,29 @@
 @tailwind components;
 @tailwind utilities;
 
-.btn-primary {
-   /* @apply hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded;*/
-    @apply rounded-lg px-4 py-2 bg-blue-500 text-blue-100;
-}
-.grid-scene {
-    @apply  grid grid-cols-6 grid-rows-6 gap-2  h-full w-full;
-}
-.grid-model {
-   @apply col-start-1 col-span-full row-start-1 row-span-full bg-pink-500;
-}
-.grid-buttons {
-    @apply col-start-1 col-span-full row-start-6 grid-flow-row bg-green-600;
-}
-
 .containerInformation {
-    background-color: yellowgreen;
+    background-color: black;
     width: 50%;
     height: 100%;
 
 }
 
-.entero {
-    background-color: pink;
-    width: 100%;
+.informationOn {
+    background-color: yellow;
     height: 100%;
+    width: 100%;
+    position: relative;
 
 }
 
-.mitad {
+.informationOff {
     background-color: red;
     width: 50%;
     height: 100%;
+    position: relative;
 
 }
-
-.contenedor {
-
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.contenedor .btn {
+.informationOff .btn {
 
   position: absolute;
   top: 90%;
@@ -60,6 +40,25 @@
   border-radius: 5px;
 }
 
-.contenedor .btn:hover {
+.informationOff .btn:hover {
+  background-color: #24A0ED;
+}
+
+.informationOn .btn {
+
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: #287233;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.informationOn .btn:hover {
   background-color: #24A0ED;
 }

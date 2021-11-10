@@ -10,7 +10,7 @@ export default function Model(props) {
   const { nodes, materials } = useGLTF('/Augen.glb')
   return (
     <group ref={group} {...props} dispose={null}>
-      <group position={[-0.38, 3.79, -0.21]} rotation={[-1.89, -0.12, 0.25]} scale={[12.5, 12.5, 12.5]}>
+      <group position={[-0.38, 3.79, -0.21]} rotation={[-1.89, -0.12, 0.25]} scale={[30, 30, 30]}>
         <mesh geometry={nodes.texturedMesh001_1.geometry} material={materials['TextureAtlas_0.001']} />
         <mesh geometry={nodes.texturedMesh001_2.geometry} material={materials['TextureAtlas_1.001']} />
         <mesh geometry={nodes.texturedMesh001_3.geometry} material={materials['Material.006']} />
