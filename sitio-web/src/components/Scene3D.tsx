@@ -21,25 +21,11 @@ function Scene3D() {
     const estilo = mountA ? "mitad" : "entero";
 
     return (
-        <div className="grid-scene">
-            <div id="container" className="grid-model">
+        <div className="contenedor">
                 <div className={estilo}>
                 <Modelo3D modelo={<Augen/>}/>
                 </div>
-                {mountA &&
-                    <div className="information">
-                     <h1> Hola Mundo </h1>
-                    </div>
-                }
-            </div>
-            <div className="grid-buttons">
-                <div className="flex gap-8">
-                    <Button
-                        onClick={ChangeStyleModel}
-                        children="Informacion"
-                    />
-                </div>
-            </div>
+                <Button onClick={ChangeStyleModel} children="Hola"/>
         </div>
     );
 }

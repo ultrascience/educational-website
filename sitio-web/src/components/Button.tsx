@@ -12,7 +12,7 @@ const Button: React.FC<Props> = ({
     return (
         <button
             onClick={onClick}
-            className="btn btn-primary"
+            className="btn"
         >
             {children}
         </button>

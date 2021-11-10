@@ -6,7 +6,7 @@ import Scene3D from './components/Scene3D'
 function App() {
   return (
   <>
-  <div className="container h-screen w-screen mx-auto bg-white">
+  <div className="h-screen w-screen mx-0">
   <Scene3D />
   </div>
   </>
