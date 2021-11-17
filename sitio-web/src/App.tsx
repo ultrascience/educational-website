@@ -2,6 +2,7 @@ import React from 'react';
 import Button from './components/Button'
 import Augen from './models3D/Augen'
 import Scene3D from './components/Scene3D'
+import Gallery from './components/Gallery';
 function App() {
   return (
   <>
