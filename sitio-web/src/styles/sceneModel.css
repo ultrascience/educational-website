@@ -6,6 +6,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CSS grid with 10 rows and 10 columns */
 .parent {
   display: grid;
   grid-template-columns: repeat(11, 1fr);
@@ -16,13 +17,22 @@
   height: 100vh;
 }
 
+/* Section to locate the button */
+.button-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: 11 / 1 / 12 / 12;
+    background-color: #a8a8a8;
+}
+
 /* Style for the mobile view */
 @media (max-width: 640px) {
 
   .infoOff { 
   position: relative;
   background-color: #287233;
-  grid-area: 1 / 1 / 10 / 12; 
+  grid-area: 1 / 1 / 11 / 12; 
   }
 
   .infoOn { 
@@ -36,13 +46,6 @@
     grid-area: 5 / 1 / 11 / 12;
   }
 
-  .button-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    grid-area: 10 / 1 / 12 / 12;
-    background-color: #a8a8a8;
-  }
 
 }
 
@@ -66,13 +69,6 @@
     grid-area: 1 / 6 / 11 / 12;
   }
 
-  .button-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    grid-area: 11 / 1 / 12 / 12;
-    background-color: #a8ka8a8;
-  }
 
 }
 
