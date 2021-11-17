@@ -1,3 +1,7 @@
+/**
+ * Component that renders a button.
+ * With three different styles: primary, secondary and danger.
+ */
 import React from "react";
 
 interface Props {

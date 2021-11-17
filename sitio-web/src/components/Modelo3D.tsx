@@ -1,5 +1,7 @@
 /**
- * Componente que devuelve un modelo 3D basado en la prop que se el coloque
+ * Component: Modelo3D
+ * Renders a 3D Model based on the given props.
+ *
  */
 import React, {Suspense} from 'react';
 import {Canvas} from '@react-three/fiber'
