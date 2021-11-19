@@ -6,9 +6,11 @@ const Nav =()=>{
          <nav>
              <div>
                <ul>
-                <li><NavLink to = '/home'>Fisicas</NavLink></li>
-                <li><NavLink to = '/about'>Opticas</NavLink></li>
-                <li><NavLink to = '/contact'>Cristalograficas</NavLink></li>
+                <li><NavLink to = '/physics'>Fisicas</NavLink></li>
+                <li><NavLink to = '/optics'>Opticas</NavLink></li>
+                <li><NavLink to = '/crital'>Cristalograficas</NavLink></li>
+                <li><NavLink to = '/chemistries'>Quimicas</NavLink></li>
+                <li><NavLink to = '/basic-information'>Informacion Basica</NavLink></li>
               </ul>
              </div>
          </nav>
