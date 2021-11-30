@@ -1,16 +1,29 @@
 import Scene3D from './components/Scene3D'
 import Gallery from './components/Gallery'
 import * as React from "react";
-import { Routes, Route, Link } from "react-router-dom"
-import Home from "./pages/Home"
-import About from "./pages/About"
+import {Routes, Route, Link} from "react-router-dom"
+import Physical from './components/properties/Physical';
+import Chemical from './components/properties/Chemical';
+import Optical from './components/properties/Optical';
+import Crystallographic from './components/properties/Crystallographic';
+
 function App() {
     return (
         <>
             <div className="App">
                 <Routes>
-                    <Route path="/" element={<Gallery />} />
-                    <Route path="danburita" element={<Scene3D />} />
+                    <Route path="/" element={<Gallery/>}/>
+                    <Route path="danburita" element={<Scene3D/>}/>
+                    <Route path="augen" element={<Scene3D/>}/>
+                    <Route path="magnetita" element={<Scene3D/>}/>
+                    <Route path="andesita" element={<Scene3D/>}/>
+                    <Route path="goethita" element={<Scene3D/>}/>
+                    <Route path="wulfenita" element={<Scene3D/>}/>
+
+                    <Route path=":physical" element={<Physical/>}/>
+                    <Route path=":chemical" element={<Chemical/>}/>
+                    <Route path=":optical" element={<Optical/>}/>
+                    <Route path=":optical" element={<Crystallographic/>}/>
                 </Routes>
             </div>
         </>
