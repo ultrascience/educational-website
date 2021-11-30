@@ -1,10 +1,11 @@
 import {NavLink} from 'react-router-dom';
+import '../styles/modelInformation.css'
 
 const Nav =()=>{
     return (
      <div>
          <nav>
-             <div>
+             <div className="menu-information">
                <ul>
                 <li><NavLink to = '/physics'>Fisicas</NavLink></li>
                 <li><NavLink to = '/optics'>Opticas</NavLink></li>

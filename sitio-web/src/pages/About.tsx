@@ -2,9 +2,9 @@
 function About() {
   return (
     <div>
-      <h1>Home</h1>
+      <h1>About</h1>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+       Somos lo mehjor
         </p>
     </div>);
 }

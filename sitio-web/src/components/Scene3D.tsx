@@ -29,7 +29,7 @@ function Scene3D() {
     /* Transicion utilizando React-Transition-Group para el componente ModelInformation*/
         <div className="parent">
                 <div className={estilo}>
-                <h1>Modelo 3D</h1>
+                    <Modelo3D modelo={<Augen />}/>
                 </div>
                 {mountInformation && 
                   <div className="info">
