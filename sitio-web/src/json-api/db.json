@@ -3,91 +3,42 @@
     {
       "id": 1,
       "name": "Danburita",
-      "Formula quimica:" : "CaB2(SiO4)2",
-      "propiedades fisicas": "Lustre",
-      "propiedades quimicas": "Peso Molecular 245",
-      "propiedades cristalograficas": "Dimension de Celda",
-      "propiedades opticas": "Biaxial +-",
-      "Clasificacion": "Silicatos",
-      "Etimologia": "Su nombre de debe al lugar de donde se extrajeron los primeros ejemplares en estusdiarse",
-      "Ambiente": "Es un mineral que se presenta en rocas alteradas por metamorfismo de contacto o venas hidrotermales de baja temperatura",
-      "Usos": "Los Cristales de danburita son similares a los de topacio",
-      "Principales localidades": "La mayor parte de los ejemplares que se comercializan como gemas y piezas de coleccion son originarios de unos pocos yacimientos localizados en Madagascar y Mexico"
+      "introduction": [
+        "etimology":"a",
+        "environment":"a",
+        "uses" : "a",
+        "location": "a"
+      ]
+      ,
+      "physical": [
+        "Lustre": "a",
+        "Color": "a",
+        "Dureza": "a",
+        "Raya": "a",
+        "Fractura": "a",
+        "Habito Cristalino": "a",
+        "Diafanidad": "a",
+        "Exfoliacion": "a",
+        "Densidad": "a",
+        "Luminiscencia": "a",
+        "Radioactividad": "a"
 
-    },
-    {
-      "id": 2,
-      "name": "Augen",
-      "Formula quimica:" : "CaB2(SiO4)2",
-      "propiedades fisicas": "Lustre",
-      "propiedades quimicas": "Peso Molecular 245",
-      "propiedades cristalograficas": "Dimension de Celda",
-      "propiedades opticas": "Biaxial +-",
-      "Clasificacion": "Silicatos",
-      "Etimologia": "Su nombre de debe al lugar de donde se extrajeron los primeros ejemplares en estusdiarse",
-      "Ambiente": "Es un mineral que se presenta en rocas alteradas por metamorfismo de contacto o venas hidrotermales de baja temperatura",
-      "Usos": "Los Cristales de danburita son similares a los de topacio",
-      "Principales localidades": "La mayor parte de los ejemplares que se comercializan como gemas y piezas de coleccion son originarios de unos pocos yacimientos localizados en Madagascar y Mexico"
+      ],
+      "chemical": [
+      "Formula quimica" : "CaB2(SiO4)2",
+      "Peso Molecular": 245",
+      "Composicion quimica elemental": "SiO4",
+      "Composicion quimica óxidos": "CaO"
+      ],
 
-    },
-    {
-      "id": 3,
-      "name": "Magnetita",
-      "Formula quimica:" : "CaB2(SiO4)2",
-      "propiedades fisicas": "Lustre",
-      "propiedades quimicas": "Peso Molecular 245",
-      "propiedades cristalograficas": "Dimension de Celda",
-      "propiedades opticas": "Biaxial +-",
-      "Clasificacion": "Silicatos",
-      "Etimologia": "Su nombre de debe al lugar de donde se extrajeron los primeros ejemplares en estusdiarse",
-      "Ambiente": "Es un mineral que se presenta en rocas alteradas por metamorfismo de contacto o venas hidrotermales de baja temperatura",
-      "Usos": "Los Cristales de danburita son similares a los de topacio",
-      "Principales localidades": "La mayor parte de los ejemplares que se comercializan como gemas y piezas de coleccion son originarios de unos pocos yacimientos localizados en Madagascar y Mexico"
+      "crystallographic": [
+        "Dimension de celda": "a",
+        "Sistema cristalino": "a",
+        "Difracción de rayos X": "a"
+      ],
 
-    },
-    {
-      "id": 4,
-      "name": "Andesita",
-      "Formula quimica:" : "CaB2(SiO4)2",
-      "propiedades fisicas": "Lustre",
-      "propiedades quimicas": "Peso Molecular 245",
-      "propiedades cristalograficas": "Dimension de Celda",
-      "propiedades opticas": "Biaxial +-",
-      "Clasificacion": "Silicatos",
-      "Etimologia": "Su nombre de debe al lugar de donde se extrajeron los primeros ejemplares en estusdiarse",
-      "Ambiente": "Es un mineral que se presenta en rocas alteradas por metamorfismo de contacto o venas hidrotermales de baja temperatura",
-      "Usos": "Los Cristales de danburita son similares a los de topacio",
-      "Principales localidades": "La mayor parte de los ejemplares que se comercializan como gemas y piezas de coleccion son originarios de unos pocos yacimientos localizados en Madagascar y Mexico"
-
-    },
-    {
-      "id": 5,
-      "name": "Goethita",
-      "Formula quimica:" : "CaB2(SiO4)2",
-      "propiedades fisicas": "Lustre",
-      "propiedades quimicas": "Peso Molecular 245",
-      "propiedades cristalograficas": "Dimension de Celda",
-      "propiedades opticas": "Biaxial +-",
-      "Clasificacion": "Silicatos",
-      "Etimologia": "Su nombre de debe al lugar de donde se extrajeron los primeros ejemplares en estusdiarse",
-      "Ambiente": "Es un mineral que se presenta en rocas alteradas por metamorfismo de contacto o venas hidrotermales de baja temperatura",
-      "Usos": "Los Cristales de danburita son similares a los de topacio",
-      "Principales localidades": "La mayor parte de los ejemplares que se comercializan como gemas y piezas de coleccion son originarios de unos pocos yacimientos localizados en Madagascar y Mexico"
-
-    },
-    {
-      "id": 6,
-      "name": "Wulfenita",
-      "Formula quimica:" : "CaB2(SiO4)2",
-      "propiedades fisicas": "Lustre",
-      "propiedades quimicas": "Peso Molecular 245",
-      "propiedades cristalograficas": "Dimension de Celda",
-      "propiedades opticas": "Biaxial +-",
-      "Clasificacion": "Silicatos",
-      "Etimologia": "Su nombre de debe al lugar de donde se extrajeron los primeros ejemplares en estusdiarse",
-      "Ambiente": "Es un mineral que se presenta en rocas alteradas por metamorfismo de contacto o venas hidrotermales de baja temperatura",
-      "Usos": "Los Cristales de danburita son similares a los de topacio",
-      "Principales localidades": "La mayor parte de los ejemplares que se comercializan como gemas y piezas de coleccion son originarios de unos pocos yacimientos localizados en Madagascar y Mexico"
+      "optical": ["Informacion optica": "a"],
+      "Clasificacion": "Silicatos"
 
     }
   ]
