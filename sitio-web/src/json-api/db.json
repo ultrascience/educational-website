@@ -4,13 +4,13 @@
       "id": 1,
       "name": "Danburita",
       "introduction": [
-        "etimology":"a",
+        {"etimology":"a",
         "environment":"a",
         "uses" : "a",
-        "location": "a"
+        "location": "a"}
       ]
       ,
-      "physical": [
+      "physical": [{
         "Lustre": "a",
         "Color": "a",
         "Dureza": "a",
@@ -23,21 +23,24 @@
         "Luminiscencia": "a",
         "Radioactividad": "a"
 
-      ],
-      "chemical": [
-      "Formula quimica" : "CaB2(SiO4)2",
-      "Peso Molecular": 245",
+      }],
+      "chemical": [{
+      "Formula quimica" : "CaFisicaB2(SiO4)2",
+      "Peso Molecular": 245,
       "Composicion quimica elemental": "SiO4",
       "Composicion quimica óxidos": "CaO"
-      ],
+      }],
 
-      "crystallographic": [
+      "crystallographic": [{
         "Dimension de celda": "a",
         "Sistema cristalino": "a",
         "Difracción de rayos X": "a"
-      ],
+      }],
 
-      "optical": ["Informacion optica": "a"],
+      "optical": [
+        {
+          "Informacion optica": "a"
+        }],
       "Clasificacion": "Silicatos"
 
     }
