@@ -1,6 +1,11 @@
-function Chemical(): JSX.Element {
+type AppProps = {
+    information: string;
+}
+function Chemical(props: AppProps): JSX.Element {
     return (
-        <h1>Fisica</h1>
+        <div>
+            {props.information}
+        </div>
     )
 }
 export default Chemical;

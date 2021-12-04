@@ -1,7 +1,12 @@
-function Crystallographic(): JSX.Element {
+type AppProps = {
+    information: string;
+}
+function Crystallographic(props: AppProps): JSX.Element {
 
     return (
-        <h1> Cristal Gráfica</h1>
+        <div>
+            {props.information}
+        </div>
     );
 }
 

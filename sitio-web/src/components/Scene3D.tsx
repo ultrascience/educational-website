@@ -9,36 +9,46 @@ import Augen from "../models3D/Augen";
 import "../styles/sceneModel.css"
 import "../styles/button.css"
 import {useState} from "react";
+import React from 'react';
+type AppProps = {
+    nombre: string;
+}
+const KeysToComponentMap: {[index:string]:any} = {
+    "augen": Augen,
+    "danburita": Augen
+};
 
-function Scene3D() {
+function Scene3D(props: AppProps) {
     const [mountInformation, setMountInformation] = useState(false);
     const [inProp, setInProp] = useState(false);
-    
-    /** 
+
+    /**
      * Function: ChangeStyleModel
      * Changes the style to show or hide the information of the model.
      */
     function ChangeStyleModel() {
-     setMountInformation(!mountInformation);
-  
+        setMountInformation(!mountInformation);
+
     }
 
     const estilo = mountInformation ? "infoOn" : "infoOff";
 
     return (
-    /* Transicion utilizando React-Transition-Group para el componente ModelInformation*/
+        /* Transicion utilizando React-Transition-Group para el componente ModelInformation*/
         <div className="parent">
-                <div className={estilo}>
-                    <Modelo3D modelo={<Augen />}/>
-                </div>
-                {mountInformation && 
-                  <div className="info">
-                    <ModelInformation/>
-                  </div>
-                }
-                <div className="button-section">
+            <div className={estilo}>
+
+                <Modelo3D modelo={React.createElement(KeysToComponentMap[props.nombre],null,null)}/>
+
+            </div>
+            {mountInformation &&
+            <div className="info">
+                <ModelInformation/>
+            </div>
+            }
+            <div className="button-section">
                 <Button onClick={ChangeStyleModel} children="Informacion"/>
-                </div>
+            </div>
         </div>
     );
 }

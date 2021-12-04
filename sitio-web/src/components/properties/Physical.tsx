@@ -1,6 +1,11 @@
-function Physical(): JSX.Element {
+type AppProps = {
+    information: string;
+}
+function Physical(props: AppProps): JSX.Element {
     return (
-        <h1>Fisica</h1>
+        <div>
+            {props.information}
+        </div>
     )
 }
 export default Physical;

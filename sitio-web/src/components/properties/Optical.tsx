@@ -1,6 +1,11 @@
-function Optical(): JSX.Element {
+type AppProps = {
+    information: string;
+}
+function Optical(props: AppProps): JSX.Element {
     return (
-        <h1>Fisica</h1>
+        <div>
+            {props.information}
+        </div>
     )
 }
 export default Optical;

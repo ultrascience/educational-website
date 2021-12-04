@@ -11,11 +11,11 @@ const Nav = () => {
             <nav>
                 <div className="menu-information">
                     <ul>
-                        <li><NavLink to='/basic-information'>Informacion Basica</NavLink></li>
-                        <li><NavLink to='/physics'>Fisicas</NavLink></li>
-                        <li><NavLink to='/optics'>Opticas</NavLink></li>
-                        <li><NavLink to='/crital'>Cristalograficas</NavLink></li>
-                        <li><NavLink to='/chemistries'>Quimicas</NavLink></li>
+                        {/*<li><NavLink to='/basic-information'>Informacion Basica</NavLink></li>*/}
+                        <li><NavLink to='/danburita/physical'>Fisicas</NavLink></li>
+                        {/*<li><NavLink to='/optics'>Opticas</NavLink></li>*/}
+                        {/*<li><NavLink to='/crital'>Cristalograficas</NavLink></li>*/}
+                        {/*<li><NavLink to='/chemistries'>Quimicas</NavLink></li>*/}
                     </ul>
                 </div>
             </nav>
