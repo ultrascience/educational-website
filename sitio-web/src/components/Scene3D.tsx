@@ -8,12 +8,13 @@ import ModelInformation from "./ModelInformation";
 import Augen from "../models3D/Augen";
 import "../styles/sceneModel.css"
 import "../styles/button.css"
-import {useState} from "react";
+import { useState } from "react";
 import React from 'react';
+
 type AppProps = {
     nombre: string;
 }
-const KeysToComponentMap: {[index:string]:any} = {
+const KeysToComponentMap: { [index: string]: any } = {
     "augen": Augen,
     "danburita": Augen
 };
@@ -38,16 +39,16 @@ function Scene3D(props: AppProps) {
         <div className="parent">
             <div className={estilo}>
 
-                <Modelo3D modelo={React.createElement(KeysToComponentMap[props.nombre],null,null)}/>
+                <Modelo3D modelo={React.createElement(KeysToComponentMap[props.nombre], null, null)} />
 
             </div>
             {mountInformation &&
-            <div className="info">
-                <ModelInformation/>
-            </div>
+                <div className="info">
+                    <ModelInformation nombre={props.nombre} information="Information of the rock"/>
+                </div>
             }
             <div className="button-section">
-                <Button onClick={ChangeStyleModel} children="Informacion"/>
+                <Button onClick={ChangeStyleModel} children="Informacion" />
             </div>
         </div>
     );
