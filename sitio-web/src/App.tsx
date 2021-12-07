@@ -1,49 +1,52 @@
 import Scene3D from './components/Scene3D'
 import Gallery from './components/Gallery'
-import * as React from "react";
-import Physical from './components/properties/Physical';
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Link,
-  Outlet,
-  useParams
 } from 'react-router-dom';
-import Chemical from './components/properties/Chemical';
-import Optical from './components/properties/Optical';
-import Crystallographic from './components/properties/Crystallographic';
+import {useState,useEffect} from 'react';
 
-function Home() {
-  return (
-    <div style={{ padding: 20 }}>
-      <h2>Home View</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adip.</p>
-    </div>
-  );
-}
-
-function About() {
-  return (
-    <div style={{ padding: 20 }}>
-      <h2>About View</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adip.</p>
-    </div>
-  );
-}
 function App() {
-    return (
-        <>
-            <div className="App">
-            </div>
- <Router>
-      <Routes>
-        <Route path="/" element={<Gallery />} />
-        <Route path="/danburita" element={<Scene3D nombre="danburita" />} />
-      </Routes>
+
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [models, setModels] = useState([] as any[]);
+
+    /** Here the json is loaded */
+    useEffect(() => {
+        fetch("http://localhost:3004/rocks")
+            .then(res => res.json())
+            .then(
+                (data) => {
+                    setIsLoaded(true);
+                    setModels(data);
+                },
+                (error) => {
+                    setIsLoaded(true);
+                    setError(error);
+                }
+            )
+    }, [])
+
+    if (error) {
+        return <div>Error</div>;
+    } else if (!isLoaded) {
+        return <div>Loading...</div>;
+    } else {
+        return (
+            <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Gallery models={models}/>} />
+          <Route path="/rocks/:id" element={<Scene3D nombre="danburita" information={models}/>} />
+        </Routes>
     </Router>
-        </>
-    );
+
+            </>
+        );
+    }
+
 }
 
 export default App

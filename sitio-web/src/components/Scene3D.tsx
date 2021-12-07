@@ -13,6 +13,7 @@ import React from 'react';
 
 type AppProps = {
     nombre: string;
+    information: any;
 }
 const KeysToComponentMap: { [index: string]: any } = {
     "augen": Augen,
@@ -21,7 +22,6 @@ const KeysToComponentMap: { [index: string]: any } = {
 
 function Scene3D(props: AppProps) {
     const [mountInformation, setMountInformation] = useState(false);
-    const [inProp, setInProp] = useState(false);
 
     /**
      * Function: ChangeStyleModel
@@ -44,7 +44,7 @@ function Scene3D(props: AppProps) {
             </div>
             {mountInformation &&
                 <div className="info">
-                    <ModelInformation nombre={props.nombre} information="Information of the rock"/>
+                    <ModelInformation nombre={props.nombre} information={props.information}/>
                 </div>
             }
             <div className="button-section">
