@@ -11,17 +11,18 @@ import "../styles/button.css"
 import { useState } from "react";
 import React from 'react';
 
-type AppProps = {
-    nombre: string;
+type SceneProps = {
+    namemodel: string;
+    information: any [];
 }
+
 const KeysToComponentMap: { [index: string]: any } = {
     "augen": Augen,
     "danburita": Augen
 };
 
-function Scene3D(props: AppProps) {
+function Scene3D(props: SceneProps) {
     const [mountInformation, setMountInformation] = useState(false);
-    const [inProp, setInProp] = useState(false);
 
     /**
      * Function: ChangeStyleModel
@@ -39,12 +40,12 @@ function Scene3D(props: AppProps) {
         <div className="parent">
             <div className={estilo}>
 
-                <Modelo3D modelo={React.createElement(KeysToComponentMap[props.nombre], null, null)} />
+                <Modelo3D modelo={React.createElement(KeysToComponentMap[props.namemodel], null, null)} />
 
             </div>
             {mountInformation &&
                 <div className="info">
-                    <ModelInformation nombre={props.nombre} information="Information of the rock"/>
+                    <ModelInformation namemodel={props.namemodel} information={props.information} />
                 </div>
             }
             <div className="button-section">

@@ -6,19 +6,18 @@ import { JSXElementConstructor, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import '../styles/modelInformation.css'
 
-
 type AppProps = {
     information: string;
 }
 /* pasa un json con la informacion del modelo */
 type ModelInformationProps = {
     nombre: string;
-    information: string;
+    propertiesmodel: string;
 }
 
 type CurrentInformationProps = {
-    nombre: string;
-    information: string;
+    isVisible: string;
+    propertiesmodel: string;
 }
 
 function Chemical(props: AppProps): JSX.Element {
@@ -53,16 +52,16 @@ function Physical(props: AppProps): JSX.Element {
 }
 
 function CurrentInformation(props: CurrentInformationProps): JSX.Element {
-    if (props.information === 'physical') {
+    if (props.isVisible === 'physical') {
         return <Physical information="Fisicas" />;
     }
-    if (props.information === 'optical') {
+    if (props.isVisible === 'optical') {
         return <Optical information="Opticas" />;
     }
-    if (props.information === 'crystallographic') {
+    if (props.isVisible === 'crystallographic') {
         return <Crystallographic information="Cristalograficas" />;
     }
-    if (props.information === 'chemical') {
+    if (props.isVisible === 'chemical') {
         return <Chemical information="Quimicas" />;
     }
     return <h1> H </h1>;
@@ -79,7 +78,7 @@ function ModelInformation(props: ModelInformationProps): JSX.Element {
                 <button className="flex-1 bg-red-200" onClick={() => setVisible("optical")}>Opticas</button>
                 <button className="flex-1 bg-red-200" onClick={() => setVisible("crystallographic")}>Cristalograficas</button>
             </div>
-            {<CurrentInformation nombre={visible} information={props.information} />}
+            {<CurrentInformation isVisible={visible} propertiesmodel={props.propertiesmodel} />}
         </>
     )
 }
