@@ -1,0 +1,48 @@
+{
+  "rocks": [
+    {
+      "id": 1,
+      "name": "Danburita",
+      "introduction": [
+        {"etimology":"a",
+        "environment":"a",
+        "uses" : "a",
+        "location": "a"}
+      ]
+      ,
+      "physical": [{
+        "Lustre": "a",
+        "Color": "a",
+        "Dureza": "a",
+        "Raya": "a",
+        "Fractura": "a",
+        "Habito Cristalino": "a",
+        "Diafanidad": "a",
+        "Exfoliacion": "a",
+        "Densidad": "a",
+        "Luminiscencia": "a",
+        "Radioactividad": "a"
+
+      }],
+      "chemical": [{
+      "Formula quimica" : "CaFisicaB2(SiO4)2",
+      "Peso Molecular": 245,
+      "Composicion quimica elemental": "SiO4",
+      "Composicion quimica óxidos": "CaO"
+      }],
+
+      "crystallographic": [{
+        "Dimension de celda": "a",
+        "Sistema cristalino": "a",
+        "Difracción de rayos X": "a"
+      }],
+
+      "optical": [
+        {
+          "Informacion optica": "a"
+        }],
+      "Clasificacion": "Silicatos"
+
+    }
+  ]
+}
