@@ -6,65 +6,23 @@ import { JSXElementConstructor, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import '../styles/modelInformation.css'
 
-type AppProps = {
-    information: string;
-}
-/* pasa un json con la informacion del modelo */
-type ModelInformationProps = {
-    nombre: string;
-    propertiesmodel: any[];
-}
-
-type CurrentInformationProps = {
-    isVisible: string;
-    propertiesmodel: any[];
-}
-
-function Chemical(props: AppProps): JSX.Element {
-    return (
-        <div>
-            {props.information}
-        </div>
-    )
-}
-
-function Optical(props: AppProps): JSX.Element {
-    return (
-        <div>
-            {props.information}
-        </div>
-    )
-}
-
-function Crystallographic(props: AppProps): JSX.Element {
-    return (
-        <div>
-            {props.information}
-        </div>
-    )
-}
-function Physical(props: AppProps): JSX.Element {
-    return (
-        <div>
-            {props.information}
-        </div>
-    )
-}
-
 function CurrentInformation(props: CurrentInformationProps): JSX.Element {
-    if (props.isVisible === 'physical') {
-        return <Physical information="Fisicas" />;
-    }
-    if (props.isVisible === 'optical') {
+    switch (props.isVisible) {
+      case "physical":
+      return <Physical information="Fisicas" />;
+      break;
+
+      case "optical":
         return <Optical information="Opticas" />;
-    }
-    if (props.isVisible === 'crystallographic') {
+      break;
+      case "crystallographic":
         return <Crystallographic information="Cristalograficas" />;
-    }
-    if (props.isVisible === 'chemical') {
+        break;
+      case "chemical":
         return <Chemical information="Quimicas" />;
+        break;
     }
-    return <h1> H </h1>;
+    return <h1> Error proiedades </h1>;
 }
 
 function ModelInformation(props: ModelInformationProps): JSX.Element {

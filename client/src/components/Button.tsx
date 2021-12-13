@@ -4,21 +4,10 @@
  */
 import React from "react";
 
-interface Props {
-    children?: React.ReactNode;
-    onClick: () => void;
-}
-
-const Button: React.FC<Props> = ({
-                                     children,
-                                     onClick
-                                 }) => {
+function Button(props: ButtonProps) {
     return (
-        <button
-            onClick={onClick}
-            className="btn"
-        >
-            {children}
+        <button onClick={props.onClick}>
+            {props.children}
         </button>
     );
 }

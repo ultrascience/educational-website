@@ -2,10 +2,6 @@ import "../styles/sceneModel.css"
 import { Link, Route, Routes } from "react-router-dom";
 import Scene3D from "./Scene3D";
 
-type GalleryProps = {
-    namemodels: any[];
-}
-
 /*
  * Gallery component
  * Displays a list of models based on the search query from the db.json

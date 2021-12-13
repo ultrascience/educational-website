@@ -7,9 +7,6 @@ import "../styles/button.css"
 import { useState } from "react";
 import React from 'react';
 
-type SceneProps = {
-    namemodel: string;
-}
 
 const KeysToComponentMap: { [index: string]: any } = {
     "augen": Augen,

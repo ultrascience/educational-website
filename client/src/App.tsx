@@ -9,7 +9,7 @@ import {
 
 /**
  * Component: App
- * Charge the json file and render the gallery
+ * Charge the json api containing the images and names and the 3D scene
  */
 function App() {
 
@@ -42,7 +42,7 @@ function App() {
             <>
                 <Router>
                     <Routes>
-                        <Route path="/" element={<Gallery namemodels={models} />} />
+                        <Route path="/" element={<h1> Hola Mundo </h1>} />
                     </Routes>
                 </Router>
 
