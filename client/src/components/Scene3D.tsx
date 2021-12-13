@@ -1,7 +1,3 @@
-/**
- * Component: Scene3D
- * Renders a 3D scene with model and its information.
- */
 import Button from './Button'
 import Modelo3D from "./Modelo3D";
 import ModelInformation from "./ModelInformation";
@@ -13,7 +9,6 @@ import React from 'react';
 
 type SceneProps = {
     namemodel: string;
-    information: any [];
 }
 
 const KeysToComponentMap: { [index: string]: any } = {
@@ -21,6 +16,12 @@ const KeysToComponentMap: { [index: string]: any } = {
     "danburita": Augen
 };
 
+// TODO: Charge the information of the model from the database based on the name of the model (props.namemodel)
+
+/**
+ * Component: Scene3D
+ * Renders a 3D scene with the model and its information.
+ */
 function Scene3D(props: SceneProps) {
     const [mountInformation, setMountInformation] = useState(false);
 
@@ -34,18 +35,17 @@ function Scene3D(props: SceneProps) {
     }
 
     const estilo = mountInformation ? "infoOn" : "infoOff";
-
+    let dataModel = [];
     return (
-        /* Transicion utilizando React-Transition-Group para el componente ModelInformation*/
         <div className="parent">
             <div className={estilo}>
-
+                {/* Mount the glb model (based on the KeysToComponentMap) to Modelo3D component */}
                 <Modelo3D modelo={React.createElement(KeysToComponentMap[props.namemodel], null, null)} />
 
             </div>
             {mountInformation &&
                 <div className="info">
-                    <ModelInformation namemodel={props.namemodel} information={props.information} />
+                    <ModelInformation namemodel={props.namemodel} propertiesmodel={dataModel} />
                 </div>
             }
             <div className="button-section">

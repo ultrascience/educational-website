@@ -12,12 +12,12 @@ type AppProps = {
 /* pasa un json con la informacion del modelo */
 type ModelInformationProps = {
     nombre: string;
-    propertiesmodel: string;
+    propertiesmodel: any[];
 }
 
 type CurrentInformationProps = {
     isVisible: string;
-    propertiesmodel: string;
+    propertiesmodel: any[];
 }
 
 function Chemical(props: AppProps): JSX.Element {

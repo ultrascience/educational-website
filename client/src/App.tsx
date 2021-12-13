@@ -7,6 +7,10 @@ import {
     Route,
 } from 'react-router-dom';
 
+/**
+ * Component: App
+ * Charge the json file and render the gallery
+ */
 function App() {
 
     const [error, setError] = useState(null);
@@ -39,7 +43,6 @@ function App() {
                 <Router>
                     <Routes>
                         <Route path="/" element={<Gallery namemodels={models} />} />
-                        <Route path="/rocks/:id" element={<Scene3D nombre="danburita" models={models} />} />
                     </Routes>
                 </Router>
 
