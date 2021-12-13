@@ -16,7 +16,6 @@ const KeysToComponentMap: { [index: string]: any } = {
     "danburita": Augen
 };
 
-// TODO: Charge the information of the model from the database based on the name of the model (props.namemodel)
 
 /**
  * Component: Scene3D
@@ -35,7 +34,6 @@ function Scene3D(props: SceneProps) {
     }
 
     const estilo = mountInformation ? "infoOn" : "infoOff";
-    let dataModel = [];
     return (
         <div className="parent">
             <div className={estilo}>
@@ -45,7 +43,7 @@ function Scene3D(props: SceneProps) {
             </div>
             {mountInformation &&
                 <div className="info">
-                    <ModelInformation namemodel={props.namemodel} propertiesmodel={dataModel} />
+                    <ModelInformation namemodel={props.namemodel} propertiesmodel={["a","b"]} />
                 </div>
             }
             <div className="button-section">

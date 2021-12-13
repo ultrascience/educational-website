@@ -20,13 +20,13 @@ function Gallery(props: GalleryProps) {
                 {props.namemodels.map((model: any) => (
                     <div className="bg-green-500">
                         <p className="text-lg" key={model.id}>
-                            <img src={"/" + model.name.toLowerCase() + ".png"} alt="modelo roca" />
+                            <img src={"/img/" + model.name.toLowerCase() + ".png"} alt="modelo roca" />
                             <li><Link to={"/rocks/" + model.name.toLowerCase()}>{model.name}</Link></li>
                         </p>
                     </div>
                 ))}
             <Routes>
-                        <Route path="/rocks/:id" element={<Scene3D namemodel={useParam} />} />
+                        <Route path="/rocks/:id" element={<Scene3D namemodel={"aldo"} />} />
               </Routes>
             </div>
 
