@@ -3,6 +3,7 @@
  * With three different styles: primary, secondary and danger.
  */
 import React from "react";
+import {ButtonProps} from "./Types";
 
 function Button(props: ButtonProps) {
     return (

@@ -1,6 +1,7 @@
 import "../styles/sceneModel.css"
 import { Link, Route, Routes } from "react-router-dom";
 import Scene3D from "./Scene3D";
+import {GalleryProps} from "./Types";
 
 /*
  * Gallery component

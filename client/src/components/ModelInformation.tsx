@@ -5,6 +5,7 @@
 import { JSXElementConstructor, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import '../styles/modelInformation.css'
+import { CurrentInformationProps } from './Types'
 
 function CurrentInformation(props: CurrentInformationProps): JSX.Element {
     switch (props.isVisible) {

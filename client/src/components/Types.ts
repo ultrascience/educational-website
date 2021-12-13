@@ -1,19 +1,10 @@
 type GalleryProps = {
-    namemodels: any[];
-}
-
-type AppProps = {
-    information: string;
-}
-/* pasa un json con la informacion del modelo */
-type ModelInformationProps = {
-    nombre: string;
-    propertiesmodel: any[];
+    namemodels: string[];
 }
 
 type CurrentInformationProps = {
     isVisible: string;
-    propertiesmodel: any[];
+    propertiesmodel: string[];
 }
 
 type SceneProps = {
@@ -25,10 +16,9 @@ type ButtonProps = {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export {
+/* Export all type on the file */
+export type {
     GalleryProps,
-    AppProps,
-    ModelInformationProps,
     CurrentInformationProps,
     SceneProps,
     ButtonProps

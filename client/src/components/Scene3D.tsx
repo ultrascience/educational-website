@@ -6,6 +6,7 @@ import "../styles/sceneModel.css"
 import "../styles/button.css"
 import { useState } from "react";
 import React from 'react';
+import { SceneProps } from "./Types";
 
 
 const KeysToComponentMap: { [index: string]: any } = {
