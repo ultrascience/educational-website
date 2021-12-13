@@ -8,7 +8,7 @@ import {GalleryProps} from "./Types";
  * Displays a list of models based on the search query from the db.json
  * Show a link for each model in the database.
  */
-function Gallery(props: GalleryProps) {
+function Gallery(props: GalleryProps): JSX.Element {
     return (
         <>
             <img style={{ "width": "100%", "height": "270px" }} src="/header.jpg" alt="banner" />

@@ -1,5 +1,14 @@
+type PropertiesProps = {
+  information: string;
+}
+
 type GalleryProps = {
     namemodels: string[];
+}
+
+type ModelInfoProps = {
+    namemodel: string;
+    information: string[];
 }
 
 type CurrentInformationProps = {
@@ -21,5 +30,7 @@ export type {
     GalleryProps,
     CurrentInformationProps,
     SceneProps,
+    ModelInfoProps,
+    PropertiesProps,
     ButtonProps
 }

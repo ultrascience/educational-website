@@ -34,7 +34,7 @@ function App() {
     }, [])
 
     if (error) {
-        return <div>Error</div>;
+        return <div>Error loading the json</div>;
     } else if (!isLoaded) {
         return <div>Loading...</div>;
     } else {

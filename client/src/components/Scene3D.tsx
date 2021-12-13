@@ -1,5 +1,5 @@
 import Button from './Button'
-import Modelo3D from "./Modelo3D";
+import Model3D from "./Model3D";
 import ModelInformation from "./ModelInformation";
 import Augen from "../models3D/Augen";
 import "../styles/sceneModel.css"
@@ -19,7 +19,7 @@ const KeysToComponentMap: { [index: string]: any } = {
  * Component: Scene3D
  * Renders a 3D scene with the model and its information.
  */
-function Scene3D(props: SceneProps) {
+function Scene3D(props: SceneProps): JSX.Element {
     const [mountInformation, setMountInformation] = useState(false);
 
     /**
@@ -35,13 +35,13 @@ function Scene3D(props: SceneProps) {
     return (
         <div className="parent">
             <div className={estilo}>
-                {/* Mount the glb model (based on the KeysToComponentMap) to Modelo3D component */}
-                <Modelo3D modelo={React.createElement(KeysToComponentMap[props.namemodel], null, null)} />
+                {/* Mount the glb model (based on the KeysToComponentMap) to Model3D component */}
+                <Model3D modelo={React.createElement(KeysToComponentMap[props.namemodel], null, null)} />
 
             </div>
             {mountInformation &&
                 <div className="info">
-                    <ModelInformation namemodel={props.namemodel} propertiesmodel={["a","b"]} />
+                    <ModelInformation namemodel={props.namemodel} information={["a","b"]} />
                 </div>
             }
             <div className="button-section">

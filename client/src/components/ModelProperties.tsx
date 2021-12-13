@@ -1,4 +1,6 @@
-function Chemical(props: AppProps): JSX.Element {
+import {PropertiesProps} from './Types';
+
+function Chemical(props: PropertiesProps): JSX.Element {
     return (
         <div>
             {props.information}
@@ -6,7 +8,7 @@ function Chemical(props: AppProps): JSX.Element {
     )
 }
 
-function Optical(props: AppProps): JSX.Element {
+function Optical(props: PropertiesProps): JSX.Element {
     return (
         <div>
             {props.information}
@@ -14,14 +16,14 @@ function Optical(props: AppProps): JSX.Element {
     )
 }
 
-function Crystallographic(props: AppProps): JSX.Element {
+function Crystallographic(props: PropertiesProps): JSX.Element {
     return (
         <div>
             {props.information}
         </div>
     )
 }
-function Physical(props: AppProps): JSX.Element {
+function Physical(props: PropertiesProps): JSX.Element {
     return (
         <div>
             {props.information}
@@ -29,3 +31,5 @@ function Physical(props: AppProps): JSX.Element {
     )
 }
 
+/* Export the properties */
+export {Chemical, Optical, Crystallographic, Physical};
