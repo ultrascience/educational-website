@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-const connectionString = 'mongodb://mongo:27017/minerales';
+// User and password to mongodb connection
+const connectionString = 'mongodb://user:pass@mongo:27017/minerales';
 
 mongoose.connect(connectionString, { useNewUrlParser: true }).catch((e) => {
   console.error('Connection error', e.message);
