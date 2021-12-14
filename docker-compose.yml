@@ -19,6 +19,9 @@ services:
     image: mongo:3.6.19-xenial
     ports:
       - "27017:27017"
+    environment:
+     MONGO_INITDB_ROOT_USERNAME: user
+     MONGO_INITDB_ROOT_PASSWORD: pass
     networks:
       - mern-app
     volumes:
