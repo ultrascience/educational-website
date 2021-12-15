@@ -1,34 +1,59 @@
-version: "3"
+version: '3.9'
+
 services:
-  react-app:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    image: api-server
+    container_name: myapp-node-server
+    command: npm run start
+    volumes:
+      - ./server/:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongo
+    env_file: ./server/.env
+    environment:
+      - NODE_ENV=development
+    networks:
+      - app-network
+  mongo:
+    image: mongo:latest
+    # environment:  // If Mongo Authorization is need to be enabled
+    #   MONGO_INITDB_ROOT_USERNAME: root
+    #   MONGO_INITDB_ROOT_PASSWORD: rootpassword
+    volumes:
+      - data-volume:/data/db
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
     image: react-app
-    stdin_open: true
+    container_name: myapp-react-client
+    command: npm run start
+    volumes:
+      - ./client/:/usr/app
+      - /usr/app/node_modules
+    depends_on:
+      - server
     ports:
       - "3000:3000"
     networks:
-      - "mern-app"
-  api-server:
-    image: api-server
-    ports:
-      - "5000:5000"
-    networks:
-      - mern-app
-    depends_on:
-      - mongo
-  mongo:
-    image: mongo:3.6.19-xenial
-    ports:
-      - "27017:27017"
-    environment:
-     MONGO_INITDB_ROOT_USERNAME: user
-     MONGO_INITDB_ROOT_PASSWORD: pass
-    networks:
-      - mern-app
-    volumes:
-      - mongo-data:/data/db
+      - app-network
+
 networks:
-  mern-app:
-    driver: bridge
+    app-network:
+        driver: bridge
+
 volumes:
-  mongo-data:
-    driver: local
+    data-volume:
+    node_modules:
+    web-root:
+      driver: local

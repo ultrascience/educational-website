@@ -10,10 +10,8 @@
 ---
 
 ### Estructura de los directorios
-
-1. components: Directorio con los componentes 
-2. models3D: Directorio con los modelos 3D de las rocas en JavaScript
-3. styles: Directorio con los estilos css necesarios
+1. client
+2. server
 
 ---
 
