@@ -38,7 +38,7 @@ rockRouter.get("/:post_id", (req, res, next) => {
 /* Add Single Rock */
 rockRouter.post("/", (req, res, next) => {
     let newRock = {
-        title: req.body.title,
+        nombre: req.body.nombre,
         introduccion: req.body.introduccion,
         propiedades: req.body.propiedades
     };

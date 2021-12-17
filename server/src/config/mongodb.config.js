@@ -22,8 +22,7 @@ const {
 } = process.env;
 
 const dbConnectionURL = {
-     'LOCAL_DB_URL': `mongodb://${MONGO_HOSTNAME}:${MONGO_PORT}/minerales?authSource=admin`,
-     'REMOTE_DB_URL': process.env.MONGODB_URI  //atlas url
+     'LOCAL_DB_URL': `mongodb://mongo:27017/minerales?authSource=admin`,
 };
 mongoose.connect(dbConnectionURL.LOCAL_DB_URL, options);
 const db = mongoose.connection;
