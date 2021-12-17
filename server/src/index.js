@@ -2,7 +2,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import router from '././routes';
-import postRouter from '././routes/post.routes';
+import rockRouter from '././routes/rock.routes';
 import './config/mongodb.config';
 
 const app = express();
@@ -16,7 +16,7 @@ app.use(
 app.use(bodyParser.json());
 
 app.use('/api', router);
-app.use('/api/posts', postRouter);
+app.use('/api/rocks', rockRouter);
 
 app.get('/', function(req, res){
   res.send('Hello ! from the Server ');
