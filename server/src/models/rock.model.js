@@ -9,7 +9,9 @@ const rocksSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    properties: [{ chemical: String, physical: String, optical: String}],
+    properties: [{ chemical: String,
+    physical: [{lustre: String, color: String } ],
+    optical: String}],
 });
 
 const Rocks = mongoose.model("Rocks", rocksSchema);
