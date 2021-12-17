@@ -1,18 +1,15 @@
 // rock.model.js
 import mongoose from 'mongoose';
 const rocksSchema = new mongoose.Schema({
-    nombre: {
+    name: {
         type: String,
         required: true
     },
-    introduccion: {
+    introduction: {
         type: String,
         required: true
     },
-    propiedades: {
-        type: String,
-        required: true
-    }
+    properties: [{ chemical: String, physical: String, optical: String}],
 });
 
 const Rocks = mongoose.model("Rocks", rocksSchema);
