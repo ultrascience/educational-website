@@ -1,0 +1,40 @@
+{
+	"clasification": "prueba json",
+	"image": "prueba json",
+	"name": "prueba json",
+	"introduction": [{
+		"etymology": "prueba json",
+		"atmosphere": "prueba json",
+		"applications": "prueba json",
+		"main_locations": "prueba json",
+		"diffractogram": "prueba json"
+	}],
+	"properties": [{
+		"chemical": [{
+			"chemical_formula": "prueba json",
+			"molecular_weight": "prueba json",
+			"elemental_chemistry": "prueba json",
+			"chemistry_oxides": "prueba json"
+		}],
+		"crystallographic": [{
+			"cell_dimension": "prueba json",
+			"crystalline_system": "prueba json",
+			"x_ray_diffraction": "prueba json"
+		}],
+		"physical": [{
+			"gloss": "prueba json",
+			"color": "prueba json",
+			"hardness": "prueba json",
+			"stripe": "prueba json",
+			"fracture": "prueba json",
+			"crystal_habit": "prueba json",
+			"diaphanous": "prueba json",
+			"exfoliation": "prueba json",
+			"density": "prueba json",
+			"luminescence": "prueba json",
+			"radioactivity": "prueba json"
+		}],
+		"optical": "prueba json"
+	}],
+	"references": "prueba json"
+}
