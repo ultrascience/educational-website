@@ -39,8 +39,11 @@ rockRouter.get("/:post_id", (req, res, next) => {
 rockRouter.post("/", (req, res, next) => {
     let newRock = {
         name: req.body.name,
+        image: req.body.image,
+        clasification: req.body.clasification,
         introduction: req.body.introduction,
-        properties: req.body.properties
+        properties: req.body.properties,
+        references: req.body.references
     };
     Rock.create(newRock, function(err, result) {
         if(err){

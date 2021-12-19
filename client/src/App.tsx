@@ -19,7 +19,7 @@ function App() {
 
     /** Here the json is loaded */
     useEffect(() => {
-        fetch("http://localhost:3004/rocks")
+        fetch("http://localhost:8080/api/getNames")
             .then(res => res.json())
             .then(
                 (data) => {
