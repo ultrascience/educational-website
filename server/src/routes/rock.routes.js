@@ -2,15 +2,19 @@ import express from 'express';
 import Rock from '../models/rock.model';
 const rockRouter = express.Router();
 
-/* Get only rocks name */
-rockRouter.get('/names', (req, res) => {
-  Rock.find({}, 'name', (err, rocks) => {
-    if (err) {
-      res.status(500).send(err);
-    } else {
-      res.json(rocks);
-    }
-  });
+rockRouter.get('/info', (req, res, next) => {
+    Rock.find({},'name image' , function(err, result){
+        if(err){
+            res.status(400).send({
+                'success': false,
+                'error': err.message
+            });
+        }
+        res.status(200).send({
+            'success': true,
+            'data': result
+        });
+    });
 });
 
 /* Get all Rocks */

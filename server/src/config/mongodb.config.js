@@ -5,13 +5,6 @@ dotenv.config();
 
 // mongoose options
 const options = {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
-  useUnifiedTopology: true,
-  autoIndex: false,
-  poolSize: 10,
-  bufferMaxEntries: 0
 };
 
 // mongodb environment variables
@@ -21,8 +14,9 @@ const {
     MONGO_PORT
 } = process.env;
 
+     // ccLOCAL_DB_URL': `mongodb://mongo:27017/minerales?authSource=admin`,
 const dbConnectionURL = {
-     'LOCAL_DB_URL': `mongodb://mongo:27017/minerales?authSource=admin`,
+     'LOCAL_DB_URL': `mongodb://mongo:27017/minerales`,
 };
 mongoose.connect(dbConnectionURL.LOCAL_DB_URL, options);
 const db = mongoose.connection;
