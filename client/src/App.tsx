@@ -6,6 +6,7 @@ import {
     Routes,
     Route,
 } from 'react-router-dom';
+import axios from 'axios';
 
 /**
  * Component: App
@@ -17,21 +18,19 @@ function App() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [models, setModels] = useState([] as any[]);
 
-    /** Here the json is loaded */
+    /** Carga el json en api/rocks/info con la libreria de axios */
     useEffect(() => {
-        fetch("http://localhost:8080/api/getNames")
-            .then(res => res.json())
-            .then(
-                (data) => {
-                    setIsLoaded(true);
-                    setModels(data);
-                },
-                (error) => {
-                    setIsLoaded(true);
-                    setError(error);
-                }
-            )
-    }, [])
+        axios.get('http://localhost:8080/api/rocks/info')
+            .then(res => {
+                setModels(res.data);
+                setIsLoaded(true);
+            })
+            .catch(err => {
+                setError(err);
+                setIsLoaded(true);
+            });
+    }, []);
+
 
     if (error) {
         return <div>Error loading the json</div>;

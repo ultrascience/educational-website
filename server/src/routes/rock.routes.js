@@ -10,6 +10,7 @@ rockRouter.get('/info', (req, res, next) => {
                 'error': err.message
             });
         }
+        res.set('Access-Control-Allow-Origin', '*');
         res.status(200).send({
             'success': true,
             'data': result
