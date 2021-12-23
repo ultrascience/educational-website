@@ -3,7 +3,12 @@ type PropertiesProps = {
 }
 
 type GalleryProps = {
-    namemodels: string[];
+    _id: string;
+    name: string;
+    image: string;
+}
+type ArrayGalleryProps = {
+    gallery: GalleryProps[];
 }
 
 type ModelInfoProps = {
@@ -25,9 +30,11 @@ type ButtonProps = {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
+
 /* Export all type on the file */
 export type {
     GalleryProps,
+    ArrayGalleryProps,
     CurrentInformationProps,
     SceneProps,
     ModelInfoProps,

@@ -11,10 +11,8 @@ rockRouter.get('/info', (req, res, next) => {
             });
         }
         res.set('Access-Control-Allow-Origin', '*');
-        res.status(200).send({
-            'success': true,
-            'data': result
-        });
+        res.status(200).send(
+            result);
     });
 });
 

@@ -7,7 +7,7 @@ import {
     Route,
 } from 'react-router-dom';
 import axios from 'axios';
-
+import { GalleryProps } from './components/Types';
 /**
  * Component: App
  * Charge the json api containing the images and names and the 3D scene
@@ -16,7 +16,8 @@ function App() {
 
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [models, setModels] = useState([] as any[]);
+    // useState to store the images and names from the json api
+    const [models, setModels] = useState<GalleryProps[]>([]);
 
     /** Carga el json en api/rocks/info con la libreria de axios */
     useEffect(() => {
@@ -39,12 +40,12 @@ function App() {
     } else {
         return (
             <>
+
                 <Router>
                     <Routes>
-                        <Route path="/" element={<h1> Hola Mundo </h1>} />
+                        <Route path="/gallery" element={<Gallery gallery={models} />} />
                     </Routes>
                 </Router>
-
             </>
         );
     }
