@@ -12,11 +12,12 @@ function Gallery(props: ArrayGalleryProps): JSX.Element {
     return (
         <>
             {props.gallery.map(({_id,name,image}) => (
-                <div key={_id}>
-                    <h2> Id: {_id}</h2>
-                    <h2> Nombre modelo: {name}</h2>
-                    <h2>Imagen: {image}</h2>
-                </div>
+            <div className="bg-green-500">
+                        <p className="text-lg" key={_id}>
+                            <img src={"/img/" + image} alt="modelo roca" />
+                            <li><Link to={"/rocks/" + _id}>{name}</Link></li>
+                        </p>
+                    </div>
             ))}
 
         </>
