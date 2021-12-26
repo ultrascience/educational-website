@@ -2,6 +2,57 @@ import axios from "axios";
 import { abort } from "process";
 import { useState } from "react";
 
+const pruebaJson = {
+  clasification: "prueba json",
+  image: "prueba json",
+  name: "prueba json",
+  introduction: [
+    {
+      etymology: "prueba json",
+      atmosphere: "prueba json",
+      applications: "prueba json",
+      main_locations: "prueba json",
+      diffractogram: "prueba json",
+    },
+  ],
+  properties: [
+    {
+      chemical: [
+        {
+          chemical_formula: "prueba json",
+          molecular_weight: "prueba json",
+          elemental_chemistry: "prueba json",
+          chemistry_oxides: "prueba json",
+        },
+      ],
+      crystallographic: [
+        {
+          cell_dimension: "prueba json",
+          crystalline_system: "prueba json",
+          x_ray_diffraction: "prueba json",
+        },
+      ],
+      physical: [
+        {
+          gloss: "prueba json",
+          color: "prueba json",
+          hardness: "prueba json",
+          stripe: "prueba json",
+          fracture: "prueba json",
+          crystal_habit: "prueba json",
+          diaphanous: "prueba json",
+          exfoliation: "prueba json",
+          density: "prueba json",
+          luminescence: "prueba json",
+          radioactivity: "prueba json",
+        },
+      ],
+      optical: "prueba json",
+    },
+  ],
+  references: "prueba json",
+};
+
 // Component that send jsonPrueba to the server route localhost:8080/api/rocks/ with tailwindcss and typescript
 function Forms() {
   const [jsonPrueba, setJsonPrueba] = useState(pruebaJson);
@@ -9,11 +60,14 @@ function Forms() {
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:8080/api/rocks/', jsonPrueba);
+      const response = await axios.post(
+        "http://localhost:8080/api/rocks/",
+        jsonPrueba
+      );
       if (response.status === 201) {
         setSuccess(true);
         setLoading(false);
@@ -24,7 +78,7 @@ function Forms() {
     }
   };
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
+  const handleChange = (e: { target: { name: any; value: any } }) => {
     const { name, value } = e.target;
     setJsonPrueba({ ...jsonPrueba, [name]: value });
   };
@@ -35,7 +89,10 @@ function Forms() {
         <div className="focus-within:border-transparent border-2 border-gray-300 rounded-lg p-4 w-full md:w-1/2">
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="clasification">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="clasification"
+              >
                 Clasification
               </label>
               <input
@@ -45,13 +102,16 @@ function Forms() {
                 name="clasification"
                 placeholder="Enter the clasification"
                 onChange={handleChange}
-                value= {jsonPrueba.clasification}
+                value={jsonPrueba.clasification}
               />
             </div>
-	        <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="image">
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="image"
+              >
                 Images
-              </label> 
+              </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="image"
@@ -59,13 +119,16 @@ function Forms() {
                 name="image"
                 placeholder="Enter the image"
                 onChange={handleChange}
-                value= {jsonPrueba.image} 
+                value={jsonPrueba.image}
               />
             </div>
-	        <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="introduction">
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="introduction"
+              >
                 introduction
-              </label> 
+              </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="introduction"
@@ -73,13 +136,16 @@ function Forms() {
                 name="introduction"
                 placeholder="Enter the introduction"
                 onChange={handleChange}
-                value= {jsonPrueba.introduction} 
-              /> 
-            </div> 
-	        <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="properties">
-                properties 
-              </label> 
+                value={jsonPrueba.image}
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="properties"
+              >
+                properties
+              </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="properties"
@@ -87,13 +153,16 @@ function Forms() {
                 name="properties"
                 placeholder="Enter the properties"
                 onChange={handleChange}
-                value= {jsonPrueba.properties} 
-              /> 
-            </div> 
-	        <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="references">
-                references 
-              </label> 
+                value={jsonPrueba.image}
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="references"
+              >
+                references
+              </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="references"
@@ -101,13 +170,16 @@ function Forms() {
                 name="references"
                 placeholder="Enter the references"
                 onChange={handleChange}
-                value= {jsonPrueba.references} 
-              /> 
-            </div> 
-          <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-                name 
-              </label> 
+                value={jsonPrueba.references}
+              />
+            </div>
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="name"
+              >
+                name
+              </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="name"
@@ -115,12 +187,14 @@ function Forms() {
                 name="name"
                 placeholder="Enter the name"
                 onChange={handleChange}
-                value= {jsonPrueba.name} 
+                value={jsonPrueba.name}
               />
-            </div> 
-            </form> 
             </div>
-            </div>
-            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 }
+// Export component
+export default Forms;
