@@ -1,6 +1,7 @@
 import axios from "axios";
 import { abort } from "process";
 import { useState } from "react";
+//
 
 const pruebaJson = {
   clasification: "prueba json",
@@ -191,7 +192,16 @@ function Forms() {
               />
             </div>
           </form>
+
+        <button
+          className="mb-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+          onClick={handleSubmit} 
+        > 
+          {loading ? "Loading" : "Send"} 
+        </button> 
         </div>
+
       </div>
     </div>
   );
