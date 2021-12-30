@@ -7,6 +7,7 @@ import './config/mongodb.config';
 
 const app = express();
 const PORT = 8080;
+var cors = require('cors');
 
 app.use(
   bodyParser.urlencoded({
@@ -14,6 +15,9 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+
+// use cors to allow cross origin resource sharing
+app.use(cors());
 
 app.use('/api', router);
 app.use('/api/rocks', rockRouter);

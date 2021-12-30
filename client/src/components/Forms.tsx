@@ -1,62 +1,16 @@
 import axios from "axios";
-import { abort } from "process";
 import { useState } from "react";
-//
-
-const pruebaJson = {
-  clasification: "prueba json",
-  image: "prueba json",
-  name: "prueba json",
-  introduction: [
-    {
-      etymology: "prueba json",
-      atmosphere: "prueba json",
-      applications: "prueba json",
-      main_locations: "prueba json",
-      diffractogram: "prueba json",
-    },
-  ],
-  properties: [
-    {
-      chemical: [
-        {
-          chemical_formula: "prueba json",
-          molecular_weight: "prueba json",
-          elemental_chemistry: "prueba json",
-          chemistry_oxides: "prueba json",
-        },
-      ],
-      crystallographic: [
-        {
-          cell_dimension: "prueba json",
-          crystalline_system: "prueba json",
-          x_ray_diffraction: "prueba json",
-        },
-      ],
-      physical: [
-        {
-          gloss: "prueba json",
-          color: "prueba json",
-          hardness: "prueba json",
-          stripe: "prueba json",
-          fracture: "prueba json",
-          crystal_habit: "prueba json",
-          diaphanous: "prueba json",
-          exfoliation: "prueba json",
-          density: "prueba json",
-          luminescence: "prueba json",
-          radioactivity: "prueba json",
-        },
-      ],
-      optical: "prueba json",
-    },
-  ],
-  references: "prueba json",
-};
+import { JsonProps } from "./Types";
 
 // Component that send jsonPrueba to the server route localhost:8080/api/rocks/ with tailwindcss and typescript
 function Forms() {
-  const [jsonPrueba, setJsonPrueba] = useState(pruebaJson);
+  const [jsonPrueba, setJsonPrueba] = useState<JsonProps>({
+    name: "",
+    image: "",
+    classification: "",
+    references: ""
+  });
+
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -103,7 +57,7 @@ function Forms() {
                 name="clasification"
                 placeholder="Enter the clasification"
                 onChange={handleChange}
-                value={jsonPrueba.clasification}
+                value={jsonPrueba.classification}
               />
             </div>
             <div className="mb-4">
@@ -194,7 +148,7 @@ function Forms() {
           </form>
 
         <button
-          className="mb-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        className={`${loading ? "cursor-not-allowed opacity-50" : "cursor-pointer"} bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline`}
           type="submit"
           onClick={handleSubmit} 
         > 
@@ -208,3 +162,4 @@ function Forms() {
 }
 // Export component
 export default Forms;
+

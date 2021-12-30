@@ -7,6 +7,14 @@ type GalleryProps = {
   name: string;
   image: string;
 };
+
+type JsonProps = {
+  name: string;
+  image: string;
+  classification: string;
+  references: string;
+};
+
 type ArrayGalleryProps = {
   gallery: GalleryProps[];
 };
@@ -33,6 +41,7 @@ type ButtonProps = {
 /* Export all type on the file */
 export type {
   GalleryProps,
+  JsonProps,
   ArrayGalleryProps,
   CurrentInformationProps,
   SceneProps,
