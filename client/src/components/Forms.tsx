@@ -1,19 +1,62 @@
 import axios from "axios";
 import { useState } from "react";
 import { JsonProps } from "./Types";
+import '../styles/button.css';
 
 // Component that send jsonPrueba to the server route localhost:8080/api/rocks/ with tailwindcss and typescript
 function Forms() {
+
+// Define type to uploads images
+// type File = Blob | File;
+  const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+  // hooks useState fileUplodad typescript
+  const [fileUpload, setFileUpload] = useState<File>();
+  // hook jsonPrueba typescript with type JsonProps
   const [jsonPrueba, setJsonPrueba] = useState<JsonProps>({
     name: "",
     image: "",
     classification: "",
-    references: ""
+    introduction: [{
+      etymology: "",
+      atmosphere: "",
+      applications: "",
+      main_locations: "",
+      diffractogram: "",
+    }],
+    properties: [{
+      chemical: [{
+        chemical_formula: "",
+        molecular_weight: "",
+        elemental_chemistry: "",
+        chemistry_oxides: "",
+      }],
+      crystallographic: [
+        {
+          cell_dimension: "",
+          crystalline_system: "",
+          x_ray_diffraction: "",
+        }
+      ],
+      physical: [{
+        gloss: "",
+        color: "",
+        hardness: "",
+        stripe: "",
+        fracture: "",
+        crystal_habit: "",
+        diaphanous: "",
+        exfoliation: "",
+        density: "",
+        luminescence: "",
+        radioactivity: "",
+      }],
+      optical: "",
+    }],
+    references: "",
+  // });
   });
-
-  const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
@@ -46,18 +89,18 @@ function Forms() {
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="clasification"
+                htmlFor="name"
               >
-                Clasification
+                name
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="clasification"
+                className="form-input"
+                id="name"
                 type="text"
-                name="clasification"
-                placeholder="Enter the clasification"
+                name="name"
+                placeholder="Enter the name"
                 onChange={handleChange}
-                value={jsonPrueba.classification}
+                value={jsonPrueba.name}
               />
             </div>
             <div className="mb-4">
@@ -65,33 +108,60 @@ function Forms() {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="image"
               >
-                Images
+                image
+              </label>
+              <input type="file" name="image" onChange={e => setFileUpload(e.target.files![0])} />
+            </div>
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="classification"
+              >
+                classification
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="image"
+                className="form-input"
+                id="classification"
                 type="text"
-                name="image"
-                placeholder="Enter the image"
+                name="classification"
+                placeholder="Enter the classification"
                 onChange={handleChange}
-                value={jsonPrueba.image}
+                value={jsonPrueba.classification}
               />
             </div>
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="introduction"
+                htmlFor="etymology"
               >
-                introduction
+              etymology
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="introduction"
+                className="form-input"
+                id="etymology"
                 type="text"
-                name="introduction"
-                placeholder="Enter the introduction"
+                name="etymology"
+                placeholder="Enter the etymology"
                 onChange={handleChange}
-                value={jsonPrueba.image}
+                value={jsonPrueba.introduction[0].etymology}
+              />
+            </div>
+
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="atmosphere"
+              >
+              atmosphere
+              </label>
+              <input
+                className="form-input"
+                id="atmosphere"
+                type="text"
+                name="atmosphere"
+                placeholder="Enter the atmosphere"
+                onChange={handleChange}
+                value={jsonPrueba.introduction[0].atmosphere}
               />
             </div>
             <div className="mb-4">
@@ -102,7 +172,7 @@ function Forms() {
                 properties
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="form-input"
                 id="properties"
                 type="text"
                 name="properties"
@@ -119,30 +189,13 @@ function Forms() {
                 references
               </label>
               <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="form-input"
                 id="references"
                 type="text"
                 name="references"
                 placeholder="Enter the references"
                 onChange={handleChange}
                 value={jsonPrueba.references}
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="name"
-              >
-                name
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="name"
-                type="text"
-                name="name"
-                placeholder="Enter the name"
-                onChange={handleChange}
-                value={jsonPrueba.name}
               />
             </div>
           </form>

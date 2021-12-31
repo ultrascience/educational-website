@@ -54,3 +54,5 @@ const rocksSchema = new mongoose.Schema({
 
 const Rocks = mongoose.model("Rocks", rocksSchema);
 export default Rocks;
+
+// Genera interface typescript para rocksSchema
