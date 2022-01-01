@@ -6,8 +6,9 @@ import '../styles/button.css';
 // Component that send jsonPrueba to the server route localhost:8080/api/rocks/ with tailwindcss and typescript
 function Forms() {
 
-// Define type to uploads images
-// type File = Blob | File;
+  // Define type to uploads images
+  // type File = Blob | File;
+  const namesArray = ["name", "description", "image"];
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -55,7 +56,7 @@ function Forms() {
       optical: "",
     }],
     references: "",
-  // });
+    // });
   });
 
   const handleSubmit = async (e: { preventDefault: () => void }) => {
@@ -86,23 +87,23 @@ function Forms() {
       <div className="flex flex-wrap justify-center">
         <div className="focus-within:border-transparent border-2 border-gray-300 rounded-lg p-4 w-full md:w-1/2">
           <form onSubmit={handleSubmit}>
+          namesArray.map((name) => {
+            return (
             <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="name"
-              >
-                name
+              <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor={name}>
+                {name}
               </label>
               <input
-                className="form-input"
-                id="name"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id={name}
                 type="text"
-                name="name"
-                placeholder="Enter the name"
+                name={name}
+                value={jsonPrueba[name]}
                 onChange={handleChange}
-                value={jsonPrueba.name}
               />
             </div>
+            );
+            });
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -112,101 +113,15 @@ function Forms() {
               </label>
               <input type="file" name="image" onChange={e => setFileUpload(e.target.files![0])} />
             </div>
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="classification"
-              >
-                classification
-              </label>
-              <input
-                className="form-input"
-                id="classification"
-                type="text"
-                name="classification"
-                placeholder="Enter the classification"
-                onChange={handleChange}
-                value={jsonPrueba.classification}
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="etymology"
-              >
-              etymology
-              </label>
-              <input
-                className="form-input"
-                id="etymology"
-                type="text"
-                name="etymology"
-                placeholder="Enter the etymology"
-                onChange={handleChange}
-                value={jsonPrueba.introduction[0].etymology}
-              />
-            </div>
-
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="atmosphere"
-              >
-              atmosphere
-              </label>
-              <input
-                className="form-input"
-                id="atmosphere"
-                type="text"
-                name="atmosphere"
-                placeholder="Enter the atmosphere"
-                onChange={handleChange}
-                value={jsonPrueba.introduction[0].atmosphere}
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="properties"
-              >
-                properties
-              </label>
-              <input
-                className="form-input"
-                id="properties"
-                type="text"
-                name="properties"
-                placeholder="Enter the properties"
-                onChange={handleChange}
-                value={jsonPrueba.image}
-              />
-            </div>
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="references"
-              >
-                references
-              </label>
-              <input
-                className="form-input"
-                id="references"
-                type="text"
-                name="references"
-                placeholder="Enter the references"
-                onChange={handleChange}
-                value={jsonPrueba.references}
-              />
-            </div>
           </form>
 
-        <button
-        className={`${loading ? "cursor-not-allowed opacity-50" : "cursor-pointer"} bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline`}
-          type="submit"
-          onClick={handleSubmit} 
-        > 
-          {loading ? "Loading" : "Send"} 
-        </button> 
+          <button
+            className={`${loading ? "cursor-not-allowed opacity-50" : "cursor-pointer"} bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline`}
+            type="submit"
+            onClick={handleSubmit}
+          >
+            {loading ? "Loading" : "Send"}
+          </button>
         </div>
 
       </div>
