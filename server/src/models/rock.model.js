@@ -13,28 +13,28 @@ const rocksSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  introduction: [{
+  introduction: {
     etymology: String,
     atmosphere: String,
     applications: String,
     main_locations: String,
     diffractogram: String
 
-  }],
-  properties: [{
-    chemical: [{
+  },
+  properties: {
+    chemical: {
 
       chemical_formula: String,
       molecular_weight: String,
       elemental_chemistry: String,
       chemistry_oxides: String
-    }],
-    crystallographic: [{
+    },
+    crystallographic: {
       cell_dimension: String,
       crystalline_system: String,
       x_ray_diffraction: String
-    }],
-    physical: [{
+    },
+    physical: {
       gloss: String,
       color: String,
       hardness: String,
@@ -46,9 +46,9 @@ const rocksSchema = new mongoose.Schema({
       density: String,
       luminescence: String,
       radioactivity: String,
-    }],
+    },
     optical: String,
-  }],
+  },
   references: String
 });
 
