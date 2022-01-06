@@ -11,7 +11,7 @@ type GalleryProps = {
 type JsonProps = {
   name: string;
   image: string;
-  classification: string;
+  clasification: string;
   introduction: {
     etymology: string;
     atmosphere: string;
