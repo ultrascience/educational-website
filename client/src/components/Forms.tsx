@@ -215,6 +215,18 @@ function Forms() {
         <div className="focus-within:border-transparent border-2 border-gray-300 rounded-lg p-4 w-full md:w-1/2">
           <form onSubmit={handleSubmit}>
             {generateInputs()}
+            <div className="form-group">
+              <label 
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="image">Imagen</label>
+              <input
+                type="file"
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="image"
+                name="image"
+                onChange={handleChange}
+              />
+            </div>
           </form>
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" onClick={handleSubmit}>
             Submit
