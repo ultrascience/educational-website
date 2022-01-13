@@ -98,7 +98,7 @@ function Forms() {
       const data = new FormData();
       data.append("image", selectedFile);
       axios
-        .post("http://localhost:8080/api/rocks/upload", data)
+        .post("http://localhost:8080/api/rocks/uploadimage", data)
         .then((res) => {
           console.log(res);
           setImage(res.data.image);

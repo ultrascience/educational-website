@@ -74,7 +74,8 @@ rockRouter.post("/", (req, res, next) => {
     });
 });
 
-/* Upload image of rock on public folder */
+/* Upload image of rock on path: /home/Github/current/client/public/images*/
+
 rockRouter.post('/uploadimage', multipartMiddleware, function(req, res) {
     if(req.files.image) {
         var image = req.files.image,
@@ -84,6 +85,7 @@ rockRouter.post('/uploadimage', multipartMiddleware, function(req, res) {
         fs.readFile(image.path, function (err, data) {
             var imageName = name;
             var newPath = __dirname + "/../public/images/" + imageName;
+            
             fs.writeFile(newPath, data, function (err) {
                 if(err){
                     res.status(400).send({
