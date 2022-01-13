@@ -74,6 +74,32 @@ rockRouter.post("/", (req, res, next) => {
     });
 });
 
+/* Upload image of rock on public folder */
+rockRouter.post('/uploadimage', multipartMiddleware, function(req, res) {
+    if(req.files.image) {
+        var image = req.files.image,
+            name = image.name,
+            type = image.mimetype;
+
+        fs.readFile(image.path, function (err, data) {
+            var imageName = name;
+            var newPath = __dirname + "/../public/images/" + imageName;
+            fs.writeFile(newPath, data, function (err) {
+                if(err){
+                    res.status(400).send({
+                        success: false,
+                        error: err.message
+                    });
+                }
+                res.status(201).send({
+                    success: true,
+                    message: "Image uploaded successfully"
+                });
+            });
+        });
+    }
+});
+
 /* Edit Single Rock */
 rockRouter.patch("/:post_id", (req, res, next) => {
     let fieldsToUpdate = req.body;

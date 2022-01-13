@@ -6,6 +6,7 @@ import '../styles/index.css';
 // The form data is sent to the server using axios and the response is returned to the user in the form of a JSON object 
 // to the route "http://localhost:8080/api/rocks/",
 function Forms() {
+  const [selectedFile, setSelectedFile] = useState<File | undefined>();
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [clasification, setClasification] = useState("");
@@ -34,6 +35,10 @@ function Forms() {
   const [radioactivity, setRadioactivity] = useState("");
   const [optical, setOptical] = useState("");
   const [references, setReferences] = useState("");
+
+  const FileChange = (e:any) => {
+    setSelectedFile(e.target.files[0]);
+  };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
@@ -85,6 +90,23 @@ function Forms() {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const onFileUpload = (e: any) => {
+    if (selectedFile) {
+      e.preventDefault();
+      const data = new FormData();
+      data.append("image", selectedFile);
+      axios
+        .post("http://localhost:8080/api/rocks/upload", data)
+        .then((res) => {
+          console.log(res);
+          setImage(res.data.image);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   // Function handleChange that takes the name of the input and the value of the input and sets the value of the input to the state of the component
@@ -224,7 +246,7 @@ function Forms() {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="image"
                 name="image"
-                onChange={handleChange}
+                onChange={onFileUpload}
               />
             </div>
           </form>
