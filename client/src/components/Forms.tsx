@@ -36,7 +36,7 @@ function Forms() {
   const [optical, setOptical] = useState("");
   const [references, setReferences] = useState("");
 
-  const FileChange = (e:any) => {
+  const onFileChange = (e:any) => {
     setSelectedFile(e.target.files[0]);
   };
 
@@ -105,7 +105,10 @@ function Forms() {
         })
         .catch((err) => {
           console.log(err);
+          console.log("Error al subir la imagen");
         });
+    }else{
+      console.log("No se ha seleccionado ninguna imagen");
     }
   };
 
@@ -220,7 +223,6 @@ function Forms() {
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id={llave}
             name={llave}
-            value={inputNamesDictionary[llave]}
             onChange={handleChange}
           />
         </div>
@@ -246,7 +248,8 @@ function Forms() {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="image"
                 name="image"
-                onChange={onFileUpload}
+                onChange={onFileChange}
+                onClick={onFileUpload}
               />
             </div>
           </form>
