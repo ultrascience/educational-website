@@ -1,6 +1,29 @@
 import express from 'express';
 import Rock from '../models/rock.model';
 const rockRouter = express.Router();
+const multer = require('multer');
+const { v4: uuidv4 } = require('uuid');
+let path = require('path');
+
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'images');
+    },
+    filename: function(req, file, cb) {   
+        cb(null, uuidv4() + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+const fileFilter = (req, file, cb) => {
+    const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+    if(allowedFileTypes.includes(file.mimetype)) {
+        cb(null, true);
+    } else {
+        cb(null, false);
+    }
+}
+
+let upload = multer({ storage, fileFilter });
 
 rockRouter.get('/info', (req, res, next) => {
     Rock.find({},'name image' , function(err, result){
@@ -75,31 +98,11 @@ rockRouter.post("/", (req, res, next) => {
 });
 
 /* Upload image of rock on path: /home/Github/current/client/public/images*/
-
-rockRouter.post('/uploadimage', multipartMiddleware, function(req, res) {
-    if(req.files.image) {
-        var image = req.files.image,
-            name = image.name,
-            type = image.mimetype;
-
-        fs.readFile(image.path, function (err, data) {
-            var imageName = name;
-            var newPath = __dirname + "/../public/images/" + imageName;
-            
-            fs.writeFile(newPath, data, function (err) {
-                if(err){
-                    res.status(400).send({
-                        success: false,
-                        error: err.message
-                    });
-                }
-                res.status(201).send({
-                    success: true,
-                    message: "Image uploaded successfully"
-                });
-            });
-        });
-    }
+rockRouter.post('/uploadimage',upload.single('selectedFile'),function(req, res) {
+    res.status(200).send({
+        success: true,
+        data: req.file.filename
+    });
 });
 
 /* Edit Single Rock */
@@ -111,7 +114,7 @@ rockRouter.patch("/:post_id", (req, res, next) => {
                 success: false,
                 error: err.message
             });
-        }
+  }
         res.status(200).send({
             success: true,
             data: result,
