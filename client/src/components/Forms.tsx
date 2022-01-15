@@ -6,9 +6,8 @@ import '../styles/index.css';
 // The form data is sent to the server using axios and the response is returned to the user in the form of a JSON object 
 // to the route "http://localhost:8080/api/rocks/",
 function Forms() {
-  const [selectedFile, setSelectedFile] = useState<File | undefined>();
   const [name, setName] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState<File | undefined>();
   const [clasification, setClasification] = useState("");
   const [etymology, setEtymology] = useState("");
   const [atmosphere, setAtmosphere] = useState("");
@@ -37,79 +36,60 @@ function Forms() {
   const [references, setReferences] = useState("");
 
   const onFileChange = (e:any) => {
-    setSelectedFile(e.target.files[0]);
+    setImage(e.target.files[0]);
+    console.log(e.target.files[0]);
+    console.log("file changed");
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:8080/api/rocks/", {
-        name,
-        image,
-        clasification,
-        introduction: {
-          etymology,
-          atmosphere,
-          applications,
-          main_locations,
-          diffractogram,
-        },
-        properties: {
-          chemical: {
-            chemical_formula,
-            molecular_weight,
-            elemental_chemistry,
-            chemistry_oxides,
-          },
-          crystallographic: {
-            cell_dimension,
-            crystalline_system,
-            x_ray_diffraction,
-          },
-          physical: {
-            gloss,
-            color,
-            hardness,
-            stripe,
-            fracture,
-            crystal_habit,
-            diaphanous,
-            exfoliation,
-            density,
-            luminescence,
-            radioactivity,
-          },
-          optical,
-        },
-        references,
-      })
-      .then((res) => {
-        console.log("Enviado :)");
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const onFileUpload = (e: any) => {
-    if (selectedFile) {
-      e.preventDefault();
-      const data = new FormData();
-      data.append("image", selectedFile);
-      axios
-        .post("http://localhost:8080/api/rocks/uploadimage", data)
-        .then((res) => {
-          console.log(res);
-          setImage(res.data.image);
-        })
-        .catch((err) => {
-          console.log(err);
-          console.log("Error al subir la imagen");
-        });
-    }else{
-      console.log("No se ha seleccionado ninguna imagen");
+    // check is image no is undefined
+    if (image === undefined) {
+      alert("Please select an image");
+      return;
     }
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("name", name);
+    formData.append("clasification", clasification);
+    formData.append("etymology", etymology);
+    formData.append("atmosphere", atmosphere);
+    formData.append("applications", applications);
+    formData.append("main_locations", main_locations);
+    formData.append("diffractogram", diffractogram);
+    formData.append("chemical_formula", chemical_formula);
+    formData.append("molecular_weight", molecular_weight);
+    formData.append("elemental_chemistry", elemental_chemistry);
+    formData.append("chemistry_oxides", chemistry_oxides);
+    formData.append("cell_dimension", cell_dimension);
+    formData.append("crystalline_system", crystalline_system);
+    formData.append("x_ray_diffraction", x_ray_diffraction);
+    formData.append("gloss", gloss);
+    formData.append("color", color);
+    formData.append("hardness", hardness);
+    formData.append("stripe", stripe);
+    formData.append("fracture", fracture);
+    formData.append("crystal_habit", crystal_habit);
+    formData.append("diaphanous", diaphanous);
+    formData.append("exfoliation", exfoliation);
+    formData.append("density", density);
+    formData.append("luminescence", luminescence);
+    formData.append("radioactivity", radioactivity);
+    formData.append("optical", optical);
+    formData.append("references", references);
+
+    axios.post("http://localhost:8080/api/rocks/upload", formData, {
+     headers: {
+     "Content-Type": "multipart/form-data",
+     },
+     }).then(res => {
+     console.log(res);
+     console.log(res.data);
+     });
+     console.log("form submitted");
+     console.log(name);
+     console.log(image);
+
   };
 
   // Function handleChange that takes the name of the input and the value of the input and sets the value of the input to the state of the component
@@ -117,8 +97,6 @@ function Forms() {
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.name === "name") {
       setName(e.target.value);
-    } else if (e.target.name === "image") {
-      setImage(e.target.value);
     } else if (e.target.name === "clasification") {
       setClasification(e.target.value);
     } else if (e.target.name === "etymology") {
@@ -182,7 +160,6 @@ function Forms() {
     // Create a dictionary from inputNames and the corresponding state of the component
     const inputNamesDictionary: { [key: string]: string } = {
       "name": "Nombre",
-      "image": "Imagen",
       "clasification": "Clasificación",
       "etymology": "Etimología",
       "atmosphere": "Atmósfera",
@@ -237,7 +214,11 @@ function Forms() {
     <div className="container mx-auto px-4">
       <div className="flex flex-wrap justify-center">
         <div className="focus-within:border-transparent border-2 border-gray-300 rounded-lg p-4 w-full md:w-1/2">
-          <form onSubmit={handleSubmit}>
+          <form  
+          encType="multipart/form-data"
+          onSubmit={handleSubmit}
+          >
+
             {generateInputs()}
             <div className="form-group">
               <label 
@@ -249,7 +230,6 @@ function Forms() {
                 id="image"
                 name="image"
                 onChange={onFileChange}
-                onClick={onFileUpload}
               />
             </div>
           </form>
