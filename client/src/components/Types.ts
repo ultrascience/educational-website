@@ -4,8 +4,12 @@ type PropertiesProps = {
 
 type GalleryProps = {
   _id: string;
-  name: string;
-  image: string;
+  name: string
+  // image type file 
+  image: {
+    data: Buffer;
+    contentType: string;
+  };
 };
 
 type JsonProps = {

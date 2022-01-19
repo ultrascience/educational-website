@@ -54,6 +54,29 @@ rockRouter.get('/get-images', (req, res, next) => {
   });
 });
 
+/* 
+ * Get image respect to the name
+ * @returns {Object}
+ * @param {Object} req
+ * @param {Object} res 
+ * @param {Object} next 
+ * @param {String} name 
+ */
+rockRouter.get('/img/:name', (req, res, next) => {
+  const name = req.params.name;
+  Rock.findOne({ name: name }, 'image', function(err, result) {
+    if (err) {
+      res.status(400).send({
+        'success': false,
+        'error': err.message
+      });
+    }
+    res.set('Access-Control-Allow-Origin', '*');
+    res.status(200).send(
+      result);
+  });
+});
+
 
 /* Get all information about single 3D Model
  * @returns {Object}

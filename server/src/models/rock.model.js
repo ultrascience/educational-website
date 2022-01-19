@@ -49,8 +49,14 @@ const rocksSchema = new mongoose.Schema({
     },
     optical: String,
   },
-  references: String
-});
+  references: String,
+  
+  
+}
+// {
+//   timestamps: true
+// }
+);
 
 const Rocks = mongoose.model("Rocks", rocksSchema);
 export default Rocks;
