@@ -1,8 +1,9 @@
 import express from 'express';
-import Rock from '../models/rock.model';
-const rockRouter = express.Router();
 import fs from 'fs';
 import path from 'path';
+import Rock from '../models/rock.model';
+
+const rockRouter = express.Router();
 
 var multer = require('multer');
 
@@ -20,19 +21,26 @@ const storageEngine = multer.diskStorage({
 const fileFilter = (req, file, callback) => {
   let pattern = /jpg|png|svg/; // reqex
 
-  if (pattern.test (path.extname (file.originalname))) {
-    callback (null, true);
+  if (pattern.test(path.extname(file.originalname))) {
+    callback(null, true);
   } else {
-    callback ('Error: not a valid file');
+    callback('Error: not a valid file');
   }
 };
 
-const upload = multer ({
+const upload = multer({
   storage: storageEngine,
-  fileFilter  
+  fileFilter
 });
 
-rockRouter.get('/info', (req, res, next) => {
+/* 
+  * Get name and image of the all 3D Models
+  * @returns {Object}
+  * @param {Object} req
+  * @param {Object} res
+  * @param {Object} next
+  */
+rockRouter.get('/get-images', (req, res, next) => {
   Rock.find({}, 'name image', function(err, result) {
     if (err) {
       res.status(400).send({
@@ -46,24 +54,14 @@ rockRouter.get('/info', (req, res, next) => {
   });
 });
 
-/* Get all Rocks */
-rockRouter.get('/', (req, res, next) => {
-  Rock.find({}, function(err, result) {
-    if (err) {
-      res.status(400).send({
-        'success': false,
-        'error': err.message
-      });
-    }
-    res.status(200).send({
-      'success': true,
-      'data': result
-    });
-  });
-});
 
-/* Get Single Rock */
-rockRouter.get("/:post_id", (req, res, next) => {
+/* Get all information about single 3D Model
+ * @returns {Object}
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ */
+rockRouter.get("/get-rock/:id", (req, res, next) => {
   Rock.findById(req.params.post_id, function(err, result) {
     if (err) {
       res.status(400).send({
@@ -79,7 +77,12 @@ rockRouter.get("/:post_id", (req, res, next) => {
 });
 
 
-/* Add Single Rock */
+/* Add Single 3D Model to the Database
+ * @returns {Object}
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ */
 rockRouter.post("/upload", upload.single('image'), (req, res, next) => {
   console.log(req);
   let newRock = {
@@ -108,8 +111,14 @@ rockRouter.post("/upload", upload.single('image'), (req, res, next) => {
   });
 });
 
-/* Edit Single Rock */
-rockRouter.patch("/:post_id", (req, res, next) => {
+
+/* Edit Single 3D Model
+ * @returns {Object}
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ */
+rockRouter.patch("/edit/:id", (req, res, next) => {
   let fieldsToUpdate = req.body;
   Rock.findByIdAndUpdate(req.params.post_id, { $set: fieldsToUpdate }, { new: true }, function(err, result) {
     if (err) {
@@ -126,8 +135,14 @@ rockRouter.patch("/:post_id", (req, res, next) => {
   });
 });
 
-/* Delete Single Rock */
-rockRouter.delete("/:post_id", (req, res, next) => {
+
+/* Delete Single 3D Model
+ * @returns {Object}
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ */
+rockRouter.delete("/delete/:id", (req, res, next) => {
   Rock.findByIdAndDelete(req.params.post_id, function(err, result) {
     if (err) {
       res.status(400).send({

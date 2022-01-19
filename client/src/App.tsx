@@ -1,24 +1,24 @@
 import Gallery from "./components/Gallery";
-import Scene3D from "./components/Scene3D";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import Forms from "./components/Forms";
 import { GalleryProps } from "./components/Types";
+
 /**
  * Component: App
- * Charge the json api containing the images and names and the 3D scene
+ * Charge the json api containing the images and names
  */
-function App() {
+function App(): JSX.Element {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   // useState to store the images and names from the json api
   const [models, setModels] = useState<GalleryProps[]>([]);
 
-  /** Carga el json en api/rocks/info con la libreria de axios */
+  /** Charge the json api containing the images and names */
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/rocks/info")
+      .get("http://localhost:8080/api/rocks/get-images")
       .then((res) => {
         setModels(res.data);
         setIsLoaded(true);
