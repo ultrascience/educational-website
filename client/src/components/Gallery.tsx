@@ -3,26 +3,36 @@ import { Link, Route, Routes } from "react-router-dom";
 import Scene3D from "./Scene3D";
 import { ArrayGalleryProps } from "./Types";
 
-/*
- * Gallery component
- * Displays a list of models based on the search query from the db.json
- * Show a link for each model in the database.
- */
-function Gallery(props: ArrayGalleryProps): JSX.Element {
+/**
+ * Function that render a gallery of 3D models 
+ * style: Tailwind CSS Grid 4 rows 
+ * React Router: Link to each model
+ * img: image of the model using arrayBufferToBase64a(image.data)
+ * map on image respect props
+*/
+function Gallery(props: ArrayGalleryProps) {
   return (
-    <>
-      <h1>Gallery</h1>
+    <div className="flex flex-wrap justify-center">
       {props.gallery.map(({ _id, name, image }) => (
-        <div className="bg-green-500" key={_id}>
-          <p className="text-lg" key={_id}>
-            <img src={arrayBufferToBase64a(image.data)} alt="img" />
-            <li>
-              <Link to={"/rocks/" + _id}>{name}</Link>
-            </li>
-          </p>
+        <div className="w-1/4 p-2" key={_id}>
+          <div className="max-w-sm rounded overflow-hidden shadow-lg">
+            <img className="w-full" src={arrayBufferToBase64a(image.data)} alt="model" />
+
+            <div className="px-6 py-4">
+              <p className="text-gray-700 text-base">
+                <Link to={`/3d-models/${_id}`}>
+                  <button className="bg-white hover:bg-blue-400 hover:text-white text-black font-bold py-2 px-4 rounded">
+                    {name}
+                  </button>
+                </Link>
+              </p>
+            </div>
+
+          </div>
+
         </div>
       ))}
-    </>
+    </div>
   );
 }
 

@@ -40,6 +40,8 @@ function App(): JSX.Element {
           <Routes>
             <Route path="/gallery" element={<Gallery gallery={models} />} />
             <Route path="/forms" element={<Forms />} />
+            // 3d-models with id
+            // <Route path="/3d-models/:id" element={<Gallery gallery={models} />} />
           </Routes>
         </Router>
       </>
