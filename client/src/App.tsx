@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import Forms from "./components/Forms";
 import { GalleryProps } from "./components/Types";
+import { ModelProps } from "./components/Types";
+import Scene3D from "./components/Scene3D";
 
 /**
  * Component: App
@@ -12,13 +14,13 @@ import { GalleryProps } from "./components/Types";
 function App(): JSX.Element {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  // useState to store the images and names from the json api
   const [models, setModels] = useState<GalleryProps[]>([]);
+  const [idModelSelected, setIdModelSelected] = useState<string>("");
 
   /** Charge the json api containing the images and names */
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/rocks/get-images")
+  .get("http://localhost:8080/api/rocks/get-images")
       .then((res) => {
         setModels(res.data);
         setIsLoaded(true);
@@ -38,10 +40,9 @@ function App(): JSX.Element {
       <>
         <Router>
           <Routes>
-            <Route path="/gallery" element={<Gallery gallery={models} />} />
+            <Route path="/gallery" element={<Gallery gallery={models} idModelSelected={idModelSelected} setIdModelSelected={setIdModelSelected} />} />
             <Route path="/forms" element={<Forms />} />
-            // 3d-models with id
-            // <Route path="/3d-models/:id" element={<Gallery gallery={models} />} />
+            <Route path="/3d-models/:id" element={<Scene3D idModelSelected={idModelSelected} />} />
           </Routes>
         </Router>
       </>

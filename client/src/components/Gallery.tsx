@@ -12,6 +12,7 @@ import { ArrayGalleryProps } from "./Types";
 */
 function Gallery(props: ArrayGalleryProps) {
   return (
+  <>
     <div className="flex flex-wrap justify-center">
       {props.gallery.map(({ _id, name, image }) => (
         <div className="w-1/4 p-2" key={_id}>
@@ -20,7 +21,7 @@ function Gallery(props: ArrayGalleryProps) {
 
             <div className="px-6 py-4">
               <p className="text-gray-700 text-base">
-                <Link to={`/3d-models/${_id}`}>
+                <Link to={`/3d-models/${_id}`} onClick={() => props.setIdModelSelected(_id)}>
                   <button className="bg-white hover:bg-blue-400 hover:text-white text-black font-bold py-2 px-4 rounded">
                     {name}
                   </button>
@@ -33,6 +34,8 @@ function Gallery(props: ArrayGalleryProps) {
         </div>
       ))}
     </div>
+
+    </>
   );
 }
 

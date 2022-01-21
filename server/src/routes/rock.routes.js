@@ -85,20 +85,19 @@ rockRouter.get('/img/:name', (req, res, next) => {
  * @param {Object} next
  */
 rockRouter.get("/get-rock/:id", (req, res, next) => {
-  Rock.findById(req.params.post_id, function(err, result) {
+  const id = req.params.id;
+  Rock.findById(id, function(err, result) {
     if (err) {
       res.status(400).send({
-        success: false,
-        error: err.message
+        'success': false,
+        'error': err.message
       });
     }
-    res.status(200).send({
-      success: true,
-      data: result
-    });
+    res.set('Access-Control-Allow-Origin', '*');
+    res.status(200).send(
+      result);
   });
 });
-
 
 /* Add Single 3D Model to the Database
  * @returns {Object}

@@ -12,9 +12,13 @@ type GalleryProps = {
   };
 };
 
-type JsonProps = {
+type ModelProps = {
+  _id: string;
   name: string;
-  image: string;
+  image: {
+    data: Buffer;
+    contentType: string;
+  };
   clasification: string;
   introduction: {
     etymology: string;
@@ -58,6 +62,8 @@ type JsonProps = {
 
 type ArrayGalleryProps = {
   gallery: GalleryProps[];
+  idModelSelected: string;
+  setIdModelSelected: (id: string) => void;
 };
 
 type ModelInfoProps = {
@@ -71,7 +77,11 @@ type CurrentInformationProps = {
 };
 
 type SceneProps = {
-  namemodel: string;
+  // model: ModelProps;
+  // setModel: (model: ModelProps) => void;
+  idModelSelected: string;
+  // setIdModelSelected: (id: string) => void;
+
 };
 
 type ButtonProps = {
@@ -82,7 +92,7 @@ type ButtonProps = {
 /* Export all type on the file */
 export type {
   GalleryProps,
-  JsonProps,
+  ModelProps,
   ArrayGalleryProps,
   CurrentInformationProps,
   SceneProps,
