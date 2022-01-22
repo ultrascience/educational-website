@@ -30,7 +30,7 @@
 @media (max-width: 640px) {
   .infoOff {
     position: relative;
-    background-color: #287233;
+    /* background-color: #287233; */
     grid-area: 1 / 1 / 11 / 12;
   }
 
