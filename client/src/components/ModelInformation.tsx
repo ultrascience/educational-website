@@ -5,7 +5,7 @@
 import { JSXElementConstructor, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/modelInformation.css";
-import { CurrentInformationProps, ModelInfoProps } from "./Types";
+import { CurrentInformationProps, ModelInfoProps, ModelProps } from "./Types";
 import {
   Physical,
   Chemical,
@@ -16,7 +16,8 @@ import {
 function CurrentInformation(props: CurrentInformationProps): JSX.Element {
   switch (props.isVisible) {
     case "physical":
-      return <Physical information="Fisicas" />;
+    console.log(props.modelInfoProps2);
+      return <Physical information={props.modelInfoProps2.physical} />;
     case "optical":
       return <Optical information="Opticas" />;
     case "crystallographic":
@@ -61,7 +62,7 @@ function ModelInformation(props: ModelInfoProps): JSX.Element {
       {
         <CurrentInformation
           isVisible={visible}
-          propertiesmodel={props.information}
+          modelInfoProps2={props.model.properties}
         />
       }
     </>

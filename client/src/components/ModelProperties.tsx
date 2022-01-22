@@ -1,4 +1,4 @@
-import { PropertiesProps } from "./Types";
+import { PropertiesProps,physicalProps } from "./Types";
 
 function Chemical(props: PropertiesProps): JSX.Element {
   return <div>{props.information}</div>;
@@ -11,7 +11,7 @@ function Optical(props: PropertiesProps): JSX.Element {
 function Crystallographic(props: PropertiesProps): JSX.Element {
   return <div>{props.information}</div>;
 }
-function Physical(props: PropertiesProps): JSX.Element {
+function Physical(props: physicalProps): JSX.Element {
   return <div>{props.information}</div>;
 }
 

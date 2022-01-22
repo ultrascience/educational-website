@@ -67,13 +67,18 @@ type ArrayGalleryProps = {
 };
 
 type ModelInfoProps = {
-  namemodel: string;
-  information: string[];
+  model: ModelProps;
 };
+
+type physicalProps = {
+  information: ModelProps['properties']['physical'];
+};
+
 
 type CurrentInformationProps = {
   isVisible: string;
-  propertiesmodel: string[];
+  // modelInfoProps es ModelProps.properties
+  modelInfoProps2: ModelProps['properties'];
 };
 
 type SceneProps = {
@@ -98,5 +103,6 @@ export type {
   SceneProps,
   ModelInfoProps,
   PropertiesProps,
+  physicalProps,
   ButtonProps,
 };
