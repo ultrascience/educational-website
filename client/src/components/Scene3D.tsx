@@ -6,7 +6,7 @@ import "../styles/sceneModel.css";
 import Button from "./Button";
 import Model3D from "./Model3D";
 import ModelInformation from "./ModelInformation";
-import { ModelProps, SceneProps } from "./Types";
+import { ModelType, SceneProps } from "./Types";
 
 const KeysToComponentMap: { [index: string]: any } = {
   augen: Augen,
@@ -18,7 +18,7 @@ const KeysToComponentMap: { [index: string]: any } = {
  * Renders a 3D scene with the model and its information.
  */
 function Scene3D(props: SceneProps): JSX.Element {
-  const [currentModel, setCurrentModel] = useState<ModelProps>({} as ModelProps);
+  const [currentModel, setCurrentModel] = useState<ModelType>({} as ModelType);
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [mountInformation, setMountInformation] = useState(false);

@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import Forms from "./components/Forms";
-import { GalleryProps } from "./components/Types";
-import { ModelProps } from "./components/Types";
+import { ModelTypeGallery } from "./components/Types";
+import { ModelType } from "./components/Types";
 import Scene3D from "./components/Scene3D";
 
 /**
@@ -14,7 +14,7 @@ import Scene3D from "./components/Scene3D";
 function App(): JSX.Element {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [models, setModels] = useState<GalleryProps[]>([]);
+  const [models, setModels] = useState<ModelTypeGallery[]>([]);
   const [idModelSelected, setIdModelSelected] = useState<string>("");
 
   /** Charge the json api containing the images and names */
