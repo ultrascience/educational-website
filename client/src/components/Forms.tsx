@@ -1,10 +1,58 @@
 import axios from "axios";
 import { useState } from "react";
 import '../styles/index.css';
+// import { ModelType } from "./Types";
+
+type ModelType = {
+  _id: string;
+  name: string;
+  image: {
+    data: Buffer;
+    contentType: string;
+  };
+  clasification: string;
+  introduction: {
+    etymology: string;
+    atmosphere: string;
+    applications: string;
+    main_locations: string;
+    diffractogram: string;
+  };
+  properties: {
+    chemical: {
+      chemical_formula: string;
+      molecular_weight: string;
+      elemental_chemistry: string;
+      chemistry_oxides: string;
+    },
+    crystallographic:
+    {
+      cell_dimension: string;
+      crystalline_system: string;
+      x_ray_diffraction: string;
+    }
+    ,
+    physical: {
+      gloss: string;
+      color: string;
+      hardness: string;
+      stripe: string;
+      fracture: string;
+      crystal_habit: string;
+      diaphanous: string;
+      exfoliation: string;
+      density: string;
+      luminescence: string;
+      radioactivity: string;
+    },
+    optical: string;
+  };
+  references: string;
+}
 
 // Component that send the form data to the server and returns the response to the user in the form of a JSON object using JsonProps interface and tailwindcss and typescript
 // The form data is sent to the server using axios and the response is returned to the user in the form of a JSON object 
-// to the route "http://localhost:8080/api/rocks/",
+// to the route "http://localhost:8080/api/rocks/upload"
 function Forms() {
   const [name, setName] = useState("");
   const [image, setImage] = useState<File | undefined>();
@@ -35,14 +83,105 @@ function Forms() {
   const [optical, setOptical] = useState("");
   const [references, setReferences] = useState("");
 
-  const onFileChange = (e:any) => {
+  const onFileChange = (e: any) => {
     setImage(e.target.files[0]);
     console.log(e.target.files[0]);
     console.log("file changed");
   };
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  // Function handleChange that takes the name of the input and the value of the input and sets the value of the input to the state of the component
+  // The state of the component is the value of the input 
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    switch (e.target.name) {
+      case "name":
+        setName(e.target.value);
+        break;
+      case "clasification":
+        setClasification(e.target.value);
+        break;
+      case "etymology":
+        setEtymology(e.target.value);
+        break;
+      case "atmosphere":
+        setAtmosphere(e.target.value);
+        break;
+      case "applications":
+        setApplications(e.target.value);
+        break;
+      case "main_locations":
+        setMainLocations(e.target.value);
+        break;
+      case "diffractogram":
+        setDiffractogram(e.target.value);
+        break;
+      case "chemical_formula":
+        setChemicalFormula(e.target.value);
+        break;
+      case "molecular_weight":
+        setMolecularWeight(e.target.value);
+        break;
+      case "elemental_chemistry":
+        setElementalChemistry(e.target.value);
+        break;
+      case "chemistry_oxides":
+        setChemistryOxides(e.target.value);
+        break;
+      case "cell_dimension":
+        setCellDimension(e.target.value);
+        break;
+      case "crystalline_system":
+        setCrystallineSystem(e.target.value);
+        break;
+      case "x_ray_diffraction":
+        setXRayDiffraction(e.target.value);
+        break;
+      case "gloss":
+        setGloss(e.target.value);
+        break;
+      case "color":
+        setColor(e.target.value);
+        break;
+      case "hardness":
+        setHardness(e.target.value);
+        break;
+      case "stripe":
+        setStripe(e.target.value);
+        break;
+      case "fracture":
+        setFracture(e.target.value);
+        break;
+      case "crystal_habit":
+        setCrystalHabit(e.target.value);
+        break;
+      case "diaphanous":
+        setDiaphanous(e.target.value);
+        break;
+      case "exfoliation":
+        setExfoliation(e.target.value);
+        break;
+      case "density":
+        setDensity(e.target.value);
+        break;
+      case "luminescence":
+        setLuminescence(e.target.value);
+        break;
+      case "radioactivity":
+        setRadioactivity(e.target.value);
+        break;
+      case "optical":
+        setOptical(e.target.value);
+        break;
+      case "references":
+        setReferences(e.target.value);
+        break;
+      default:
+        break;
+    }
+  }
+
+  // function that stringifies the state of the component and sends it to the backend
+  function handleSubmit(e: any) {
+  e.preventDefault();
     // check is image no is undefined
     if (image === undefined) {
       alert("Please select an image");
@@ -89,67 +228,6 @@ function Forms() {
      console.log("form submitted");
      console.log(name);
      console.log(image);
-
-  };
-
-  // Function handleChange that takes the name of the input and the value of the input and sets the value of the input to the state of the component
-  // The state of the component is the value of the input 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    if (e.target.name === "name") {
-      setName(e.target.value);
-    } else if (e.target.name === "clasification") {
-      setClasification(e.target.value);
-    } else if (e.target.name === "etymology") {
-      setEtymology(e.target.value);
-    } else if (e.target.name === "atmosphere") {
-      setAtmosphere(e.target.value);
-    } else if (e.target.name === "applications") {
-      setApplications(e.target.value);
-    } else if (e.target.name === "main_locations") {
-      setMainLocations(e.target.value);
-    } else if (e.target.name === "diffractogram") {
-      setDiffractogram(e.target.value);
-    } else if (e.target.name === "chemical_formula") {
-      setChemicalFormula(e.target.value);
-    } else if (e.target.name === "molecular_weight") {
-      setMolecularWeight(e.target.value);
-    } else if (e.target.name === "elemental_chemistry") {
-      setElementalChemistry(e.target.value);
-    } else if (e.target.name === "chemistry_oxides") {
-      setChemistryOxides(e.target.value);
-    } else if (e.target.name === "cell_dimension") {
-      setCellDimension(e.target.value);
-    } else if (e.target.name === "crystalline_system") {
-      setCrystallineSystem(e.target.value);
-    } else if (e.target.name === "x_ray_diffraction") {
-      setXRayDiffraction(e.target.value);
-    } else if (e.target.name === "gloss") {
-      setGloss(e.target.value);
-    } else if (e.target.name === "color") {
-      setColor(e.target.value);
-    } else if (e.target.name === "hardness") {
-      setHardness(e.target.value);
-    } else if (e.target.name === "stripe") {
-      setStripe(e.target.value);
-    } else if (e.target.name === "fracture") {
-      setFracture(e.target.value);
-    } else if (e.target.name === "crystal_habit") {
-      setCrystalHabit(e.target.value);
-    } else if (e.target.name === "diaphanous") {
-      setDiaphanous(e.target.value);
-    } else if (e.target.name === "exfoliation") {
-      setExfoliation(e.target.value);
-    } else if (e.target.name === "density") {
-      setDensity(e.target.value);
-    } else if (e.target.name === "luminescence") {
-      setLuminescence(e.target.value);
-    } else if (e.target.name === "radioactivity") {
-      setRadioactivity(e.target.value);
-    } else if (e.target.name === "optical") {
-      setOptical(e.target.value);
-    } else if (e.target.name === "references") {
-      setReferences(e.target.value);
-    }
   }
 
 
@@ -192,9 +270,9 @@ function Forms() {
     for (llave in inputNamesDictionary) {
       inputs.push(
         <div className="form-group" key={llave}>
-          <label 
-          className="block text-gray-700 text-sm font-bold mb-2"
-          htmlFor={llave}>{inputNamesDictionary[llave]}</label>
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor={llave}>{inputNamesDictionary[llave]}</label>
           <input
             type="text"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -207,23 +285,21 @@ function Forms() {
     }
     return inputs;
   }
-
   // Return the form using tailwind classes
   // The form is generated using the function generateInputs()
   return (
     <div className="container mx-auto px-4">
       <div className="flex flex-wrap justify-center">
         <div className="focus-within:border-transparent border-2 border-gray-300 rounded-lg p-4 w-full md:w-1/2">
-          <form  
-          encType="multipart/form-data"
-          onSubmit={handleSubmit}
+          <form
+            onSubmit={handleSubmit}
           >
 
             {generateInputs()}
             <div className="form-group">
-              <label 
-              className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="image">Imagen</label>
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="image">Imagen</label>
               <input
                 type="file"
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -241,7 +317,7 @@ function Forms() {
     </div>
   );
 
-}
 
+}
 
 export default Forms;

@@ -109,7 +109,7 @@ function Scene3D(props: SceneProps): JSX.Element {
         {mountInformation && (
           <div className="md:col-span-6 h-full w-full bg-blue-600">
             <ModelInformation
-              model={currentModel}
+              properties={currentModel.properties}
             />
           </div>
         )}
