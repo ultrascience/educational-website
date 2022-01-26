@@ -122,13 +122,6 @@ rockRouter.post("/upload", upload.single('image'), (req, res, next) => {
         contentType: 'image/png'
       },
       clasification: req.body.clasification,
-      introduction: {
-        etymology: req.body.etymology,
-        atmosphere: req.body.atmosphere,
-        applications: req.body.applications,
-        main_locations: req.body.main_locations,
-        diffractogram: req.body.diffractogram,
-      },
       properties: {
         chemical:
         {
@@ -158,6 +151,13 @@ rockRouter.post("/upload", upload.single('image'), (req, res, next) => {
           radioactivity: req.body.radioactivity,
       },
       optical: req.body.optical,
+      introduction: {
+        etymology: req.body.etymology,
+        atmosphere: req.body.atmosphere,
+        applications: req.body.applications,
+        main_locations: req.body.main_locations,
+        diffractogram: req.body.diffractogram,
+      },
       },
       references: req.body.references,
       };

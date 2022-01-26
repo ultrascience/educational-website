@@ -1,11 +1,10 @@
-import Gallery from "./components/Gallery";
-import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Forms from "./components/Forms";
-import { ModelTypeGallery } from "./components/Types";
-import { ModelType } from "./components/Types";
+import Gallery from "./components/Gallery";
 import Scene3D from "./components/Scene3D";
+import { ModelTypeGallery } from "./components/Types";
 
 /**
  * Component: App

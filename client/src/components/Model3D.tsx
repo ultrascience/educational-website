@@ -18,7 +18,7 @@ function Modelo3D(props: any) {
         <TrackballControls />
         <ambientLight intensity={0.8} />
         <directionalLight intensity={0.1} />
-        <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={10} />
+        <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={20} />
         <Suspense fallback={null}>
           <Center alignTop>{props.modelo}</Center>
         </Suspense>

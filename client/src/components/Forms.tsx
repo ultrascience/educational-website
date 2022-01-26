@@ -1,59 +1,11 @@
 import axios from "axios";
-import { useState } from "react";
+import {useState} from "react";
 import '../styles/index.css';
-// import { ModelType } from "./Types";
-
-type ModelType = {
-  _id: string;
-  name: string;
-  image: {
-    data: Buffer;
-    contentType: string;
-  };
-  clasification: string;
-  introduction: {
-    etymology: string;
-    atmosphere: string;
-    applications: string;
-    main_locations: string;
-    diffractogram: string;
-  };
-  properties: {
-    chemical: {
-      chemical_formula: string;
-      molecular_weight: string;
-      elemental_chemistry: string;
-      chemistry_oxides: string;
-    },
-    crystallographic:
-    {
-      cell_dimension: string;
-      crystalline_system: string;
-      x_ray_diffraction: string;
-    }
-    ,
-    physical: {
-      gloss: string;
-      color: string;
-      hardness: string;
-      stripe: string;
-      fracture: string;
-      crystal_habit: string;
-      diaphanous: string;
-      exfoliation: string;
-      density: string;
-      luminescence: string;
-      radioactivity: string;
-    },
-    optical: string;
-  };
-  references: string;
-}
 
 // Component that send the form data to the server and returns the response to the user in the form of a JSON object using JsonProps interface and tailwindcss and typescript
 // The form data is sent to the server using axios and the response is returned to the user in the form of a JSON object 
 // to the route "http://localhost:8080/api/rocks/upload"
-function Forms() {
+function Forms():JSX.Element {
   const [name, setName] = useState("");
   const [image, setImage] = useState<File | undefined>();
   const [clasification, setClasification] = useState("");
@@ -83,10 +35,14 @@ function Forms() {
   const [optical, setOptical] = useState("");
   const [references, setReferences] = useState("");
 
-  const onFileChange = (e: any) => {
-    setImage(e.target.files[0]);
-    console.log(e.target.files[0]);
-    console.log("file changed");
+  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setImage(e.target.files[0]);
+      console.log(e.target.files[0]);
+      console.log("image changed");
+    }else{
+      console.log("image not changed");
+    }
   };
 
   // Function handleChange that takes the name of the input and the value of the input and sets the value of the input to the state of the component
@@ -180,7 +136,7 @@ function Forms() {
   }
 
   // function that stringifies the state of the component and sends it to the backend
-  function handleSubmit(e: any) {
+  function handleSubmit(e: any ){
   e.preventDefault();
     // check is image no is undefined
     if (image === undefined) {

@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { animated, useTransition } from 'react-spring';
 import Augen from "../models3D/Augen";
 import "../styles/index.css";
 import "../styles/sceneModel.css";
-import Button from "./Button";
 import Model3D from "./Model3D";
 import ModelInformation from "./ModelInformation";
-import { ModelType, SceneProps } from "./Types";
+import { BarIconsProps, ModelType, SceneProps } from "./Types";
+import Button from "./Button";
 
 const KeysToComponentMap: { [index: string]: any } = {
   augen: Augen,
@@ -22,22 +23,25 @@ function Scene3D(props: SceneProps): JSX.Element {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const [mountInformation, setMountInformation] = useState(false);
-  // hook to syle the modelBox using tailwindcss
+  const [visible, setVisible] = useState("");
   const [modelBoxStyle, setModelBoxStyle] = useState(
-      "md:col-span-11 md:row-span-9 md:h-full bg-pink-100"
+    "relative row-span-full col-span-full bg-pink-500"
   );
 
   /**
      * Function: ChangeStyleModel
      * Changes the style to show or hide the information of the model.
      */
-  function ChangeStyleModel() {
-    setMountInformation(!mountInformation);
-    setModelBoxStyle(
-        mountInformation
-            ? "md:col-span-11 md:row-span-9 md:h-full bg-pink-100"
-            : "md:col-span-5 md:row-span-9 md:h-full bg-pink-100"
-    );
+  function ChangeStyleModel(key: string): void {
+    if (visible === key) {
+      setVisible("");
+      setModelBoxStyle("relative row-span-full col-span-full bg-pink-500");
+      setMountInformation(false);
+    } else {
+      setVisible(key);
+      setModelBoxStyle("relative row-span-full col-span-2 bg-pink-500");
+      setMountInformation(true);
+    }
   }
 
   // asigna currentModel con el modelo proporcinado el servidor en http://localhost:3000/api/rocks/get-rock/:id
@@ -58,77 +62,116 @@ function Scene3D(props: SceneProps): JSX.Element {
 
   }, []);
 
+  // function that return a button icon 
+  function ButtonIcon(props: {
+    icon: string,
+    onClick: () => void
+  }): JSX.Element {
+    return (
+      <Button
+        type="icon"
+        icon={props.icon}
+        onClick={props.onClick}
+      />
+    );
+  }
+
+  /**
+   * Component: BarIcons
+   * Return icons to visualize the information of the model
+   *
+   */
+  function BarIcons(props: BarIconsProps): JSX.Element {
+    const icons: { [key: string]: string } = {
+      "physical": "https://cdn-icons-png.flaticon.com/512/4405/4405457.png",
+      "optical": "https://cdn-icons-png.flaticon.com/512/3953/3953422.png",
+      "crystallographic": "https://cdn-icons.flaticon.com/png/512/3499/premium/3499347.png?token=exp=1643160441~hmac=f7e41f347bbc1b03b72458bf855901f3",
+      "chemical": "https://cdn-icons-png.flaticon.com/512/1156/1156950.png",
+      "introduction": "https://cdn-icons-png.flaticon.com/512/1030/1030902.png"
+    };
+
+    return (
+      // return a bar icons with tailwind css classes
+      <div className="flex flex-row flex-wrap justify-center items-center gap-8">
+        {Object.keys(icons).map((key) => (
+          <ButtonIcon
+            key={key}
+            icon={icons[key]}
+            onClick={() => ChangeStyleModel(key)}
+          />
+        ))}
+      </div>
+    );
+  }
+
   function ModelBox(): JSX.Element {
     return (
 
       <div className={modelBoxStyle}>
         {/* Mount the glb model (based on the KeysToComponentMap) to Model3D component */}
-        <Model3D
-          modelo={React.createElement(
-            KeysToComponentMap[currentModel.name],
-            null,
-            null
-          )}
+        <div className="absolute m-auto left-0 right-0 bottom-4 text-center">
+          <BarIcons
+            setVisible={setVisible}
+          />
+        </div>
+      </div>
+
+    );
+  }
+
+  function ModelInformationBox(): JSX.Element {
+
+    const transition = useTransition(mountInformation, {
+      // bounce effect
+      from:  { opacity: 0, transform: 'translate3d(0, -20px, -20px)' },
+      enter: { opacity: 1, transform: 'translate3d(0, 0px, 0px)' },
+      leave: { opacity: 0, transform: 'translate3d(0, -20px,-20px)' },
+      delay: 300,
+      config: { mass: 1, tension: 500, friction: 30 },
+    });
+
+    return (
+    <div className="bg-red-500">
+      { transition((style, item) =>
+    item ?
+      <animated.div style={style}>
+        <ModelInformation
+          properties={currentModel.properties}
+          isVisible={visible}
         />
-        {/* Agrega un boton svg encima de este div para poder cambiar a ventana completa*/}
-        <svg
-          className="absolute bottom-0 right-0 m-4 cursor-pointer"
-          onClick={ChangeStyleModel}
-          width="48"
-          height="48"
-          viewBox="0 0 48 48"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        > 
-          <path
-            d="M24 0C10.7 0 0 10.7 0 24C0 37.3 10.7 48 24 48C37.3 48 48 37.3 48 24C48 10.7 37.3 0 24 0ZM24 44C14.3 44 6 34.7 6 24C6 14.3 14.3 6 24 6C34.7 6 44 14.3 44 24C44 34.7 34.7 44 24 44Z"
-            fill="#F2F2F2"
-          />
-          <path
-            d="M24 32C19.3 32 16 28.7 16 24C16 19.3 19.3 16 24 16C28.7 16 32 19.3 32 24C32 28.7 28.7 32 24 32Z"
-            fill="#F2F2F2"
-          />
-          <path
-            d="M24 20C22.7 20 21.5 19.3 21.5 18C21.5 16.7 22.7 16 24 16C25.3 16 26.5 16.7 26.5 18C26.5 19.3 25.3 20 24 20Z"
-            fill="#F2F2F2"
-          />
-        </svg>
+      </animated.div>
+      : null
+  ) }
+    </div>
+
+    );
+  }
+
+function GridScene(): JSX.Element {
+  return (
+    <div className="container mx-auto h-screen w-screen">
+      <div className="grid grid-cols-4 grid-rows-4 grid-flow-col gap-2 bg-green-500 h-full w-full">
+        <ModelBox />
+        {visible != "" &&
+          <ModelInformationBox />
+        }
       </div>
+    </div>
 
-    );
-  }
+  );
+}
 
-  // Funcion: genera un css grid utilizando tailwindcss
-  // la caja del modelo tiene una altura de 100% y una anchura de 50%
-  // la caja de informacion del modelo tiene una altura de 100% y una anchura de 50%
-  // la caja de informacion del modelo se muestra o no dependiendo de la variable mountInformation
-  function GridScene(): JSX.Element {
-    return (
-      <div className="grid grid-cols-11 grid-rows-11 h-screen w-screen">
-         <ModelBox />
-        {mountInformation && (
-          <div className="md:col-span-6 h-full w-full bg-blue-600">
-            <ModelInformation
-              properties={currentModel.properties}
-            />
-          </div>
-        )}
-      </div>
-
-    );
-  }
-
-  if (error) {
-    return <div>Error loading the model</div>;
-  } else if (!isLoaded) {
-    return <div>Loading...</div>;
-  } else {
-    return (
-      <>
-        <GridScene />
-      </>
-    );
-  }
+if (error) {
+  return <div>Error loading the model</div>;
+} else if (!isLoaded) {
+  return <div>Loading...</div>;
+} else {
+  return (
+    <>
+      <GridScene />
+    </>
+  );
+}
 
 }
 

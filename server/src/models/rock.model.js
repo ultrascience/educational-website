@@ -108,14 +108,8 @@ const physicalProperties = new mongoose.Schema({
   },
 });
 
-const opticalProperties = new mongoose.Schema({
-  optical_properties: {
-    type: String,
-    required: true,
-  },
-});
-
 const modelProperties = new mongoose.Schema({
+  introduction: modelIntroduction,
   chemical: chemicalProperties,
   crystallographic: crystallographicProperties,
   physical: physicalProperties,
@@ -138,10 +132,8 @@ const rocksSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  introduction: modelIntroduction,
   properties: modelProperties,
   references: String,
-
 
 }
   // {
@@ -151,5 +143,3 @@ const rocksSchema = new mongoose.Schema({
 
 const Rocks = mongoose.model("Rocks", rocksSchema);
 export default Rocks;
-
-// Genera interface typescript para rocksSchema
