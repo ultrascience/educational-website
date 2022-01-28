@@ -1,0 +1,91 @@
+/**
+ * Style for the button component
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* grow hover effect grid */
+.grow:hover {
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.1);
+
+}
+
+.btn-icon {
+  @apply border-0 text-white flex-initial transition duration-500 ease-in-out transform hover:scale-150
+}
+
+.btn-submit {
+  @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded
+}
+
+.btn{
+  @apply border-0 text-white flex-initial transition duration-500 ease-in-out transform hover:scale-150
+}
+
+.form-input {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none
+}
+
+.form-label {
+   @apply block text-gray-700 text-sm font-bold mb-2
+}
+
+.grid-scene {
+  @apply grid grid-cols-4 grid-rows-4 grid-flow-col gap-2 bg-green-500 h-full w-full
+}
+
+/* Estilo que ocupa toda la pantalla */
+.scene-container {
+  @apply  h-screen w-screen flex
+}
+
+
+.half-screen-left {
+  width: 70%;
+  height: 100%;
+  margin: 0;
+  position: relative;
+  background-color: #1a1a1a;
+  left: 0;
+  animation: fadeInLeft 1s;
+}
+
+/* Clase que se coloca a la derecha de half-screen-left */
+.half-screen-right {
+  width: 30%;
+  height: 100%;
+  margin: 0;
+  background-color: #b1c;
+  right: 0;
+  animation: fadeInRight 1s;
+}
+
+@keyframes fadeInRight {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 30%;
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    width: 100%;
+  }
+
+  100% {
+    width: 70%;
+  }
+}
+
+.full-screen {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  position: relative;
+  background-color: #0fa
+}
+
