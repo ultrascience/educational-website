@@ -17,7 +17,10 @@ type ModelType = {
     clasification: string;
     properties: {
         chemical: {
-            chemical_formula: string;
+            chemical_formula: {
+                data: Buffer;
+                contentType: string;
+            };
             molecular_weight: string;
             elemental_chemistry: string;
             chemistry_oxides: string;

@@ -8,18 +8,11 @@ const rockRouter = express.Router();
 var multer = require('multer');
 
 const storageEngine = multer.diskStorage({
-  destination: './public/uploads/',
-  filename: function(req, file, callback) {
-    callback(
-      null,
-      file.fieldname + '-' + Date.now() + path.extname(file.originalname)
-    );
-  },
-});
+destination: (req, file, cb) => { cb(null, './public/uploads') },
+filename: (req, file, cb) => { cb(null, file.originalname) }, })
 
-// file filter for multer
 const fileFilter = (req, file, callback) => {
-  let pattern = /jpg|png|svg/; // reqex
+  let pattern = /jpg|png|svg| glb/;
 
   if (pattern.test(path.extname(file.originalname))) {
     callback(null, true);
@@ -105,7 +98,16 @@ rockRouter.get("/get-rock/:id", (req, res, next) => {
  * @param {Object} res
  * @param {Object} next
  */
-rockRouter.post("/upload", upload.single('image'), (req, res, next) => {
+
+const type = upload.fields([{
+  name: 'image',
+  maxCount: 1
+}, {
+  name: 'chemical_formula',
+  maxCount: 1
+}]);
+
+rockRouter.post("/upload",type , (req, res, next) => {
   // if req.body is empty
   console.log(req);
   if (Object.keys(req.body).length === 0) {
@@ -118,14 +120,17 @@ rockRouter.post("/upload", upload.single('image'), (req, res, next) => {
     let newRock = {
       name: req.body.name,
       image: {
-        data: fs.readFileSync(req.file.path),
+        data: fs.readFileSync(req.files['image'][0].path),
         contentType: 'image/png'
       },
       clasification: req.body.clasification,
       properties: {
         chemical:
         {
-          chemical_formula: req.body.chemical_formula,
+          chemical_formula: {
+            data: fs.readFileSync(req.files['chemical_formula'][0].path),
+            contentType: 'model/gltf-binary'
+          },
           molecular_weight: req.body.molecular_weight,
           elemental_chemistry: req.body.elemental_chemistry,
           chemistry_oxides: req.body.chemistry_oxides,

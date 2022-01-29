@@ -27,8 +27,8 @@ const modelIntroduction = new mongoose.Schema({
 
 const chemicalProperties = new mongoose.Schema({
   chemical_formula: {
-    type: String,
-    required: true,
+    data: Buffer,
+    contentType: String,
   },
   molecular_weight: {
     type: String,

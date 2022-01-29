@@ -15,7 +15,7 @@ function Forms(): JSX.Element {
     const [applications, setApplications] = useState("");
     const [main_locations, setMainLocations] = useState("");
     const [diffractogram, setDiffractogram] = useState("");
-    const [chemical_formula, setChemicalFormula] = useState("");
+    const [chemical_formula, setChemicalFormula] = useState<File | undefined>();
     const [molecular_weight, setMolecularWeight] = useState("");
     const [elemental_chemistry, setElementalChemistry] = useState("");
     const [chemistry_oxides, setChemistryOxides] = useState("");
@@ -46,6 +46,16 @@ function Forms(): JSX.Element {
         }
     };
 
+    const onFileChangeChemicalFormula = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files) {
+            setChemicalFormula(e.target.files[0]);
+            console.log(e.target.files[0]);
+            console.log("chemical formula changed");
+        } else {
+            console.log("chemical formula not changed");
+        }
+    };
+
     // Function handleChange that takes the name of the input and the value of the input and sets the value of the input to the state of the component
     // The state of the component is the value of the input
     function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -70,9 +80,6 @@ function Forms(): JSX.Element {
                 break;
             case "diffractogram":
                 setDiffractogram(e.target.value);
-                break;
-            case "chemical_formula":
-                setChemicalFormula(e.target.value);
                 break;
             case "molecular_weight":
                 setMolecularWeight(e.target.value);
@@ -144,6 +151,13 @@ function Forms(): JSX.Element {
             alert("Please select an image");
             return;
         }
+
+        // check is chemical formula no is undefined
+        if (chemical_formula === undefined) {
+           alert("Please select a chemical formula");
+           return;
+           }
+
         const formData = new FormData();
         formData.append("image", image);
         formData.append("name", name);
@@ -183,8 +197,9 @@ function Forms(): JSX.Element {
             console.log(res.data);
         });
         console.log("form submitted");
-        console.log(name);
         console.log(image);
+        console.log(chemical_formula);
+
     }
 
 
@@ -201,7 +216,6 @@ function Forms(): JSX.Element {
             "applications": "Aplicaciones",
             "main_locations": "Lugares principales",
             "diffractogram": "Difractograma",
-            "chemical_formula": "Fórmula química",
             "molecular_weight": "Peso molecular",
             "elemental_chemistry": "Química elemental",
             "chemistry_oxides": "Oxígeno",
@@ -252,6 +266,7 @@ function Forms(): JSX.Element {
                     className="p-4 w-full rounded-lg border-2 border-gray-300 focus-within:border-transparent md:w-1/2">
                     <form
                         onSubmit={handleSubmit}
+                        encType="multipart/form-data"
                     >
 
                         {generateInputs()}
@@ -265,6 +280,18 @@ function Forms(): JSX.Element {
                                 id="image"
                                 name="image"
                                 onChange={onFileChange}
+                            />
+                        </div>
+                        <div className="mb-2">
+                            <label
+                                className="form-label"
+                                htmlFor="Formula">Formula</label>
+                            <input
+                                type="file"
+                                className="py-2 px-3 w-full leading-tight text-gray-700 rounded border focus:outline-none shadow appearance-none cursor-pointer"
+                                id="chemical_formula"
+                                name="chemical_formula" 
+                                onChange={onFileChangeChemicalFormula}
                             />
                         </div>
                     </form>
