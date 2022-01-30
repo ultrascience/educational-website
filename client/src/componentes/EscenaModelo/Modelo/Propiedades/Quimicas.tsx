@@ -1,14 +1,14 @@
 import {ChemicalProps} from "../../../Tipos";
 import React from "react";
 
+import { CardInfo, CardTitle } from "./Card";
+
 function Quimicas(props: ChemicalProps): JSX.Element {
     return (<>
-        <div>Formula quimica: {props.information.chemical_formula}</div>
-        <div>Peso molecular: {props.information.molecular_weight}</div>
-        <div>Elementos: {props.information.elemental_chemistry}</div>
-        <div>Oxidos: {props.information.chemistry_oxides}</div>
-        <a href="https://www.flaticon.com/free-icons/rock" title="rock icons">Rock icons created by Icongeek26 -
-            Flaticon</a>
+    <CardTitle title="Químicas"/>
+        <CardInfo title="Peso molecular" description={props.information.molecular_weight} />
+        <CardInfo title="Elementos" description={props.information.elemental_chemistry} />
+        <CardInfo title="Oxidos" description={props.information.chemistry_oxides} />
     </>);
 }
 

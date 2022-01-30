@@ -1,7 +1,3 @@
-/**
- * Component that renders a button.
- * With three different estilos: primary, secondary and danger.
- */
 import React from "react";
 import {ButtonProps} from "./Tipos";
 import "../estilos/index.css";

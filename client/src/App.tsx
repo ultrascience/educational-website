@@ -8,8 +8,8 @@ import {ModelTypeGallery} from "./componentes/Tipos";
 import React from "react";
 
 /**
- * Component: App
- * Charge the json api containing the images and names
+ * Componente: App
+ * Carga el json que contiene las imagenes y los nombres
  */
 function App(): JSX.Element {
     const [error, setError] = useState(null);
@@ -17,7 +17,6 @@ function App(): JSX.Element {
     const [models, setModels] = useState<ModelTypeGallery[]>([]);
     const [idModelSelected, setIdModelSelected] = useState<string>("");
 
-    /** Charge the json api containing the images and names */
     useEffect(() => {
         axios
             .get("http://localhost:8080/api/rocks/get-images")
