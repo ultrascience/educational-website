@@ -34,11 +34,11 @@ function Fisicas(props: PhysicalProps): JSX.Element {
         <Card title="Ray" description={props.information.stripe}/>
         <Card title="Fractura" description={props.information.fracture}/>
         <Card title="Cristal" description={props.information.crystal_habit}/>
-        <Card title="Diaphanous" description={props.information.diaphanous}/>
-        <Card title="Exfoliation" description={props.information.exfoliation}/>
+        <Card title="Diafanidad" description={props.information.diaphanous}/>
+        <Card title="Exfoliacion" description={props.information.exfoliation}/>
         <Card title="Densidad" description={props.information.density}/>
-        <Card title="Luminescence"description={props.information.luminescence}/>
-        <Card title="Radioactivity" description={props.information.radioactivity}/>
+        <Card title="Luminiscencia"description={props.information.luminescence}/>
+        <Card title="Radioactividad" description={props.information.radioactivity}/>
         </div>
     </>);
 }
