@@ -8,17 +8,16 @@ const rockRouter = express.Router();
 var multer = require('multer');
 
 const storageEngine = multer.diskStorage({
-destination: (req, file, cb) => { cb(null, './public/uploads') },
-filename: (req, file, cb) => { cb(null, file.originalname) }, })
+  destination: (req, file, cb) => { cb(null, './public/uploads') },
+  filename: (req, file, cb) => { cb(null, file.originalname) },
+})
 
 const fileFilter = (req, file, callback) => {
-  let pattern = /jpg|png|svg| glb/;
-
-  if (pattern.test(path.extname(file.originalname))) {
-    callback(null, true);
-  } else {
-    callback('Error: not a valid file');
+  var ext = path.extname(file.originalname);
+  if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.glb') {
+    return callback(new Error('Only images are allowed'))
   }
+  callback(null, true)
 };
 
 const upload = multer({
@@ -107,7 +106,7 @@ const type = upload.fields([{
   maxCount: 1
 }]);
 
-rockRouter.post("/upload",type , (req, res, next) => {
+rockRouter.post("/upload", type, (req, res, next) => {
   // if req.body is empty
   console.log(req);
   if (Object.keys(req.body).length === 0) {
@@ -141,7 +140,7 @@ rockRouter.post("/upload",type , (req, res, next) => {
           crystalline_system: req.body.crystalline_system,
           x_ray_diffraction: req.body.x_ray_diffraction,
         },
-        physical: 
+        physical:
         {
           gloss: req.body.gloss,
           color: req.body.color,
@@ -154,36 +153,36 @@ rockRouter.post("/upload",type , (req, res, next) => {
           density: req.body.density,
           luminescence: req.body.luminescence,
           radioactivity: req.body.radioactivity,
-      },
-      optical: req.body.optical,
-      introduction: {
-        etymology: req.body.etymology,
-        atmosphere: req.body.atmosphere,
-        applications: req.body.applications,
-        main_locations: req.body.main_locations,
-        diffractogram: req.body.diffractogram,
-      },
+        },
+        optical: req.body.optical,
+        introduction: {
+          etymology: req.body.etymology,
+          atmosphere: req.body.atmosphere,
+          applications: req.body.applications,
+          main_locations: req.body.main_locations,
+          diffractogram: req.body.diffractogram,
+        },
       },
       references: req.body.references,
-      };
+    };
 
-      Rock.create(newRock, function(err, result) {
-        if (err) {
-          console.log(err);
-          return res.status(400).send({
-            'success': false,
-            'error': err.message
-          });
-        }else {
-          console.log("yeah it worked");
-          return res.status(200).send({
-            'success': true,
-            'data': result
-          });
-        }
-      });
-    }
-  });
+    Rock.create(newRock, function(err, result) {
+      if (err) {
+        console.log(err);
+        return res.status(400).send({
+          'success': false,
+          'error': err.message
+        });
+      } else {
+        console.log("yeah it worked");
+        return res.status(200).send({
+          'success': true,
+          'data': result
+        });
+      }
+    });
+  }
+});
 
 
 /* Edit Single 3D Model

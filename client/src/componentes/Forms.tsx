@@ -36,6 +36,7 @@ function Forms(): JSX.Element {
     const [optical, setOptical] = useState("");
     const [references, setReferences] = useState("");
 
+
     const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             setImage(e.target.files[0]);
