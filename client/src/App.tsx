@@ -1,11 +1,10 @@
 import axios from "axios";
-import {useEffect, useState} from "react";
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Escena from "./componentes/EscenaModelo/Escena";
 import Forms from "./componentes/Forms";
 import Galeria from "./componentes/Galeria";
-import Escena from "./componentes/EscenaModelo/Escena";
-import {ModelTypeGallery} from "./componentes/Tipos";
-import React from "react";
+import { ModelTypeGallery } from "./componentes/Tipos";
 
 /**
  * Componente: App

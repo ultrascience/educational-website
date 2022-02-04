@@ -50,7 +50,7 @@ function Escena(props: SceneProps): JSX.Element {
         <div className="scene-summary">
           <div className="scene-flex-model">
             <div className="scene-model">
-              <Model3D idModelSelected={props.idModelSelected} />
+              <Model3D idModelSelected={props.idModelSelected}  endpoint="get-chemical-formula/" />
             </div>
             <div className="scene-info">
               <Introduccion information={currentModel.introduction} />
@@ -63,7 +63,7 @@ function Escena(props: SceneProps): JSX.Element {
               Properties
             </div>
             <div className="scene-info">
-              <Model3D idModelSelected={props.idModelSelected} />
+              <Model3D idModelSelected={props.idModelSelected} endpoint="get-model3D/" />
             </div>
           </div>
         </div>

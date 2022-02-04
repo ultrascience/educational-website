@@ -26,10 +26,6 @@ const modelIntroduction = new mongoose.Schema({
 });
 
 const chemicalProperties = new mongoose.Schema({
-  chemical_formula: {
-    data: Buffer,
-    contentType: String,
-  },
   molecular_weight: {
     type: String,
     required: true,
@@ -129,6 +125,10 @@ const rocksSchema = new mongoose.Schema({
     required: true
   },
   modelo3D: {
+    type: String,
+    required: true
+  },
+  chemical_formula: {
     type: String,
     required: true
   },

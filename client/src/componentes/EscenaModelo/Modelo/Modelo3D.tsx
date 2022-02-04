@@ -16,7 +16,7 @@ function Loader() {
 }
 
 const Model = (props:Modelo3DProps) => {
-  const url = "http://localhost:8080/api/rocks/get-model3D/" + props.idModelSelected;
+  const url = "http://localhost:8080/api/rocks/"+props.endpoint + props.idModelSelected;
   const gltf = useLoader(GLTFLoader, url);
   return (
     <>
@@ -35,7 +35,7 @@ function Modelo3D(props: Modelo3DProps) {
                 <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={5}/>
                 <Suspense fallback={<Loader />}>
                     <Center alignTop>
-                    <Model idModelSelected={props.idModelSelected}/>
+                    <Model idModelSelected={props.idModelSelected} endpoint={props.endpoint}/>
                     </Center>
                 </Suspense>
             </Canvas>

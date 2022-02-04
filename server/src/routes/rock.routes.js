@@ -100,6 +100,19 @@ rockRouter.get('/get-model3D/:id', (req, res, next) => {
   });
 });
 
+rockRouter.get('/get-chemical-formula/:id', (req, res, next) => {
+  Rock.findById(req.params.id, function(err, result) {
+    if (err) {
+      res.status(400).send({
+        'success': false,
+        'error': err.message
+      });
+    }
+    res.set('Access-Control-Allow-Origin', '*');
+    res.status(200).sendFile(path.join(__dirname, '../uploads/chemical_formula/' + result.chemical_formula));
+  });
+});
+
 
 /* 
  * Send the image file to the client from the server
@@ -171,12 +184,12 @@ function createRock(req, res, next) {
     name: req.body.name,
     image: req.image,
     modelo3D: req.modelo3D,
+    chemical_formula: req.chemical_formula,
     introduction: req.body.introduction,
     clasification: req.body.clasification,
     properties: {
       chemical:
       {
-        chemical_formula: req.body.chemical_formula,
         molecular_weight: req.body.molecular_weight,
         elemental_chemistry: req.body.elemental_chemistry,
         chemistry_oxides: req.body.chemistry_oxides,
