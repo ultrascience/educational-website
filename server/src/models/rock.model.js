@@ -125,8 +125,12 @@ const rocksSchema = new mongoose.Schema({
     required: true
   },
   image: {
-    data: Buffer,
-    contentType: String
+    type: String,
+    required: true
+  },
+  modelo3D: {
+    type: String,
+    required: true
   },
   clasification: {
     type: String,

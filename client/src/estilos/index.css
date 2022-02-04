@@ -5,13 +5,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* grow hover effect grid */
-.grow:hover {
-  transition: transform 0.3s ease-in-out;
-  transform: scale(1.1);
-
-}
-
 .btn-icon {
   @apply border-0 text-white flex-initial transition duration-500 ease-in-out transform hover:scale-150
 }
@@ -32,60 +25,33 @@
    @apply block text-gray-700 text-sm font-bold mb-2
 }
 
-.grid-scene {
-  @apply grid grid-cols-4 grid-rows-4 grid-flow-col gap-2 bg-green-500 h-full w-full
-}
-
-/* Estilo que ocupa toda la pantalla */
 .scene-container {
-  @apply  h-screen w-screen flex
+  @apply flex flex-col gap-4
+}
+
+.scene-header {
+  @apply bg-blue-500 
+}
+
+.scene-summary {
+  @apply flex-1 bg-blue-500 
+}
+.scene-properties {
+  @apply bg-blue-500 
+}
+.scene-footer {
+  @apply bg-blue-500 
+}
+
+.scene-model {
+  @apply row-start-1 row-span-2 bg-green-500 m-4
+}
+
+.scene-info {
+  @apply row-start-1 row-span-2 bg-red-500 m-4
 }
 
 
-.half-screen-left {
-  width: 70%;
-  height: 100%;
-  margin: 0;
-  position: relative;
-  background-color: #1a1a1a;
-  left: 0;
-  animation: fadeInLeft 1s;
+.scene-flex-model {
+  @apply grid grid-cols-2 grid-rows-2
 }
-
-/* Clase que se coloca a la derecha de half-screen-left */
-.half-screen-right {
-  width: 30%;
-  height: 100%;
-  margin: 0;
-  background-color: #b1c;
-  right: 0;
-  animation: fadeInRight 1s;
-}
-
-@keyframes fadeInRight {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 30%;
-  }
-}
-
-@keyframes fadeInLeft {
-  0% {
-    width: 100%;
-  }
-
-  100% {
-    width: 70%;
-  }
-}
-
-.full-screen {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  position: relative;
-  background-color: #0fa
-}
-

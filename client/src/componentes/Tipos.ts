@@ -10,7 +10,12 @@ type ModelTypeGallery = {
 type ModelType = {
     _id: string;
     name: string;
+    introduction: string;
     image: {
+        data: Buffer;
+        contentType: string;
+    };
+    modelo3D: {
         data: Buffer;
         contentType: string;
     };
@@ -45,13 +50,6 @@ type ModelType = {
             radioactivity: string;
         },
         optical: string,
-        introduction: {
-            etymology: string;
-            atmosphere: string;
-            applications: string;
-            main_locations: string;
-            diffractogram: string;
-        };
     };
     references: string;
 }
@@ -61,6 +59,10 @@ type ArrayGalleryProps = {
     gallery: ModelTypeGallery[];
     idModelSelected: string;
     setIdModelSelected: (id: string) => void;
+};
+
+type Modelo3DProps = {
+    idModelSelected: string;
 };
 
 type BarIconsProps = {
@@ -89,7 +91,7 @@ type OpticalProps = {
 };
 
 type IntroductionProps = {
-    information: ModelType['properties']['introduction'];
+    information: ModelType['introduction'];
 };
 
 
@@ -116,6 +118,7 @@ export type {
     PhysicalProps,
     ChemicalProps,
     CrystallographicProps,
+    Modelo3DProps,
     IntroductionProps,
     OpticalProps,
     BarIconsProps,

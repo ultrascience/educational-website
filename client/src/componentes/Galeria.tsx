@@ -13,10 +13,9 @@ import React from "react";
 function Galeria(props: ArrayGalleryProps): JSX.Element {
     return (<>
             <div className="flex flex-wrap justify-center">
-                {props.gallery.map(({_id, name, image}) => (<div className="p-2 w-1/4" key={_id}>
+                {props.gallery.map(({_id, name}) => (<div className="p-2 w-1/4" key={_id}>
                         <div className="overflow-hidden max-w-sm rounded shadow-lg">
-                            <img className="w-full" src={imageConverter64(image.data)} alt="model"/>
-
+                            <img className="w-full" src={"http://localhost:8080/api/rocks/get-image/" + _id} alt={name}/>
                             <div className="py-4 px-6">
                                 <p className="text-base text-gray-700">
                                     <Link to={`/3d-models/${_id}`} onClick={() => props.setIdModelSelected(_id)}>

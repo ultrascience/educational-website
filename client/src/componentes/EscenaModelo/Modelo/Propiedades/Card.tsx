@@ -8,11 +8,11 @@ import React from 'react';
 function CardInfo(props: { title: string, description: string }) {
   return (
     <>
-      <div className="grow col-auto row-auto p-1 m-2 bg-white rounded-md divide-y divide-solid shadow-2xl">
-        <div className="text-base font-bold text-center text-gray-700">
+      <div className="flex-1 p-1 bg-white ">
+        <div className="text-base font-bold text-left text-gray-700">
           {props.title}
         </div>
-        <div className="p-1 text-xs text-center text-gray-700">
+        <div className="p-1 text-xs text-left text-gray-700">
           <p className="subpixel-antialiased">{props.description}</p>
         </div>
       </div>

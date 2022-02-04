@@ -19,7 +19,7 @@ function App(): JSX.Element {
 
     useEffect(() => {
         axios
-            .get("http://localhost:8080/api/rocks/get-images")
+            .get("http://localhost:8080/api/rocks/get-names")
             .then((res) => {
                 setModels(res.data);
                 setIsLoaded(true);

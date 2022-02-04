@@ -5,9 +5,8 @@ import { CardInfo, CardTitle } from "./Card";
 
 function Fisicas(props: PhysicalProps): JSX.Element {
     return (<>
-    <CardTitle title="Propiedades físicas" />
 
-    <div className="grid grid-cols-2 gap-1 m-8 ">
+    <div className="flex flex-col divide-y divide-solid">
         <CardInfo title="Lustre" description={props.information.gloss}/>
         <CardInfo title="Color" description={props.information.color}/>
         <CardInfo title="Dureza" description={props.information.hardness}/>
