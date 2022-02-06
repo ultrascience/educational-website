@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "../../estilos/index.css";
-import { ModelType, SceneProps } from "../Tipos";
+import { Modelo3DProps, ModelType, SceneProps } from "../Tipos";
 import Introduccion from "./Modelo/Introduccion";
 import Model3D from "./Modelo/Modelo3D";
 
@@ -34,6 +34,53 @@ function Escena(props: SceneProps): JSX.Element {
 
   }, []);
 
+  function Header(): JSX.Element {
+    return (
+      <div className="row-span-1 bg-red-300">
+        <div className="text-lg font-semibold text-center capitalize">
+          {currentModel.name}
+        </div>
+      </div>
+    );
+  }
+
+  function Summaru(props: Modelo3DProps): JSX.Element {
+    return (
+      <div className="row-span-2 bg-pink-500">
+      <div className="grid grid-cols-2 grid-rows-2 gap-4 w-full h-full bg-green-300">
+        <div className="col-span-1 row-span-full bg-green-300">
+          <Model3D idModelSelected={props.idModelSelected} endpoint="get-model3D/" />
+        </div>
+        <div className="col-span-1 row-span-full bg-blue-300">
+          <Introduccion information={currentModel.introduction} />
+        </div>
+        </div>
+      </div>
+    );
+  }
+
+  function Properties(props: Modelo3DProps): JSX.Element {
+    return (
+      <div className="row-span-2">
+        <div className="grid grid-cols-2 grid-rows-2 gap-4 w-full h-full">
+          <div className="col-span-1 row-span-full bg-green-300">
+            <Model3D idModelSelected={props.idModelSelected} endpoint="get-chemical-formula/" />
+          </div>
+          <div className="col-span-1 row-span-full">
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  function Footer(): JSX.Element {
+    return (
+      <div className="text-center">
+        Referencias: {currentModel.references}
+      </div>
+    );
+  }
+
 
   if (error) {
     return <div>Error loading the model</div>;
@@ -41,35 +88,11 @@ function Escena(props: SceneProps): JSX.Element {
     return <div>Loading...</div>;
   } else {
     return (<>
-      <div className="scene-container">
-        <div className="scene-header">
-          <div className="text-lg font-semibold text-center capitalize">
-            {currentModel.name}
-          </div>
-        </div>
-        <div className="scene-summary">
-          <div className="scene-flex-model">
-            <div className="scene-model">
-              <Model3D idModelSelected={props.idModelSelected}  endpoint="get-chemical-formula/" />
-            </div>
-            <div className="scene-info">
-              <Introduccion information={currentModel.introduction} />
-            </div>
-          </div>
-        </div>
-        <div className="scene-properties">
-          <div className="scene-flex-model">
-            <div className="scene-model">
-              Properties
-            </div>
-            <div className="scene-info">
-              <Model3D idModelSelected={props.idModelSelected} endpoint="get-model3D/" />
-            </div>
-          </div>
-        </div>
-        <div className="scene-footer">
-        Referencias: {currentModel.references}
-        </div>
+      <div className="grid min-h-screen gap-2" >
+        <Header />
+        <Summaru idModelSelected={props.idModelSelected} endpoint="get-model3D/" />
+        <Properties idModelSelected={props.idModelSelected} endpoint="get-chemical-formula/" />
+        <Footer />
       </div>
 
     </>);
