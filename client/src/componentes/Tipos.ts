@@ -113,6 +113,7 @@ type GenerateInputsProps = {
   dictionary: {
     [llave: string]: string;
   };
+  title: string;
 };
 
 type ButtonProps = {

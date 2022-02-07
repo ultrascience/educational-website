@@ -202,11 +202,11 @@ function Forms(): JSX.Element {
 
 
   // Function that generate the input fields for the form
-  function GenerateInputs(props: GenerateInputsProps) {
+  function GenerateInputs(diccionario: any, title: string) {
     const inputs = [];
 
-    const diccionario = props.dictionary;
-    for (const llave in diccionario) {
+    let llave: string;
+    for (llave in diccionario) {
       if (llave == "introduction") {
         inputs.push(
           <div className="mb-2" key={llave}>
@@ -214,10 +214,12 @@ function Forms(): JSX.Element {
               className="form-label"
               htmlFor={llave}>{diccionario[llave]}</label>
             <textarea
-              className="form-input"
+              className="form-input" placeholder="Introducción"
               id={llave}
               name={llave}
+              rows={5}
               onChange={handleChange}
+
             />
           </div>
         );
@@ -240,17 +242,17 @@ function Forms(): JSX.Element {
     }
     return (
       <div>
+        <div className="p-2 my-4 font-bold text-center text-white bg-green-500">
+          {title}
+        </div>
         {inputs}
       </div>
     );
   }
 
-
-
-  function GenerateInputsFile(props: GenerateInputsFileProps) {
+  function GenerateInputsFile(diccionario: any) {
     const inputs = [];
     // iterate on keys props.dictionary
-    const diccionario = props.dictionary;
     for (const key in diccionario) {
       inputs.push(
         <div className="mb-2" key={key}>
@@ -269,64 +271,87 @@ function Forms(): JSX.Element {
     }
     return (
       <div>
+        <div className="p-2 my-4 font-bold text-center text-white bg-green-500">
         Archivos
+        </div>
         {inputs}
       </div>
     );
   }
 
+
   // Return the form using tailwind classes
   // The form is generated using the function generateInputs()
   // dicctionary to execute a onChnage event
-  const diccionario: { [llave: string]: (e: React.ChangeEvent<HTMLInputElement>) => void } = {
+
+  // Create a dictionary from inputNames and the corresponding state of the component
+  const inputsIntroduction: { [key: string]: string } = {
+    "name": "Nombre",
+    "clasification": "Clasificación",
+    "optical": "Información óptica",
+    "references": "Fuentes de Consulta"
+
+  }
+
+  const propiedadesFisicas: { [key: string]: string } = {
+    "gloss": "Lustre",
+    "color": "Color",
+    "hardness": "Dureza",
+    "stripe": "Raya",
+    "fracture": "Fractura",
+    "crystal_habit": "Hábito cristalino",
+    "diaphanous": "Diafanidad",
+    "exfoliation": "Exfoliación",
+    "density": "Densidad",
+    "luminescence": "Luminiscencia",
+    "radioactivity": "Radioactividad"
+  }
+
+  const propiedadesQuimicas: { [key: string]: string } = {
+    "molecular_weight": "Peso molecular",
+    "elemental_chemistry": "Composición Química elemental",
+    "chemistry_oxides": "Composición Química de los óxidos",
+  }
+
+  const propiedadesCristalograficas: { [key: string]: string } = {
+    "cell_dimension": "Dimensión de celda",
+    "crystalline_system": "Sistema cristalino",
+    "x_ray_diffraction": "Difracción de rayos X"
+  }
+
+  const archivos: { [llave: string]: (e: React.ChangeEvent<HTMLInputElement>) => void } = {
     "imagen": onFileChange,
     "formula": onFileChangeChemicalFormula,
     "modelo3D": onFileChangeModelo3D,
   }
 
-  // Create a dictionary from inputNames and the corresponding state of the component
-  const inputNamesDictionary: { [key: string]: string } = {
-    "name": "Nombre",
-    "clasification": "Clasificación",
-    "introduction": "Introducción",
-    "molecular_weight": "Peso molecular",
-    "elemental_chemistry": "Química elemental",
-    "chemistry_oxides": "Oxígeno",
-    "cell_dimension": "Dimensión de la celda",
-    "crystalline_system": "Sistema cristalino",
-    "x_ray_diffraction": "Difracción por X-ray",
-    "gloss": "Lustre",
-    "color": "Color",
-    "hardness": "Dureza",
-    "stripe": "Rayas",
-    "fracture": "Fractura",
-    "crystal_habit": "Hábito cristalino",
-    "diaphanous": "Diáfano",
-    "exfoliation": "Exfoliación",
-    "density": "Densidad",
-    "luminescence": "Luminiscencia",
-    "radioactivity": "Radioactividad",
-    "optical": "Óptico",
-    "references": "Referencias",
-
-  }
   return (
-    <div className="container px-4 mx-auto">
+    <div className="container p-2 m-auto">
       <div className="flex flex-wrap justify-center">
         <div
-          className="p-4 w-full rounded-lg border-2 border-gray-300 focus-within:border-transparent md:w-1/2">
+          className="p-4 w-full rounded-lg border-2 border-gray-300 md:w-1/2">
+          <div className="p-2 text-center">
+            <h2 className="text-2xl font-bold">
+              Formulario de Registro
+            </h2>
+          </div>
           <form
             onSubmit={handleSubmit}
             encType="multipart/form-data"
           >
-            <GenerateInputs dictionary={inputNamesDictionary} />
-            <GenerateInputsFile dictionary={diccionario} />
+            {GenerateInputs(inputsIntroduction, "Introducción")}
+            {GenerateInputs(propiedadesFisicas, "Propiedades Físicas")}
+            {GenerateInputs(propiedadesQuimicas, "Propiedades Quimicas")}
+            {GenerateInputs(propiedadesCristalograficas, "Propiedades Cristalograficas")}
+            {GenerateInputsFile(archivos)}
           </form>
-          <Button
-            type="submit"
-            onClick={handleSubmit}
-            text="Enviar"
-          />
+          <div className="flex justify-center">
+            <Button
+              type="submit"
+              onClick={handleSubmit}
+              text="Enviar"
+            />
+          </div>
         </div>
       </div>
     </div>
