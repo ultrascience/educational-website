@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import '../estilos/index.css';
-import Button from "./Button"
+import Button from "./Button";
+import { GenerateInputsFileProps, GenerateInputsProps } from "./Tipos";
 
 // Component that send the form data to the server and returns the response to the user in the form of a JSON object using JsonProps interface and tailwindcss and typescript
 // The form data is sent to the server using axios and the response is returned to the user in the form of a JSON object 
@@ -201,43 +202,17 @@ function Forms(): JSX.Element {
 
 
   // Function that generate the input fields for the form
-  function generateInputs() {
+  function GenerateInputs(props: GenerateInputsProps) {
     const inputs = [];
 
-    // Create a dictionary from inputNames and the corresponding state of the component
-    const inputNamesDictionary: { [key: string]: string } = {
-      "name": "Nombre",
-      "clasification": "Clasificación",
-      "introduction": "Introducción",
-      "molecular_weight": "Peso molecular",
-      "elemental_chemistry": "Química elemental",
-      "chemistry_oxides": "Oxígeno",
-      "cell_dimension": "Dimensión de la celda",
-      "crystalline_system": "Sistema cristalino",
-      "x_ray_diffraction": "Difracción por X-ray",
-      "gloss": "Gloss",
-      "color": "Color",
-      "hardness": "Dureza",
-      "stripe": "Rayas",
-      "fracture": "Fractura",
-      "crystal_habit": "Hábito cristalino",
-      "diaphanous": "Diáfano",
-      "exfoliation": "Exfoliación",
-      "density": "Densidad",
-      "luminescence": "Luminosidad",
-      "radioactivity": "Radioactivo",
-      "optical": "Óptico",
-      "references": "Referencias",
-
-    }
-    let llave: string;
-    for (llave in inputNamesDictionary) {
+    const diccionario = props.dictionary;
+    for (const llave in diccionario) {
       if (llave == "introduction") {
         inputs.push(
           <div className="mb-2" key={llave}>
             <label
               className="form-label"
-              htmlFor={llave}>{inputNamesDictionary[llave]}</label>
+              htmlFor={llave}>{diccionario[llave]}</label>
             <textarea
               className="form-input"
               id={llave}
@@ -251,7 +226,7 @@ function Forms(): JSX.Element {
           <div className="mb-2" key={llave}>
             <label
               className="form-label"
-              htmlFor={llave}>{inputNamesDictionary[llave]}</label>
+              htmlFor={llave}>{diccionario[llave]}</label>
             <input
               type="text"
               className="form-input"
@@ -260,14 +235,81 @@ function Forms(): JSX.Element {
               onChange={handleChange}
             />
           </div>
-            );
+        );
       }
     }
-    return inputs;
+    return (
+      <div>
+        {inputs}
+      </div>
+    );
+  }
+
+
+
+  function GenerateInputsFile(props: GenerateInputsFileProps) {
+    const inputs = [];
+    // iterate on keys props.dictionary
+    const diccionario = props.dictionary;
+    for (const key in diccionario) {
+      inputs.push(
+        <div className="mb-2" key={key}>
+          <label
+            className="form-label"
+            htmlFor={key}>{key.charAt(0).toUpperCase() + key.slice(1)}</label>
+          <input
+            type="file"
+            className="py-2 px-3 w-full leading-tight text-gray-700 rounded border focus:outline-none shadow appearance-none cursor-pointer"
+            id={key}
+            name={key}
+            onChange={diccionario[key]}
+          />
+        </div>
+      );
+    }
+    return (
+      <div>
+        Archivos
+        {inputs}
+      </div>
+    );
   }
 
   // Return the form using tailwind classes
   // The form is generated using the function generateInputs()
+  // dicctionary to execute a onChnage event
+  const diccionario: { [llave: string]: (e: React.ChangeEvent<HTMLInputElement>) => void } = {
+    "imagen": onFileChange,
+    "formula": onFileChangeChemicalFormula,
+    "modelo3D": onFileChangeModelo3D,
+  }
+
+  // Create a dictionary from inputNames and the corresponding state of the component
+  const inputNamesDictionary: { [key: string]: string } = {
+    "name": "Nombre",
+    "clasification": "Clasificación",
+    "introduction": "Introducción",
+    "molecular_weight": "Peso molecular",
+    "elemental_chemistry": "Química elemental",
+    "chemistry_oxides": "Oxígeno",
+    "cell_dimension": "Dimensión de la celda",
+    "crystalline_system": "Sistema cristalino",
+    "x_ray_diffraction": "Difracción por X-ray",
+    "gloss": "Lustre",
+    "color": "Color",
+    "hardness": "Dureza",
+    "stripe": "Rayas",
+    "fracture": "Fractura",
+    "crystal_habit": "Hábito cristalino",
+    "diaphanous": "Diáfano",
+    "exfoliation": "Exfoliación",
+    "density": "Densidad",
+    "luminescence": "Luminiscencia",
+    "radioactivity": "Radioactividad",
+    "optical": "Óptico",
+    "references": "Referencias",
+
+  }
   return (
     <div className="container px-4 mx-auto">
       <div className="flex flex-wrap justify-center">
@@ -277,44 +319,8 @@ function Forms(): JSX.Element {
             onSubmit={handleSubmit}
             encType="multipart/form-data"
           >
-
-            {generateInputs()}
-            <div className="mb-2">
-              <label
-                className="form-label"
-                htmlFor="image">Imagen</label>
-              <input
-                type="file"
-                className="py-2 px-3 w-full leading-tight text-gray-700 rounded border focus:outline-none shadow appearance-none cursor-pointer"
-                id="image"
-                name="image"
-                onChange={onFileChange}
-              />
-            </div>
-            <div className="mb-2">
-              <label
-                className="form-label"
-                htmlFor="Formula">Estructura Química</label>
-              <input
-                type="file"
-                className="py-2 px-3 w-full leading-tight text-gray-700 rounded border focus:outline-none shadow appearance-none cursor-pointer"
-                id="chemical_formula"
-                name="chemical_formula"
-                onChange={onFileChangeChemicalFormula}
-              />
-            </div>
-            <div className="mb-2">
-              <label
-                className="form-label"
-                htmlFor="Modelo3D">Modelo glb</label>
-              <input
-                type="file"
-                className="py-2 px-3 w-full leading-tight text-gray-700 rounded border focus:outline-none shadow appearance-none cursor-pointer"
-                id="Modelo3D"
-                name="modelo3D"
-                onChange={onFileChangeModelo3D}
-              />
-            </div>
+            <GenerateInputs dictionary={inputNamesDictionary} />
+            <GenerateInputsFile dictionary={diccionario} />
           </form>
           <Button
             type="submit"

@@ -101,6 +101,20 @@ type SceneProps = {
 
 };
 
+
+type GenerateInputsFileProps = {
+  dictionary: {
+    [llave: string]: (e: React.ChangeEvent<HTMLInputElement>) => void  | string;
+  }
+};
+
+
+type GenerateInputsProps = {
+  dictionary: {
+    [llave: string]: string;
+  };
+};
+
 type ButtonProps = {
   children?: React.ReactNode;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -111,6 +125,8 @@ type ButtonProps = {
 
 /* Export all type on the file */
 export type {
+  GenerateInputsFileProps,
+  GenerateInputsProps,
   ModelTypeGallery,
   ModelType,
   ArrayGalleryProps,

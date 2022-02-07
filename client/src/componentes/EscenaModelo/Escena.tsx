@@ -2,8 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "../../estilos/index.css";
 import { Modelo3DProps, ModelType, SceneProps } from "../Tipos";
-import Introduccion from "./Modelo/Introduccion";
 import Model3D from "./Modelo/Modelo3D";
+import Cristalograficas from "./Modelo/Propiedades/Cristalograficas";
+import Fisicas from "./Modelo/Propiedades/Fisicas";
+import Opticas from "./Modelo/Propiedades/Opticas";
+import Quimicas from "./Modelo/Propiedades/Quimicas";
 
 /**
  * Componente: Escena
@@ -46,14 +49,14 @@ function Escena(props: SceneProps): JSX.Element {
 
   function Summaru(props: Modelo3DProps): JSX.Element {
     return (
-      <div className="row-span-2 bg-pink-500">
-      <div className="grid grid-cols-2 grid-rows-2 gap-4 w-full h-full bg-green-300">
-        <div className="col-span-1 row-span-full bg-green-300">
-          <Model3D idModelSelected={props.idModelSelected} endpoint="get-model3D/" />
-        </div>
-        <div className="col-span-1 row-span-full bg-blue-300">
-          <Introduccion information={currentModel.introduction} />
-        </div>
+      <div className="row-span-2">
+        <div className="grid grid-cols-2 grid-rows-2 gap-4 w-full h-full">
+          <div className="col-span-1 row-span-full bg-green-300">
+            <Model3D idModelSelected={props.idModelSelected} endpoint="get-model3D/" />
+          </div>
+          <div className="col-span-1 row-span-full bg-blue-300">
+            Introducción
+          </div>
         </div>
       </div>
     );
@@ -63,10 +66,16 @@ function Escena(props: SceneProps): JSX.Element {
     return (
       <div className="row-span-2">
         <div className="grid grid-cols-2 grid-rows-2 gap-4 w-full h-full">
+          <div className="col-span-1 row-span-full bg-red-500">
+            <div className="flex flex-wrap flex-row gap-4 w-full h-full">
+              <Fisicas information={currentModel.properties.physical} />
+              <Quimicas information={currentModel.properties.chemical} />
+              <Cristalograficas information={currentModel.properties.crystallographic} />
+              <Opticas information={currentModel.properties.optical} />
+            </div>
+          </div>
           <div className="col-span-1 row-span-full bg-green-300">
             <Model3D idModelSelected={props.idModelSelected} endpoint="get-chemical-formula/" />
-          </div>
-          <div className="col-span-1 row-span-full">
           </div>
         </div>
       </div>
@@ -75,8 +84,10 @@ function Escena(props: SceneProps): JSX.Element {
 
   function Footer(): JSX.Element {
     return (
-      <div className="text-center">
-        Referencias: {currentModel.references}
+      <div className="row-span-1 bg-green-800" >
+        <div className="text-center">
+          Referencias: {currentModel.references}
+        </div>
       </div>
     );
   }

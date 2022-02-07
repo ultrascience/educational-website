@@ -9,10 +9,10 @@ function CardInfo(props: { title: string, description: string }) {
   return (
     <>
       <div className="flex-1 p-1 bg-white ">
-        <div className="text-base font-bold text-left text-gray-700">
+        <div className="text-xs font-bold text-left text-gray-700">
           {props.title}
         </div>
-        <div className="p-1 text-xs text-left text-gray-700">
+        <div className="p-1 text-sm text-left text-gray-700">
           <p className="subpixel-antialiased">{props.description}</p>
         </div>
       </div>
