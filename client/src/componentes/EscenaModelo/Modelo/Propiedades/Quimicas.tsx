@@ -1,15 +1,17 @@
 import {ChemicalProps} from "../../../Tipos";
 import React from "react";
 
-import { CardInfo, CardTitle } from "./Card";
+import Card from "./Card";
 
 function Quimicas(props: ChemicalProps): JSX.Element {
+  const information = props.information;
+  const propiedades: { [key: string]: string } = {
+      "Peso Molecular": information.molecular_weight,
+      "Elementos": information.elemental_chemistry,
+      "Oxidos": information.chemistry_oxides
+    };
     return (<>
-    <div className="flex flex-col divide-y divide-solid">
-        <CardInfo title="Peso molecular" description={props.information.molecular_weight} />
-        <CardInfo title="Elementos" description={props.information.elemental_chemistry} />
-        <CardInfo title="Oxidos" description={props.information.chemistry_oxides} />
-        </div>
+      <Card diccionario={propiedades}/>
     </>);
 }
 

@@ -5,28 +5,26 @@ import React from 'react';
  * @param {string} description - Description of the card
  * using tailwindcss
  * */
-function CardInfo(props: { title: string, description: string }) {
-  return (
-    <>
-      <div className="flex-1 p-1 bg-white ">
-        <div className="text-xs font-bold text-left text-gray-700">
-          {props.title}
+function Card(props: { diccionario: { [key: string]: string } }) {
+  const inputs = [];
+  for (const key in props.diccionario) {
+    inputs.push(
+      <div className="flex-1 p-2">
+        <div className="text-sm font-bold text-left text-gray-700">
+          {key}
         </div>
-        <div className="p-1 text-sm text-left text-gray-700">
-          <p className="subpixel-antialiased">{props.description}</p>
+        <div className="text-sm text-left text-gray-700">
+          {props.diccionario[key]}
         </div>
       </div>
-    </>
-  );
-}
-
-function CardTitle(props: { title: string }) {
+    );
+  }
   return (
-    <div className="mt-6 text-center">
-      <h1 className="text-2xl font-bold text-gray-700">{props.title}</h1>
+    <div className="flex flex-col p-4 w-full bg-white">
+      {inputs}
     </div>
   );
 }
 
 
-export { CardInfo, CardTitle };
+export default Card;

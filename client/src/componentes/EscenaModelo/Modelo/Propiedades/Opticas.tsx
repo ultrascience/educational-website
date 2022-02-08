@@ -1,10 +1,14 @@
 import {OpticalProps} from "../../../Tipos";
 import React from "react";
-import { CardInfo, CardTitle } from "./Card";
+import Card from "./Card";
 
 function Opticas(props: OpticalProps): JSX.Element {
+  const information = props.information;
+  const propiedades: { [key: string]: string } = {
+    "Optica": information
+  }
     return (<>
-        <CardInfo title="Informacion" description={props.information} />
+        <Card diccionario={propiedades}/>
     </>);
 }
 export default Opticas;

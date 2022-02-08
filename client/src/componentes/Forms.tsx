@@ -2,12 +2,14 @@ import axios from "axios";
 import React, { useState } from "react";
 import '../estilos/index.css';
 import Button from "./Button";
-import { GenerateInputsFileProps, GenerateInputsProps } from "./Tipos";
+import {
+  useParams
+} from "react-router-dom";
 
 // Component that send the form data to the server and returns the response to the user in the form of a JSON object using JsonProps interface and tailwindcss and typescript
 // The form data is sent to the server using axios and the response is returned to the user in the form of a JSON object 
 // to the route "http://localhost:8080/api/rocks/upload"
-function Forms(): JSX.Element {
+function Forms() {
   const [name, setName] = useState("");
   const [image, setImage] = useState<File | undefined>();
   const [modelo3D, setModelo3D] = useState<File | undefined>();
@@ -33,9 +35,10 @@ function Forms(): JSX.Element {
   const [radioactivity, setRadioactivity] = useState("");
   const [optical, setOptical] = useState("");
   const [references, setReferences] = useState("");
+  const {id} = useParams();
 
 
-  const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setImage(e.target.files[0]);
       console.log(e.target.files[0]);
@@ -45,7 +48,7 @@ function Forms(): JSX.Element {
     }
   };
 
-  const onFileChangeChemicalFormula = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeChemicalFormula = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setChemicalFormula(e.target.files[0]);
       console.log(e.target.files[0]);
@@ -55,7 +58,7 @@ function Forms(): JSX.Element {
     }
   };
 
-  const onFileChangeModelo3D = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeModelo3D = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setModelo3D(e.target.files[0]);
       console.log(e.target.files[0]);
@@ -186,17 +189,29 @@ function Forms(): JSX.Element {
     formData.append("optical", optical);
     formData.append("references", references);
 
-    axios.post("http://localhost:8080/api/rocks/upload", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    }).then(res => {
-      console.log(res);
-      console.log(res.data);
-    });
-    console.log("form submitted");
-    console.log(image);
-    console.log(chemical_formula);
+    if (id === undefined) {
+      axios.post("http://localhost:8080/api/rocks/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }).then(res => {
+        console.log(res);
+        console.log(res.data);
+      });
+      console.log("form submitted");
+    }
+
+    if (id !== undefined) {
+      axios.patch(`http://localhost:8080/api/rocks/edit/${id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }).then(res => {
+        console.log(res);
+        console.log(res.data);
+      });
+      console.log("Edit form submitted");
+    }
 
   }
 
@@ -272,7 +287,7 @@ function Forms(): JSX.Element {
     return (
       <div>
         <div className="p-2 my-4 font-bold text-center text-white bg-green-500">
-        Archivos
+          Archivos
         </div>
         {inputs}
       </div>
@@ -320,9 +335,9 @@ function Forms(): JSX.Element {
   }
 
   const archivos: { [llave: string]: (e: React.ChangeEvent<HTMLInputElement>) => void } = {
-    "imagen": onFileChange,
-    "formula": onFileChangeChemicalFormula,
-    "modelo3D": onFileChangeModelo3D,
+    "imagen": onChangeImage,
+    "formula": onChangeChemicalFormula,
+    "modelo3D": onChangeModelo3D,
   }
 
   return (

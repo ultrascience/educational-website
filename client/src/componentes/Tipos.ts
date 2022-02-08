@@ -4,7 +4,6 @@ import React from "react";
 type ModelTypeGallery = {
   _id: string;
   name: string
-  image: ModelType["image"];
 };
 
 type ModelType = {

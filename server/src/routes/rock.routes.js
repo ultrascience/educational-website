@@ -238,6 +238,53 @@ function assignCode(req, res, next) {
 rockRouter.post("/upload", assignCode, type, createRock, (req, res, next) => {
 });
 
+function updateRock(req, res, next) {
+  const id = req.params.id;
+  Rock.findById(id, function(err, result) {
+    if (err) {
+      res.status(400).send({
+        'success': false,
+        'error': err.message
+      });
+    }
+    result.name = req.body.name;
+    result.image = req.image;
+    result.modelo3D = req.modelo3D;
+    result.chemical_formula = req.chemical_formula;
+    result.introduction = req.body.introduction;
+    result.clasification = req.body.clasification;
+    result.properties.chemical.molecular_weight = req.body.molecular_weight;
+    result.properties.chemical.elemental_chemistry = req.body.elemental_chemistry;
+    result.properties.chemical.chemistry_oxides = req.body.chemistry_oxides;
+    result.properties.crystallographic.cell_dimension = req.body.cell_dimension;
+    result.properties.crystallographic.crystalline_system = req.body.crystalline_system;
+    result.properties.crystallographic.x_ray_diffraction = req.body.x_ray_diffraction;
+    result.properties.physical.gloss = req.body.gloss;
+    result.properties.physical.color = req.body.color;
+    result.properties.physical.hardness = req.body.hardness;
+    result.properties.physical.stripe = req.body.stripe;
+    result.properties.physical.fracture = req.body.fracture;
+    result.properties.physical.crystal_habit = req.body.crystal_habit;
+    result.properties.physical.diaphanous = req.body.diaphanous;
+    result.properties.physical.exfoliation = req.body.exfoliation;
+    result.properties.physical.density = req.body.density;
+    result.properties.physical.luminescence = req.body.luminescence
+    result.properties.physical.radioactivity = req.body.radioactivity;
+    result.properties.optical = req.body.optical;
+    result.references = req.body.references;
+    result.save(function(err, result) {
+      if (err) {
+        res.status(400).send({
+          'success': false,
+          'error': err.message
+        });
+      }
+      res.set('Access-Control-Allow-Origin', '*');
+      res.status(200).send(result);
+    });
+  });
+}
+
 
 /* Edit Single 3D Model
  * @returns {Object}
@@ -245,22 +292,10 @@ rockRouter.post("/upload", assignCode, type, createRock, (req, res, next) => {
  * @param {Object} res
  * @param {Object} next
  */
-rockRouter.patch("/edit/:id", (req, res, next) => {
-  let fieldsToUpdate = req.body;
-  Rock.findByIdAndUpdate(req.params.post_id, { $set: fieldsToUpdate }, { new: true }, function(err, result) {
-    if (err) {
-      res.status(400).send({
-        success: false,
-        error: err.message
-      });
-    }
-    res.status(200).send({
-      success: true,
-      data: result,
-      message: "Rock updated successfully"
-    });
-  });
+rockRouter.patch("/edit/:id",assignCode, type,updateRock, (req, res, next) => {
+
 });
+
 
 
 /* Delete Single 3D Model
@@ -270,7 +305,7 @@ rockRouter.patch("/edit/:id", (req, res, next) => {
  * @param {Object} next
  */
 rockRouter.delete("/delete/:id", (req, res, next) => {
-  Rock.findByIdAndDelete(req.params.post_id, function(err, result) {
+  Rock.findByIdAndDelete(req.params.id, function(err, result) {
     if (err) {
       res.status(400).send({
         success: false,

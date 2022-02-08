@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Escena from "./componentes/EscenaModelo/Escena";
 import Forms from "./componentes/Forms";
+import Delete from "./componentes/Delete";
 import Galeria from "./componentes/Galeria";
 import { ModelTypeGallery } from "./componentes/Tipos";
 
@@ -40,7 +41,9 @@ function App(): JSX.Element {
                     <Routes>
                         <Route path="/gallery" element={<Galeria gallery={models} idModelSelected={idModelSelected}
                                                                  setIdModelSelected={setIdModelSelected}/>}/>
-                        <Route path="/forms" element={<Forms/>}/>
+                        <Route path="/append-item" element={<Forms />} />
+                        <Route path="/edit-item/:id" element={<Forms/>} />
+                        <Route path="/delete-items" element={<Delete/>}/>
                         <Route path="/3d-models/:id" element={<Escena idModelSelected={idModelSelected}/>}/>
                     </Routes>
                 </Router>

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "../../estilos/index.css";
 import { Modelo3DProps, ModelType, SceneProps } from "../Tipos";
+import Introduccion from "./Modelo/Introduccion";
 import Model3D from "./Modelo/Modelo3D";
 import Cristalograficas from "./Modelo/Propiedades/Cristalograficas";
 import Fisicas from "./Modelo/Propiedades/Fisicas";
@@ -55,7 +56,7 @@ function Escena(props: SceneProps): JSX.Element {
             <Model3D idModelSelected={props.idModelSelected} endpoint="get-model3D/" />
           </div>
           <div className="col-span-1 row-span-full bg-blue-300">
-            Introducción
+            <Introduccion information={currentModel.introduction} />
           </div>
         </div>
       </div>
@@ -67,7 +68,7 @@ function Escena(props: SceneProps): JSX.Element {
       <div className="row-span-2">
         <div className="grid grid-cols-2 grid-rows-2 gap-4 w-full h-full">
           <div className="col-span-1 row-span-full bg-red-500">
-            <div className="flex flex-wrap flex-row gap-4 w-full h-full">
+            <div className="flex flex-row flex-wrap gap-2 m-4 w-full h-full">
               <Fisicas information={currentModel.properties.physical} />
               <Quimicas information={currentModel.properties.chemical} />
               <Cristalograficas information={currentModel.properties.crystallographic} />
@@ -99,7 +100,7 @@ function Escena(props: SceneProps): JSX.Element {
     return <div>Loading...</div>;
   } else {
     return (<>
-      <div className="grid min-h-screen gap-2" >
+      <div className="grid gap-2 min-h-screen" >
         <Header />
         <Summaru idModelSelected={props.idModelSelected} endpoint="get-model3D/" />
         <Properties idModelSelected={props.idModelSelected} endpoint="get-chemical-formula/" />
