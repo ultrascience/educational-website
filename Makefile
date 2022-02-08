@@ -7,3 +7,4 @@ run:
 
 stop:
 	docker-compose down
+	fuser -k 3000/tcp

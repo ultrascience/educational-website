@@ -1,58 +1,149 @@
 // rock.model.js
 import mongoose from 'mongoose';
+
+const modelIntroduction = new mongoose.Schema({
+  etymology: {
+    type: String,
+    required: true,
+  },
+  atmosphere: {
+    type: String,
+    required: true,
+  },
+  applications: {
+    type: String,
+    required: true,
+  },
+  main_locations: {
+    type: String,
+    required: true,
+  },
+  diffractogram: {
+    type: String,
+    required: true,
+  },
+
+});
+
+const chemicalProperties = new mongoose.Schema({
+  molecular_weight: {
+    type: String,
+    required: true,
+  },
+  elemental_chemistry: {
+    type: String,
+    required: true,
+  },
+  chemistry_oxides: {
+    type: String,
+    required: true,
+  },
+});
+
+
+const crystallographicProperties = new mongoose.Schema({
+  cell_dimension: {
+    type: String,
+    required: true,
+  },
+  crystalline_system: {
+    type: String,
+    required: true,
+  },
+  x_ray_diffraction: {
+    type: String,
+    required: true,
+  },
+});
+
+
+const physicalProperties = new mongoose.Schema({
+  gloss: {
+    type: String,
+    required: true,
+  },
+  color: {
+    type: String,
+    required: true,
+  },
+  hardness: {
+    type: String,
+    required: true,
+  },
+  stripe: {
+    type: String,
+    required: true,
+  },
+  fracture: {
+    type: String,
+    required: true,
+  },
+  crystal_habit: {
+    type: String,
+    required: true,
+  },
+  diaphanous: {
+    type: String,
+    required: true,
+  },
+  exfoliation: {
+    type: String,
+    required: true,
+  },
+  density: {
+    type: String,
+    required: true,
+  },
+  luminescence: {
+    type: String,
+    required: true,
+  },
+  radioactivity: {
+    type: String,
+    required: true,
+  },
+});
+
+const modelProperties = new mongoose.Schema({
+  introduction: modelIntroduction,
+  chemical: chemicalProperties,
+  crystallographic: crystallographicProperties,
+  physical: physicalProperties,
+  optical: {
+    type: String,
+    required: true,
+  }
+});
+
 const rocksSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
   },
   image: {
-    data: Buffer,
-    contentType: String
+    type: String,
+    required: true
+  },
+  modelo3D: {
+    type: String,
+    required: true
+  },
+  chemical_formula: {
+    type: String,
+    required: true
   },
   clasification: {
     type: String,
     required: true
   },
-  introduction: {
-    etymology: String,
-    atmosphere: String,
-    applications: String,
-    main_locations: String,
-    diffractogram: String
+  properties: modelProperties,
+  references: String,
 
-  },
-  properties: {
-    chemical: {
-
-      chemical_formula: String,
-      molecular_weight: String,
-      elemental_chemistry: String,
-      chemistry_oxides: String
-    },
-    crystallographic: {
-      cell_dimension: String,
-      crystalline_system: String,
-      x_ray_diffraction: String
-    },
-    physical: {
-      gloss: String,
-      color: String,
-      hardness: String,
-      stripe: String,
-      fracture: String,
-      crystal_habit: String,
-      diaphanous: String,
-      exfoliation: String,
-      density: String,
-      luminescence: String,
-      radioactivity: String,
-    },
-    optical: String,
-  },
-  references: String
-});
+}
+  // {
+  //   timestamps: true
+  // }
+);
 
 const Rocks = mongoose.model("Rocks", rocksSchema);
 export default Rocks;
-
-// Genera interface typescript para rocksSchema

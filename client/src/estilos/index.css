@@ -1,0 +1,57 @@
+/**
+ * Style for the button component
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn-icon {
+  @apply border-0 text-white flex-initial transition duration-500 ease-in-out transform hover:scale-150
+}
+
+.btn-submit {
+  @apply flex-auto bg-blue-500 hover:bg-blue-600 text-white font-bold p-2 m-2 rounded focus:outline-none
+}
+
+.btn{
+  @apply border-0 text-white flex-initial transition duration-500 ease-in-out transform hover:scale-150
+}
+
+.form-input {
+  @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none
+}
+
+.form-label {
+   @apply block text-gray-700 text-base mb-2
+}
+
+.scene-container {
+  @apply flex flex-col gap-4 min-h-screen
+}
+
+.scene-header {
+  @apply bg-blue-500 
+}
+
+.scene-summary {
+  @apply flex-1 bg-blue-500 
+}
+.scene-properties {
+  @apply bg-blue-500 
+}
+.scene-footer {
+  @apply bg-blue-500 
+}
+
+.scene-model {
+  @apply row-start-1 row-span-2 bg-green-500 m-4
+}
+
+.scene-info {
+  @apply row-start-1 row-span-2 bg-red-500 m-4
+}
+
+
+.scene-flex-model {
+  @apply grid grid-cols-2 grid-rows-2
+}

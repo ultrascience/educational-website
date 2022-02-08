@@ -1,5 +1,5 @@
-# App MERN
 # Repositorio para la realizacion del servicio social de Hernández Zacateco Aldo René.
+
 ## Tecnologías utilizadas para la realización del sitio.
 
 ## FrontEnd  
@@ -26,6 +26,7 @@
 ---
 
 ### Forma de ejecutar
-***make build*** 
-***make run***
 
+***make build*** 
+
+***make run***

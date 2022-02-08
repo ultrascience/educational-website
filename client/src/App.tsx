@@ -1,50 +1,56 @@
-import Gallery from "./components/Gallery";
-import Scene3D from "./components/Scene3D";
-import { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
-import Forms from "./components/Forms";
-import { GalleryProps } from "./components/Types";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Escena from "./componentes/EscenaModelo/Escena";
+import Forms from "./componentes/Forms";
+import Delete from "./componentes/Delete";
+import Galeria from "./componentes/Galeria";
+import { ModelTypeGallery } from "./componentes/Tipos";
+
 /**
- * Component: App
- * Charge the json api containing the images and names and the 3D scene
+ * Componente: App
+ * Carga el json que contiene las imagenes y los nombres
  */
-function App() {
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  // useState to store the images and names from the json api
-  const [models, setModels] = useState<GalleryProps[]>([]);
+function App(): JSX.Element {
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [models, setModels] = useState<ModelTypeGallery[]>([]);
+    const [idModelSelected, setIdModelSelected] = useState<string>("");
 
-  /** Carga el json en api/rocks/info con la libreria de axios */
-  useEffect(() => {
-    axios
-      .get("http://localhost:8080/api/rocks/info")
-      .then((res) => {
-        setModels(res.data);
-        setIsLoaded(true);
-      })
-      .catch((err) => {
-        setError(err);
-        setIsLoaded(true);
-      });
-  }, []);
+    useEffect(() => {
+        axios
+            .get("http://localhost:8080/api/rocks/get-names")
+            .then((res) => {
+                setModels(res.data);
+                setIsLoaded(true);
+            })
+            .catch((err) => {
+                setError(err);
+                setIsLoaded(true);
+            });
+    }, []);
 
-  if (error) {
-    return <div>Error loading the json</div>;
-  } else if (!isLoaded) {
-    return <div>Loading...</div>;
-  } else {
-    return (
-      <>
-        <Router>
-          <Routes>
-            <Route path="/gallery" element={<Gallery gallery={models} />} />
-            <Route path="/forms" element={<Forms />} />
-          </Routes>
-        </Router>
-      </>
-    );
-  }
+    if (error) {
+        return <div>Error loading the json</div>;
+    } else if (!isLoaded) {
+        return <div>Loading...</div>;
+    } else {
+        return (
+            <>
+                <Router>
+                    <Routes>
+                        <Route path="/gallery" element={<Galeria gallery={models} idModelSelected={idModelSelected}
+                                                                 setIdModelSelected={setIdModelSelected}/>}/>
+                        <Route path="/append-item" element={<Forms />} />
+                        <Route path="/edit-item/:id" element={<Forms/>} />
+                        <Route path="/delete-items" element={<Delete/>}/>
+                        <Route path="/3d-models/:id" element={<Escena idModelSelected={idModelSelected}/>}/>
+                    </Routes>
+                </Router>
+            </>
+        );
+    }
 }
+
 
 export default App;
