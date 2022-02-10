@@ -14,6 +14,7 @@ function SearchBar(props: Props) {
     switch (event.target.name) {
       case 'search':
         setValue(event.target.value);
+        GetSearch();
         break;
       default:
         break;

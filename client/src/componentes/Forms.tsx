@@ -36,7 +36,7 @@ function Forms() {
   const [radioactivity, setRadioactivity] = useState("");
   const [optical, setOptical] = useState("");
   const [references, setReferences] = useState("");
-  const {id} = useParams();
+  const { id } = useParams();
 
 
   const onChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -200,8 +200,12 @@ function Forms() {
           "Content-Type": "multipart/form-data",
         },
       }).then(res => {
-        console.log(res);
-        console.log(res.data);
+        if (res.status === 200) {
+          alert("Rock added successfully");
+        } else {
+          alert("Error adding rock");
+        }
+
       });
       console.log("form submitted");
     }

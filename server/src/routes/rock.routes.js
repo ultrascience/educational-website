@@ -243,10 +243,14 @@ function createRock(req, res, next) {
 
   Rock.create(newRock, function(err, result) {
     if (err) {
-      next(err);
+      res.status(400).send({
+        'success': false,
+        'error': err.message
+      });
     } else {
-      req.modelo = result;
-      next();
+      res.set('Access-Control-Allow-Origin', '*');
+      res.status(200).send(
+        result);
     }
   });
 }
@@ -257,8 +261,7 @@ function assignCode(req, res, next) {
   next();
 }
 
-rockRouter.post("/upload", assignCode, type, createRock, (req, res, next) => {
-});
+rockRouter.post("/upload", assignCode, type, createRock);
 
 function updateRock(req, res, next) {
   const id = req.params.id;
