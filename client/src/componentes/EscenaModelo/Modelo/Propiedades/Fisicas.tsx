@@ -19,7 +19,7 @@ function Fisicas(props: PhysicalProps): JSX.Element {
     "Radioactividad": information.radioactivity
   }
     return (<>
-      <Card diccionario={propiedades}/>
+      <Card diccionario={propiedades} titulo="Fisicas"/>
     </>);
 }
 export default Fisicas;

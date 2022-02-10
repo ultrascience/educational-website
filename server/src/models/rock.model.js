@@ -132,6 +132,10 @@ const rocksSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  formula: {
+    type: String,
+    required: true,
+  },
   clasification: {
     type: String,
     required: true

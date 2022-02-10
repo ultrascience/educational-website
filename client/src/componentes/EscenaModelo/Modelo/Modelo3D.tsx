@@ -18,7 +18,7 @@ const Model = (props:Modelo3DProps) => {
   const gltf = useGLTF(url);
   return (
     <>
-      <primitive object={gltf.scene} scale={0.4} />
+      <primitive object={gltf.scene} scale={1.0} />
     </>
   );
 };
@@ -30,7 +30,7 @@ function Modelo3D(props: Modelo3DProps) {
                 <OrbitControls zoomSpeed={2.0}/>
                 <ambientLight intensity={0.8}/>
                 <directionalLight intensity={0.1}/>
-                <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={20}/>
+                <OrthographicCamera makeDefault position={[0, 0, 10]} zoom={50}/>
                 <Suspense fallback={<Loader />}>
                     <Center alignTop>
                     <Model idModelSelected={props.idModelSelected} endpoint={props.endpoint}/>

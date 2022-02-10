@@ -1,4 +1,5 @@
 # Repositorio para la realizacion del servicio social de Hernández Zacateco Aldo René.
+# Autor: Hernandez Zacateco Aldo René 
 
 ## Tecnologías utilizadas para la realización del sitio.
 
@@ -16,6 +17,7 @@
 ## Despliegue 
 1. Docker 
 2. Docker Compose
+3. Azure 
 
 ---
 

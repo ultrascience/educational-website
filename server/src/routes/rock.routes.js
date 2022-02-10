@@ -11,14 +11,14 @@ var multer = require('multer');
 
 const storageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
-    const dir = 'uploads/'+file.fieldname;
+    const dir = 'uploads/' + file.fieldname;
     // Create folder if not exist
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
     }
     cb(null, dir);
 
-      
+
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
@@ -78,6 +78,27 @@ rockRouter.get('/get-names', (req, res, next) => {
       result);
   });
 });
+
+// Get names by regex
+rockRouter.get('/get-names-regex/:name', (req, res, next) => {
+  Rock.find({
+    name: {
+      $regex: req.params.name,
+      $options: 'i'
+    }
+  }, 'name', function(err, result) {
+    if (err) {
+      res.status(400).send({
+        'success': false,
+        'error': err.message
+      });
+    }
+    res.set('Access-Control-Allow-Origin', '*');
+    res.status(200).send(
+      result);
+  });
+});
+
 
 /**
  * Send the 3D model file to the client from the server
@@ -184,6 +205,7 @@ function createRock(req, res, next) {
     name: req.body.name,
     image: req.image,
     modelo3D: req.modelo3D,
+    formula: req.body.formula,
     chemical_formula: req.chemical_formula,
     introduction: req.body.introduction,
     clasification: req.body.clasification,
@@ -292,7 +314,7 @@ function updateRock(req, res, next) {
  * @param {Object} res
  * @param {Object} next
  */
-rockRouter.patch("/edit/:id",assignCode, type,updateRock, (req, res, next) => {
+rockRouter.patch("/edit/:id", assignCode, type, updateRock, (req, res, next) => {
 
 });
 

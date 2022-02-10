@@ -13,9 +13,10 @@ function Forms() {
   const [name, setName] = useState("");
   const [image, setImage] = useState<File | undefined>();
   const [modelo3D, setModelo3D] = useState<File | undefined>();
-  const [clasification, setClasification] = useState("");
-  const [introduction, setIntroduction] = useState("");
   const [chemical_formula, setChemicalFormula] = useState<File | undefined>();
+  const [clasification, setClasification] = useState("");
+  const [formula, setFormula] = useState("");
+  const [introduction, setIntroduction] = useState("");
   const [molecular_weight, setMolecularWeight] = useState("");
   const [elemental_chemistry, setElementalChemistry] = useState("");
   const [chemistry_oxides, setChemistryOxides] = useState("");
@@ -80,6 +81,9 @@ function Forms() {
         break;
       case "introduction":
         setIntroduction(e.target.value);
+        break;
+      case "formula":
+        setFormula(e.target.value);
         break;
       case "molecular_weight":
         setMolecularWeight(e.target.value);
@@ -166,6 +170,7 @@ function Forms() {
     formData.append("name", name);
     formData.append("image", image);
     formData.append("modelo3D", modelo3D);
+    formData.append("formula", formula);
     formData.append("clasification", clasification);
     formData.append("introduction", introduction);
     formData.append("chemical_formula", chemical_formula);
@@ -304,6 +309,7 @@ function Forms() {
     "name": "Nombre",
     "clasification": "Clasificación",
     "optical": "Información óptica",
+    "formula": "Formula Quimica",
     "references": "Fuentes de Consulta"
 
   }

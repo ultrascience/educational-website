@@ -5,6 +5,7 @@ import Escena from "./componentes/EscenaModelo/Escena";
 import Forms from "./componentes/Forms";
 import Delete from "./componentes/Delete";
 import Galeria from "./componentes/Galeria";
+import SearchBar from "./componentes/SearchBar";
 import { ModelTypeGallery } from "./componentes/Tipos";
 
 /**
@@ -31,7 +32,7 @@ function App(): JSX.Element {
     }, []);
 
     if (error) {
-        return <div>Error loading the json</div>;
+        return <div>No se pudo cargar la informacion</div>;
     } else if (!isLoaded) {
         return <div>Loading...</div>;
     } else {
@@ -39,12 +40,11 @@ function App(): JSX.Element {
             <>
                 <Router>
                     <Routes>
-                        <Route path="/gallery" element={<Galeria gallery={models} idModelSelected={idModelSelected}
-                                                                 setIdModelSelected={setIdModelSelected}/>}/>
+                        <Route path="/gallery" element={<Galeria gallery={models} />}/>
                         <Route path="/append-item" element={<Forms />} />
                         <Route path="/edit-item/:id" element={<Forms/>} />
                         <Route path="/delete-items" element={<Delete/>}/>
-                        <Route path="/3d-models/:id" element={<Escena idModelSelected={idModelSelected}/>}/>
+                        <Route path="/3d-models/:id" element={<Escena />}/>
                     </Routes>
                 </Router>
             </>

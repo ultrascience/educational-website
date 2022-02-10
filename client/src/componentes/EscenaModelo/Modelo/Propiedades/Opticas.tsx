@@ -8,7 +8,7 @@ function Opticas(props: OpticalProps): JSX.Element {
     "Optica": information
   }
     return (<>
-        <Card diccionario={propiedades}/>
+        <Card diccionario={propiedades} titulo="Opticas"/>
     </>);
 }
 export default Opticas;

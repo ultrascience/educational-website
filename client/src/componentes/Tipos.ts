@@ -56,8 +56,6 @@ type ModelType = {
 // Type props used on gallery to select current model
 type ArrayGalleryProps = {
   gallery: ModelTypeGallery[];
-  idModelSelected: string;
-  setIdModelSelected: (id: string) => void;
 };
 
 type Modelo3DProps = {
