@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/no-custom-classname */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "../../estilos/index.css";
@@ -56,14 +57,34 @@ function Escena(): JSX.Element {
     );
   }
 
-  function Summaru(props: Modelo3DProps): JSX.Element {
+  function Summary(props: Modelo3DProps): JSX.Element {
     return (
-      <div className="w-fit h-4/6 bg-red-500">
+      <div className="w-fit h-96 bg-green-500">
         <div className="grid grid-cols-2 grid-rows-2 gap-4 h-full">
           <div className="col-span-1 row-span-full bg-green-300">
             <Model3D idModelSelected={props.idModelSelected} endpoint="get-model3D/" />
           </div>
-          <div className="col-span-1 row-span-full bg-blue-300">
+          <div className="col-span-2 row-span-full bg-green-300">
+            <Model3D idModelSelected={props.idModelSelected} endpoint="get-chemical-formula/" />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  function Properties(props: Modelo3DProps): JSX.Element {
+    return (
+      <div className="w-fit h-fit bg-red-500">
+        <div className="grid grid-cols-3 grid-rows-2 gap-4 w-full h-full">
+          <div className="col-span-1 row-span-full bg-red-500">
+            <div className="flex flex-col flex-wrap gap-2 w-full h-full">
+              <Fisicas information={currentModel.properties.physical} />
+              <Quimicas information={currentModel.properties.chemical} />
+              <Cristalograficas information={currentModel.properties.crystallographic} />
+              <Opticas information={currentModel.properties.optical} />
+            </div>
+          </div>
+          <div className="col-span-2 row-span-full bg-blue-300">
             <Introduccion information={currentModel.introduction} />
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -82,31 +103,11 @@ function Escena(): JSX.Element {
     );
   }
 
-  function Properties(props: Modelo3DProps): JSX.Element {
-    return (
-      <div className="w-fit h-auto bg-red-500">
-        <div className="grid grid-cols-3 grid-rows-2 gap-4 w-full h-full">
-          <div className="col-span-1 row-span-full bg-red-500">
-            <div className="flex flex-col flex-wrap gap-2 w-full h-full">
-              <Fisicas information={currentModel.properties.physical} />
-              <Quimicas information={currentModel.properties.chemical} />
-              <Cristalograficas information={currentModel.properties.crystallographic} />
-              <Opticas information={currentModel.properties.optical} />
-            </div>
-          </div>
-          <div className="col-span-2 row-span-full bg-green-300">
-            <Model3D idModelSelected={props.idModelSelected} endpoint="get-chemical-formula/" />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
   function Footer(): JSX.Element {
     return (
       <div className="w-fit bg-blue-500">
         <div className="text-center">
-          Referencias: {currentModel.references}
+          Fuentes de Consulta: {currentModel.references}
         </div>
       </div>
     );
@@ -122,11 +123,13 @@ function Escena(): JSX.Element {
       return <div>Error loading the model</div>;
     } else {
       return (
-        <div className="container mx-auto space-y-4 space-x-4 w-fit h-fit bg-red-500">
-          <Header />
-          <Summaru idModelSelected={id} endpoint="get-model3D/" />
-          <Properties idModelSelected={id} endpoint="get-chemical-formula/" />
-          <Footer />
+        <div className="min-h-screen bg-red-500 min-w-screen">
+          <div className="space-y-2 space-x-2 scena">
+            <Header />
+            <Summary idModelSelected={id} endpoint="get-model3D/" />
+            <Properties idModelSelected={id} endpoint="get-chemical-formula/" />
+            <Footer />
+          </div>
         </div>
       );
     }
