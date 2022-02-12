@@ -43,12 +43,13 @@ function Escena(): JSX.Element {
   }, []);
 
   function Header(): JSX.Element {
-    const formula = "H_{2}O";
+    const formula = "CaB_{2}(SiO_{4})_{2}";
     return (
-      <div className="w-fit bg-red-300">
-        <div className="text-lg font-semibold text-center capitalize">
+      <div className="w-fit">
+        <div className="text-2xl font-semibold text-center capitalize">
           {currentModel.name}
-
+        </div>
+        <div className="text-xl font-medium text-center capitalize">
           <MathJaxContext>
             <MathJax>{"\\(" + formula + "\\)"}</MathJax>
           </MathJaxContext>
@@ -57,46 +58,44 @@ function Escena(): JSX.Element {
     );
   }
 
-  function Summary(props: Modelo3DProps): JSX.Element {
+  function Summary(props: { idModelSelected: string }): JSX.Element {
     return (
-      <div className="w-fit h-96 bg-green-500">
+      <div className="w-fit h-96">
         <div className="grid grid-cols-2 grid-rows-2 gap-4 h-full">
-          <div className="col-span-1 row-span-full bg-green-300">
-            <Model3D idModelSelected={props.idModelSelected} endpoint="get-model3D/" />
+          <div className="col-span-1 row-span-full">
+            <Model3D idModelSelected={props.idModelSelected} type="modelo3D" />
           </div>
-          <div className="col-span-2 row-span-full bg-green-300">
-            <Model3D idModelSelected={props.idModelSelected} endpoint="get-chemical-formula/" />
+          <div className="col-span-2 row-span-full">
+            <Model3D idModelSelected={props.idModelSelected} type="chemical_formula" />
           </div>
         </div>
       </div>
     );
   }
 
-  function Properties(props: Modelo3DProps): JSX.Element {
+  function Properties(props: { idModelSelected: string }): JSX.Element {
     return (
-      <div className="w-fit h-fit bg-red-500">
+      <div className="w-fit h-fit">
         <div className="grid grid-cols-3 grid-rows-2 gap-4 w-full h-full">
-          <div className="col-span-1 row-span-full bg-red-500">
-            <div className="flex flex-col flex-wrap gap-2 w-full h-full">
+          <div className="col-span-1 row-span-full">
+            <div className="flex flex-col flex-wrap gap-2 w-full h-full p-4">
               <Fisicas information={currentModel.properties.physical} />
               <Quimicas information={currentModel.properties.chemical} />
               <Cristalograficas information={currentModel.properties.crystallographic} />
               <Opticas information={currentModel.properties.optical} />
             </div>
           </div>
-          <div className="col-span-2 row-span-full bg-blue-300">
-            <Introduccion information={currentModel.introduction} />
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          <div className="col-span-2 row-span-full shadow-xl rounded-lg p-4">
+          <div className="text-xl font-bold capitalize">
+            Resumen:
+          </div>
+            <p>
+              Danburita es un mineral de silicato de calcio y boro, su fórmula química es CaB2(SiO4)2.
+              Tiene una dureza de Mohs de 7 a 7.5 y una gravedad específica de 3.0. El mineral tiene una forma de cristal ortorrómbica. Es generalmente incoloro, como el cuarzo, pero también puede ser de color amarillo pálido o marrón amarillento. Por lo general se produce en contacto con las rocas metamórficas.
+              La clasificación de minerales Dana, clasifica al danburita como un sorosilicato, mientras que el esquema de clasificación de Strunz lo clasifica como un tectosilicato su estructura puede ser interpretada como cualquiera.
+              Su simetría cristalina y la forma son similares al topacio; sin embargo, el topacio es de calcio y flúor teniendo nesosilicato. La claridad, la capacidad de resistencia, y la fuerte dispersión de la danburita hacen que sea valioso para la joyería.
+              El nombre proviene de la ciudad de Danbury, Connecticut, Estados Unidos, donde fue descubierto por primera vez en 1839 por Charles Upham Shephard.2
+            </p>
           </div>
         </div>
       </div>
@@ -123,11 +122,11 @@ function Escena(): JSX.Element {
       return <div>Error loading the model</div>;
     } else {
       return (
-        <div className="min-h-screen bg-red-500 min-w-screen">
-          <div className="space-y-2 space-x-2 scena">
+        <div className="min-h-screen min-w-screen bg-gray-100">
+          <div className="space-y-2 space-x-2 scena shadow-2xl">
             <Header />
-            <Summary idModelSelected={id} endpoint="get-model3D/" />
-            <Properties idModelSelected={id} endpoint="get-chemical-formula/" />
+            <Summary idModelSelected={id} />
+            <Properties idModelSelected={id} />
             <Footer />
           </div>
         </div>

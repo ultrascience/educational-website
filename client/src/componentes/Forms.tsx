@@ -5,6 +5,8 @@ import Button from "./Button";
 import {
   useParams
 } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Component that send the form data to the server and returns the response to the user in the form of a JSON object using JsonProps interface and tailwindcss and typescript
 // The form data is sent to the server using axios and the response is returned to the user in the form of a JSON object 
@@ -37,6 +39,7 @@ function Forms() {
   const [optical, setOptical] = useState("");
   const [references, setReferences] = useState("");
   const { id } = useParams();
+  const notify = () => toast("Wow so easy!");
 
 
   const onChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -152,13 +155,14 @@ function Forms() {
     e.preventDefault();
     // check is image no is undefined
     if (image === undefined) {
-      alert("Please select an image");
+      alert("Please upload an image");
       return;
     }
 
     // check is chemical formula no is undefined
     if (chemical_formula === undefined) {
       alert("Please select a chemical formula");
+
       return;
     }
     if (modelo3D === undefined) {
@@ -201,9 +205,29 @@ function Forms() {
         },
       }).then(res => {
         if (res.status === 200) {
-          alert("Rock added successfully");
+          {
+            toast.success('Modelo creado con exito', {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }
         } else {
-          alert("Error adding rock");
+          {
+            toast.error('No se pudo crear el modelo', {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: true,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }
         }
 
       });
@@ -222,6 +246,33 @@ function Forms() {
       console.log("Edit form submitted");
     }
 
+  }
+
+  function errorAlert() {
+    return (
+      <div className="relative py-3 px-4 text-red-700 bg-red-100 rounded border border-red-400" role="alert">
+        <strong className="font-bold">Holy smokes!</strong>
+        <span className="block sm:inline">Something seriously bad happened.</span>
+        <span className="absolute inset-y-0 right-0 py-3 px-4">
+          <svg className="w-6 h-6 text-red-500 fill-current" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" /></svg>
+        </span>
+      </div>
+
+    );
+  }
+
+  function successAlert() {
+    return (
+      <div className="py-3 px-4 text-teal-900 bg-teal-100 rounded-b border-t-4 border-teal-500 shadow-md" role="alert">
+        <div className="flex">
+          <div className="py-1"><svg className="mr-4 w-6 h-6 text-teal-500 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z" /></svg></div>
+          <div>
+            <p className="font-bold">Our privacy policy has changed</p>
+            <p className="text-sm">Make sure you know how these changes affect you.</p>
+          </div>
+        </div>
+      </div>
+    );
   }
 
 
@@ -379,6 +430,7 @@ function Forms() {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 

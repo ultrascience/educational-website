@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './../../../../estilos/index.css';
 type Props = {
   diccionario: {
     [key: string]: string;
@@ -16,7 +16,7 @@ function Card(props: Props) {
   const inputs = [];
   for (const key in props.diccionario) {
     inputs.push(
-      <div className="flex-1 p-2">
+      <div className="flex-1 p-2 ">
         <div className="text-sm font-bold text-left text-gray-700">
           {key}
         </div>
@@ -27,12 +27,14 @@ function Card(props: Props) {
     );
   }
   return (
-    <div className="flex flex-col p-4 w-full bg-white divide-y divide-gray-300">
-      <div className='text-xl font-bold text-center text-gray-700'>
-        {"Propiedades " + props.titulo}
-      </div>
-      {inputs}
-    </div>
+    <>
+      <div className="my-2 space-y-2 space-x-2 carta">
+        <div className='my-2 text-xl font-bold text-center text-gray-700'>
+          {"Propiedades " + props.titulo}
+        </div><div className="flex flex-col p-4 w-full  divide-y divide-gray-200 shadow-xl">
+          {inputs}
+        </div>
+      </div></>
   );
 }
 

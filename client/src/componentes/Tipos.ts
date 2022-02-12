@@ -60,7 +60,7 @@ type ArrayGalleryProps = {
 
 type Modelo3DProps = {
   idModelSelected: string;
-  endpoint: string;
+  type: "modelo3D" | "chemical_formula";
 };
 
 type BarIconsProps = {
