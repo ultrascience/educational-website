@@ -49,7 +49,7 @@ function Escena(): JSX.Element {
         <div className="text-2xl font-semibold text-center capitalize">
           {currentModel.name}
         </div>
-        <div className="text-xl font-medium text-center capitalize">
+        <div className="text-xl font-medium text-center ">
           <MathJaxContext>
             <MathJax>{"\\(" + formula + "\\)"}</MathJax>
           </MathJaxContext>

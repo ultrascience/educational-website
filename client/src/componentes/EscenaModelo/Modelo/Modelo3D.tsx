@@ -3,9 +3,9 @@
  * Renders a 3D Model based on the given props.
  *
  */
-import { Center, Environment, Html, OrbitControls, OrthographicCamera, useGLTF, useProgress } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import React, { Suspense } from "react";
+import { Center, Environment, Html, OrbitControls, useGLTF, useProgress } from "@react-three/drei";
+import { Canvas, useFrame } from "@react-three/fiber";
+import React, { Suspense, useRef } from "react";
 import { Modelo3DProps } from "./../../Tipos";
 
 function Loader() {
@@ -15,6 +15,11 @@ function Loader() {
 
 const Model = (props: Modelo3DProps) => {
   let directory = "";
+  const boxRef: any = useRef();
+  useFrame(() => {
+    boxRef.current.rotation.y += 0.1;
+  });
+
   if (props.type === "modelo3D") {
     directory = "get-model3D/";
   } else {
@@ -26,7 +31,7 @@ const Model = (props: Modelo3DProps) => {
 
   return (
     <>
-      <primitive object={scene} scale={0.1} />
+      <primitive object={scene} scale={0.1} ref={boxRef} rotation-x={Math.PI * 0.25} rotation-y={Math.PI * 0.25} />
     </>
   );
 };
@@ -57,7 +62,7 @@ function Modelo3D(props: Modelo3DProps) {
 
     return (
       <>
-        <Canvas frameloop="demand" mode="concurrent" dpr={[1, 2]} camera={{ fov: 70 }} style={{backgroundColor: '#000000'}}>
+        <Canvas dpr={[1, 2]} camera={{ fov: 70 }} style={{ backgroundColor: '#000000' }}>
           <OrbitControls zoomSpeed={2.0} />
           <ambientLight intensity={0.3} />
           <directionalLight intensity={0.1} />
