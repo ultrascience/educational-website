@@ -6,6 +6,7 @@ import Forms from "./componentes/Forms";
 import Delete from "./componentes/Delete";
 import Galeria from "./componentes/Galeria";
 import SearchBar from "./componentes/SearchBar";
+import Banner from "./componentes/Banner";
 import { ModelTypeGallery } from "./componentes/Tipos";
 
 /**
@@ -45,6 +46,7 @@ function App(): JSX.Element {
                         <Route path="/edit-item/:id" element={<Forms/>} />
                         <Route path="/delete-items" element={<Delete/>}/>
                         <Route path="/3d-models/:id" element={<Escena />}/>
+                        <Route path="/banner" element={<Banner />}/>
                     </Routes>
                 </Router>
             </>
