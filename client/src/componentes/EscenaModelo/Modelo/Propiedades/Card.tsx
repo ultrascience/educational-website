@@ -28,10 +28,10 @@ function Card(props: Props) {
   }
   return (
     <>
-      <div className="my-2 space-y-2 space-x-2 carta">
+      <div className="my-2 space-y-2 space-x-2 bg-emerald-300 rounded-lg shadow-lg">
         <div className='my-2 text-xl font-bold text-center text-gray-700'>
           {"Propiedades " + props.titulo}
-        </div><div className="flex flex-col p-4 w-full  divide-y divide-gray-200 shadow-xl">
+        </div><div className="flex flex-col p-4 w-full divide-y divide-gray-500">
           {inputs}
         </div>
       </div></>

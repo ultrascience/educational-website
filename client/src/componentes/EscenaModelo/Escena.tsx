@@ -1,4 +1,3 @@
-/* eslint-disable tailwindcss/no-custom-classname */
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import "../../estilos/index.css";
@@ -45,14 +44,24 @@ function Escena(): JSX.Element {
   function Header(): JSX.Element {
     const formula = "CaB_{2}(SiO_{4})_{2}";
     return (
-      <div className="w-fit">
-        <div className="text-2xl font-semibold text-center capitalize">
-          {currentModel.name}
+      <div className="p-2 w-full">
+        <div className="flex flex-row">
+          <div className="basis-1/6">
+         <img src="/unam-icon.png" alt='unam-icon' width="100" height="100" />
+          </div>
+          <div className="basis-4/6">
+            <div className="p-4 text-4xl font-semibold text-center capitalize">
+              {currentModel.name}
+            </div>
+            <div className="p-2 text-xl font-black text-center">
+              <MathJaxContext>
+                <MathJax>{"\\(" + formula + "\\)"}</MathJax>
+              </MathJaxContext>
+            </div>
+          </div>
+          <div className="basis-1/6">
+         <img src="/inge-icon.jpg" alt='unam-icon' width="100" height="100" className="float-right"/>
         </div>
-        <div className="text-xl font-medium text-center ">
-          <MathJaxContext>
-            <MathJax>{"\\(" + formula + "\\)"}</MathJax>
-          </MathJaxContext>
         </div>
       </div>
     );
@@ -60,7 +69,7 @@ function Escena(): JSX.Element {
 
   function Summary(props: { idModelSelected: string }): JSX.Element {
     return (
-      <div className="w-fit h-96">
+      <div className="w-full h-96">
         <div className="grid grid-cols-2 grid-rows-2 gap-4 h-full">
           <div className="col-span-1 row-span-full">
             <Model3D idModelSelected={props.idModelSelected} type="modelo3D" />
@@ -78,17 +87,17 @@ function Escena(): JSX.Element {
       <div className="w-fit h-fit">
         <div className="grid grid-cols-3 grid-rows-2 gap-4 w-full h-full">
           <div className="col-span-1 row-span-full">
-            <div className="flex flex-col flex-wrap gap-2 w-full h-full p-4">
+            <div className="flex flex-col flex-wrap gap-2 p-4 w-full h-full">
               <Fisicas information={currentModel.properties.physical} />
               <Quimicas information={currentModel.properties.chemical} />
               <Cristalograficas information={currentModel.properties.crystallographic} />
               <Opticas information={currentModel.properties.optical} />
             </div>
           </div>
-          <div className="col-span-2 row-span-full shadow-xl rounded-lg p-4">
-          <div className="text-xl font-bold capitalize">
-            Resumen:
-          </div>
+          <div className="col-span-2 row-span-full p-4 rounded-lg shadow-xl">
+            <div className="text-xl font-bold capitalize">
+              Resumen:
+            </div>
             <p>
               Danburita es un mineral de silicato de calcio y boro, su fórmula química es CaB2(SiO4)2.
               Tiene una dureza de Mohs de 7 a 7.5 y una gravedad específica de 3.0. El mineral tiene una forma de cristal ortorrómbica. Es generalmente incoloro, como el cuarzo, pero también puede ser de color amarillo pálido o marrón amarillento. Por lo general se produce en contacto con las rocas metamórficas.
@@ -104,7 +113,7 @@ function Escena(): JSX.Element {
 
   function Footer(): JSX.Element {
     return (
-      <div className="w-fit bg-blue-500">
+      <div className="w-full h-52 bg-emerald-300">
         <div className="text-center">
           Fuentes de Consulta: {currentModel.references}
         </div>
@@ -122,8 +131,8 @@ function Escena(): JSX.Element {
       return <div>Error loading the model</div>;
     } else {
       return (
-        <div className="min-h-screen min-w-screen bg-gray-100">
-          <div className="space-y-2 space-x-2 scena shadow-2xl">
+        <div className="min-h-screen bg-gray-100 min-w-screen">
+          <div className="space-y-2 space-x-2 shadow-2xl scena">
             <Header />
             <Summary idModelSelected={id} />
             <Properties idModelSelected={id} />
