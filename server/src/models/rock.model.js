@@ -1,30 +1,6 @@
 // rock.model.js
 import mongoose from 'mongoose';
 
-const modelIntroduction = new mongoose.Schema({
-  etymology: {
-    type: String,
-    required: true,
-  },
-  atmosphere: {
-    type: String,
-    required: true,
-  },
-  applications: {
-    type: String,
-    required: true,
-  },
-  main_locations: {
-    type: String,
-    required: true,
-  },
-  diffractogram: {
-    type: String,
-    required: true,
-  },
-
-});
-
 const chemicalProperties = new mongoose.Schema({
   molecular_weight: {
     type: String,
@@ -105,7 +81,6 @@ const physicalProperties = new mongoose.Schema({
 });
 
 const modelProperties = new mongoose.Schema({
-  introduction: modelIntroduction,
   chemical: chemicalProperties,
   crystallographic: crystallographicProperties,
   physical: physicalProperties,
@@ -128,6 +103,10 @@ const rocksSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  introduction: {
+    type: String,
+    required: true
+  },
   chemical_formula: {
     type: String,
     required: true
@@ -144,9 +123,6 @@ const rocksSchema = new mongoose.Schema({
   references: String,
 
 }
-  // {
-  //   timestamps: true
-  // }
 );
 
 const Rocks = mongoose.model("Rocks", rocksSchema);

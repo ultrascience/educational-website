@@ -11,7 +11,7 @@ function Quimicas(props: ChemicalProps): JSX.Element {
       "Oxidos": information.chemistry_oxides
     };
     return (<>
-      <Card diccionario={propiedades} titulo="Químicas"/>
+      <Card diccionario={propiedades} titulo="Químicas" color="red" />
     </>);
 }
 

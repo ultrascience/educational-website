@@ -7,7 +7,7 @@ import React from 'react';
  */
 function Banner() {
   return (
-    <img src="./banner.png" alt="banner" className="w-full h-full"/>
+    <img src="./b.png" alt="banner" className="w-full h-full"/>
   );
 }
 

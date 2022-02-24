@@ -20,7 +20,7 @@ function Galeria(props: ArrayGalleryProps): JSX.Element {
         <div className="h-4/6">
           <Banner />
         </div>
-        <div className="h-2/6">
+        <div className="p-4 h-2/6">
           <SearchBar
             setSearchModels={setSearchModels}
           />

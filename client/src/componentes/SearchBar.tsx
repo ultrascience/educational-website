@@ -48,7 +48,7 @@ function SearchBar(props: Props) {
 
   return (
     <div className="flex relative mx-auto w-1/2 max-w-md">
-      <input className="border-2 border-primary bg-red transition h-12 px-5 pr-16 rounded-md focus:outline-none w-full text-black text-lg " type="search" name="search" placeholder="Search" onChange={handleChange} onKeyDown={handleKeyDown} />
+      <input className="border-2 border-primary bg-red transition h-12 px-5 pr-16 rounded-md focus:outline-none w-full text-black text-lg " type="search" name="search" placeholder="Buscar" onChange={handleChange} onKeyDown={handleKeyDown} />
       <button type="submit" className="absolute top-3 right-2 mr-4" onClick={onSearch}>
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />

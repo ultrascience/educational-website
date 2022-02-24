@@ -10,7 +10,7 @@ function Cristalograficas(props: CrystallographicProps): JSX.Element {
     "Difraccion de rayos X": information.x_ray_diffraction,
   }
   return (<>
-    <Card diccionario={propiedades} titulo="Cristalograficas" />
+    <Card diccionario={propiedades} titulo="Cristalograficas" color="green" />
   </>);
 }
 

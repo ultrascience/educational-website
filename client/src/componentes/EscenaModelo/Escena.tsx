@@ -55,7 +55,7 @@ function Escena(): JSX.Element {
             </div>
             <div className="p-2 text-xl font-black text-center">
               <MathJaxContext>
-                <MathJax>{"\\(" + formula + "\\)"}</MathJax>
+                <MathJax>{"\\(" + currentModel.formula + "\\)"}</MathJax>
               </MathJaxContext>
             </div>
           </div>
@@ -87,24 +87,16 @@ function Escena(): JSX.Element {
       <div className="w-fit h-fit">
         <div className="grid grid-cols-3 grid-rows-2 gap-4 w-full h-full">
           <div className="col-span-1 row-span-full">
-            <div className="flex flex-col flex-wrap gap-2 p-4 w-full h-full">
+            <div className="flex flex-col flex-wrap gap-2 w-full h-full">
               <Fisicas information={currentModel.properties.physical} />
               <Quimicas information={currentModel.properties.chemical} />
               <Cristalograficas information={currentModel.properties.crystallographic} />
               <Opticas information={currentModel.properties.optical} />
             </div>
           </div>
-          <div className="col-span-2 row-span-full p-4 rounded-lg shadow-xl">
-            <div className="text-xl font-bold capitalize">
-              Resumen:
-            </div>
-            <p>
-              Danburita es un mineral de silicato de calcio y boro, su fórmula química es CaB2(SiO4)2.
-              Tiene una dureza de Mohs de 7 a 7.5 y una gravedad específica de 3.0. El mineral tiene una forma de cristal ortorrómbica. Es generalmente incoloro, como el cuarzo, pero también puede ser de color amarillo pálido o marrón amarillento. Por lo general se produce en contacto con las rocas metamórficas.
-              La clasificación de minerales Dana, clasifica al danburita como un sorosilicato, mientras que el esquema de clasificación de Strunz lo clasifica como un tectosilicato su estructura puede ser interpretada como cualquiera.
-              Su simetría cristalina y la forma son similares al topacio; sin embargo, el topacio es de calcio y flúor teniendo nesosilicato. La claridad, la capacidad de resistencia, y la fuerte dispersión de la danburita hacen que sea valioso para la joyería.
-              El nombre proviene de la ciudad de Danbury, Connecticut, Estados Unidos, donde fue descubierto por primera vez en 1839 por Charles Upham Shephard.2
-            </p>
+          <div className="col-span-2 row-span-full rounded-lg shadow-xl" style={{ whiteSpace: "pre-wrap" }}>
+          <Introduccion information={currentModel.introduction} />
+          <Footer />
           </div>
         </div>
       </div>
@@ -113,8 +105,8 @@ function Escena(): JSX.Element {
 
   function Footer(): JSX.Element {
     return (
-      <div className="w-full h-52 bg-emerald-300">
-        <div className="text-center">
+      <div className="my-8 w-full h-52">
+        <div className="text-xl text-center">
           Fuentes de Consulta: {currentModel.references}
         </div>
       </div>
@@ -136,7 +128,6 @@ function Escena(): JSX.Element {
             <Header />
             <Summary idModelSelected={id} />
             <Properties idModelSelected={id} />
-            <Footer />
           </div>
         </div>
       );

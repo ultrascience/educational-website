@@ -22,6 +22,7 @@ type ModelType = {
     data: Buffer;
     contentType: string;
   };
+  formula: string;
   clasification: string;
   properties: {
     chemical: {
